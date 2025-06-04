@@ -2,7 +2,7 @@
 
 > Milari es una aplicación de escritorio moderna construida con React y Electron que une gestión de tareas, calendario inteligente, seguimiento de hábitos, análisis de productividad y comandos de voz en una experiencia fluida, emocional y profundamente personal.
 
-Inspirada en el nombre de una madre, Milari rinde homenaje a las miles de mujeres que nos enseñaron que siempre hay un tiempo para todo: para trabajar, para descansar, para soñar y para cuidar de los demás.
+Inspirada en el nombre de mi madre, Milari rinde homenaje a las miles de mujeres que nos enseñaron que siempre hay un tiempo para todo: para trabajar, para descansar, para soñar y para cuidar de los demás.
 Esta app no solo organiza tus días, sino que te recuerda lo que realmente importa.
 
 Milari no es solo una herramienta.
@@ -189,7 +189,7 @@ EXPORT_ENABLED=true
 
 ## 📜 Licencia
 
-Este proyecto está bajo la Licencia MIT. Ver `LICENSE` para más detalles.
+Si quieres aportar te agredeceria, puedes usarlo para uso personal y cualquier comentario es bienvenido.
 
 ## 🙏 Reconocimientos
 
@@ -200,10 +200,10 @@ Este proyecto está bajo la Licencia MIT. Ver `LICENSE` para más detalles.
 
 ## 📧 Contacto
 
-- **Autor**: Tu Nombre
-- **Email**: tu-email@ejemplo.com
-- **GitHub**: [@tu-usuario](https://github.com/tu-usuario)
-- **LinkedIn**: [Tu Perfil](https://linkedin.com/in/tu-perfil)
+- **Autor**: Darikson Anyosa
+- **Email**: dariksoma@gmail.com
+- **GitHub**: [@DariksonAnyosa](https://github.com/DariksonAnyosa)
+- **LinkedIn**: [Darikson Anyosa](https://www.linkedin.com/in/dariksonanyosa/)
 
 ---
 
