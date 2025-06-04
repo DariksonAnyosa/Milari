@@ -1,70 +1,210 @@
-# Getting Started with Create React App
+# 🧠 Milari
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Milari es una aplicación de escritorio moderna construida con React y Electron que une gestión de tareas, calendario inteligente, seguimiento de hábitos, análisis de productividad y comandos de voz en una experiencia fluida, emocional y profundamente personal.
 
-## Available Scripts
+Inspirada en el nombre de una madre, Milari rinde homenaje a las miles de mujeres que nos enseñaron que siempre hay un tiempo para todo: para trabajar, para descansar, para soñar y para cuidar de los demás.
+Esta app no solo organiza tus días, sino que te recuerda lo que realmente importa.
 
-In the project directory, you can run:
+Milari no es solo una herramienta.
+Es una compañera diaria creada con propósito, para ayudarte a vivir con más intención, claridad y cariño.
 
-### `npm start`
+## ✨ Características
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 📋 Gestión de Tareas Inteligente
+- ✅ Creación rápida de tareas con comandos de voz
+- 🎯 Sistema de prioridades con indicadores visuales
+- ⏰ Programación flexible con recordatorios automáticos
+- 🏷️ Auto-categorización por tipo de tarea
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 📅 Calendario Integrado
+- 📆 Vista mensual con indicadores de tareas
+- 🗓️ Programación por arrastrar y soltar
+- 📊 Vista de hoy optimizada para productividad diaria
+- 🔄 Sincronización en tiempo real
 
-### `npm test`
+### 📊 Analytics de Productividad
+- 📈 Métricas detalladas de rendimiento
+- 🔥 Sistema de rachas motivacional
+- 💡 Insights automáticos sobre patrones de trabajo
+- 📋 Reportes exportables
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 🎤 Comandos de Voz
+- 🗣️ Reconocimiento de voz en español
+- ⚡ Creación instantánea de tareas
+- ❓ Consultas de estado y programación
+- 🎯 Completación de tareas por voz
 
-### `npm run build`
+### 🔔 Notificaciones Inteligentes
+- ⏰ Recordatorios programables
+- 🎉 Notificaciones de logros
+- 🌅 Recordatorios matutinos personalizados
+- 📱 Integración con sistema operativo
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🚀 Instalación
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisitos
+- Node.js 18+ 
+- npm o yarn
+- macOS, Windows o Linux
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Clonar el repositorio
+```bash
+git clone https://github.com/tu-usuario/mindflow.git
+cd mindflow
+```
 
-### `npm run eject`
+### Instalar dependencias
+```bash
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Ejecutar en modo desarrollo
+```bash
+# Ejecutar React + Electron
+npm run electron-dev
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Solo React (para desarrollo web)
+npm start
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Solo Electron
+npm run electron
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Construir para producción
+```bash
+# Crear build optimizado
+npm run build
 
-## Learn More
+# Crear instalador para tu plataforma
+npm run dist
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🛠️ Tecnologías
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Frontend**: React 19.1.0, CSS3 con efectos glassmorphism
+- **Desktop**: Electron 36.4.0
+- **Base de Datos**: SQLite3 con almacenamiento local
+- **Voz**: Web Speech API
+- **Notificaciones**: Notification API + Service Workers
+- **Analytics**: Sistema propio de métricas
 
-### Code Splitting
+## 📁 Estructura del Proyecto
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+mindflow/
+├── public/                 # Archivos públicos y recursos
+├── src/
+│   ├── components/        # Componentes React
+│   │   ├── TodayView.js   # Vista principal del día
+│   │   ├── Calendar.js    # Calendario interactivo
+│   │   ├── TaskList.js    # Lista completa de tareas
+│   │   ├── AnalyticsDashboard.js # Dashboard de analytics
+│   │   └── VoiceAssistant.js     # Asistente de voz
+│   ├── services/          # Servicios y lógica de negocio
+│   │   ├── NotificationManager.js # Gestión de notificaciones
+│   │   └── AnalyticsManager.js    # Analytics y métricas
+│   ├── database/          # Gestión de datos
+│   │   └── DatabaseManager.js     # SQLite + localStorage
+│   ├── App.js            # Componente principal
+│   ├── index.css         # Estilos base
+│   ├── premium.css       # Estilos premium
+│   └── analytics.css     # Estilos de analytics
+├── electron.js           # Configuración de Electron
+└── package.json         # Dependencias y scripts
+```
 
-### Analyzing the Bundle Size
+## 🎯 Uso
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Comandos de Voz Disponibles
 
-### Making a Progressive Web App
+```
+"Agregar [tarea]"          → Crear nueva tarea
+"¿Qué tengo hoy?"          → Ver tareas del día
+"¿Qué tengo pendiente?"    → Ver todas las pendientes
+"Completar [tarea]"        → Marcar como completada
+"Hola MindFlow"            → Saludo y resumen
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Atajos de Teclado
 
-### Advanced Configuration
+- `Cmd/Ctrl + Shift + M` → Activar ventana rápidamente
+- `Cmd/Ctrl + N` → Nueva tarea
+- `Cmd/Ctrl + 1,2,3,4` → Cambiar entre vistas
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 📊 Analytics
 
-### Deployment
+MindFlow incluye un sistema completo de analytics que rastrea:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- **Productividad Diaria**: Tareas completadas, tiempo dedicado, eficiencia
+- **Tendencias Semanales**: Patrones de trabajo y mejores días
+- **Sistema de Rachas**: Días consecutivos de productividad
+- **Insights Automáticos**: Recomendaciones personalizadas basadas en datos
 
-### `npm run build` fails to minify
+## 🔧 Configuración
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Variables de Entorno (opcional)
+
+Crea un archivo `.env` en la raíz del proyecto:
+
+```env
+# Configuración de notificaciones
+NOTIFICATION_ENABLED=true
+MORNING_REMINDER=true
+EVENING_REVIEW=true
+
+# Analytics
+ANALYTICS_ENABLED=true
+EXPORT_ENABLED=true
+```
+
+### Personalización
+
+- **Temas**: Modifica `premium.css` para cambiar colores y estilos
+- **Comandos de Voz**: Edita `VoiceAssistant.js` para agregar nuevos patrones
+- **Notificaciones**: Configura horarios en `NotificationManager.js`
+
+## 🐛 Solución de Problemas
+
+### El reconocimiento de voz no funciona
+- Verifica que tengas permisos de micrófono
+- Asegúrate de usar HTTPS o localhost
+- Comprueba compatibilidad del navegador
+
+### Las notificaciones no aparecen
+- Concede permisos de notificación
+- Verifica configuración del sistema operativo
+- Revisa que no esté en modo "No molestar"
+
+### La base de datos no se crea
+- Verifica permisos de escritura en la carpeta
+- Comprueba que SQLite3 esté instalado correctamente
+
+## 🤝 Contribución
+
+1. Fork el repositorio
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📜 Licencia
+
+Este proyecto está bajo la Licencia MIT. Ver `LICENSE` para más detalles.
+
+## 🙏 Reconocimientos
+
+- **Web Speech API** para reconocimiento de voz
+- **Electron** para aplicación de escritorio
+- **React** para la interfaz de usuario
+- **SQLite** para almacenamiento local
+
+## 📧 Contacto
+
+- **Autor**: Tu Nombre
+- **Email**: tu-email@ejemplo.com
+- **GitHub**: [@tu-usuario](https://github.com/tu-usuario)
+- **LinkedIn**: [Tu Perfil](https://linkedin.com/in/tu-perfil)
+
+---
+
+⭐ **¡Si te gusta MindFlow, dale una estrella en GitHub!** ⭐

@@ -1,23 +1,273 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# ==========================================
+# DEPENDENCIES Y NODE_MODULES
+# ==========================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# ==========================================
+# BUILDS Y DISTRIBUCIÓN
+# ==========================================
+build/
+dist/
+out/
 
-# testing
-/coverage
-
-# production
-/build
-
-# misc
-.DS_Store
+# ==========================================
+# ARCHIVOS DE DESARROLLO LOCAL
+# ==========================================
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# ==========================================
+# LOGS
+# ==========================================
+*.log
+logs
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# ==========================================
+# COVERAGE Y TESTING
+# ==========================================
+coverage/
+*.lcov
+.nyc_output
+
+# ==========================================
+# ARCHIVOS DEL SISTEMA OPERATIVO
+# ==========================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.tmp
+*.temp
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ==========================================
+# EDITORES E IDEs
+# ==========================================
+
+# VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains IDEs
+.idea/
+*.swp
+*.swo
+*~
+
+# Sublime Text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+*.swp
+*.swo
+*.swn
+.netrwhist
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# ==========================================
+# ELECTRON ESPECÍFICO
+# ==========================================
+
+# Distribución de Electron
+release/
+app/dist/
+app/main.prod.js
+app/main.prod.js.map
+
+# Certificados y firma de código
+*.p12
+*.pfx
+*.cer
+*.crt
+*.pem
+certificates/
+
+# Configuración de auto-updater
+dev-app-update.yml
+
+# ==========================================
+# DATOS LOCALES Y CONFIGURACIÓN
+# ==========================================
+
+# Base de datos local (SQLite)
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Configuración local del usuario
+user-preferences.json
+app-settings.json
+local-config.json
+
+# Cache de la aplicación
+.cache/
+cache/
+tmp/
+temp/
+
+# Archivos de backup
+*.backup
+*.bak
+*.orig
+
+# ==========================================
+# ARCHIVOS DE DESARROLLO
+# ==========================================
+
+# Hot reload
+.hot-updates.json
+hot-update.js
+hot-update.js.map
+
+# Webpack
+.webpack/
+
+# Parcel
+.parcel-cache/
+
+# ==========================================
+# SERVICIOS DE TERCEROS
+# ==========================================
+
+# Firebase
+.firebase/
+firebase-debug.log
+
+# Vercel
+.vercel
+
+# Netlify
+.netlify/
+
+# ==========================================
+# ARCHIVOS SENSIBLES Y SECRETOS
+# ==========================================
+
+# API Keys y secretos
+.env.secret
+secrets.json
+config.private.json
+api-keys.json
+
+# Tokens de acceso
+access-token.txt
+refresh-token.txt
+auth-config.json
+
+# Configuración de producción
+production.json
+prod.config.js
+
+# ==========================================
+# ARCHIVOS ESPECÍFICOS DEL PROYECTO
+# ==========================================
+
+# Datos de testing
+test-data/
+mock-data/
+sample-tasks.json
+
+# Documentación temporal
+NOTES.md
+TODO.md
+DEVELOPMENT.md
+
+# Screenshots y assets temporales
+screenshots/
+temp-assets/
+design-drafts/
+
+# Archivos de análisis
+analytics-export-*.json
+user-data-export-*.csv
+
+# ==========================================
+# ARCHIVOS QUE SÍ QUEREMOS INCLUIR
+# ==========================================
+
+# Mantener estos archivos importantes
+!.gitignore
+!.gitkeep
+!README.md
+!LICENSE
+!package.json
+!package-lock.json
+
+# Configuración de ejemplo (sin datos sensibles)
+!.env.example
+!config.example.json
+
+# Assets principales
+!public/
+!src/
+
+# Documentación
+!docs/
+!*.md
