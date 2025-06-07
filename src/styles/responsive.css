@@ -1,0 +1,453 @@
+/* ==========================================
+   RESPONSIVE DESIGN GLOBAL
+   Media queries que afectan múltiples componentes
+   ========================================== */
+
+/* ==========================================
+   BREAKPOINTS
+   ========================================== */
+
+:root {
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1200px;
+}
+
+/* ==========================================
+   TABLET (768px y abajo)
+   ========================================== */
+
+@media (max-width: 768px) {
+  
+  /* Ajustes generales de spacing */
+  :root {
+    --spacing-xs: 3px;
+    --spacing-sm: 6px;
+    --spacing-md: 10px;
+    --spacing-lg: 14px;
+    --spacing-xl: 18px;
+    --spacing-2xl: 22px;
+  }
+  
+  /* Contenedores principales */
+  .dashboard-layout {
+    padding: 0;
+  }
+  
+  .dashboard-main {
+    padding: var(--spacing-md);
+  }
+  
+  /* Tipografía responsive */
+  .app-title {
+    font-size: 1.75rem;
+  }
+  
+  .date-title {
+    font-size: 1.75rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  /* Botones flotantes */
+  .add-event-btn {
+    bottom: 20px;
+    right: 16px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    font-size: 20px;
+  }
+  
+  .voice-trigger-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+  }
+  
+  /* Modales */
+  .add-task-modal {
+    width: 95%;
+    margin: var(--spacing-md);
+  }
+  
+  .modal-header {
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+  
+  .form-content {
+    padding: var(--spacing-lg);
+  }
+  
+  .modal-actions {
+    padding: var(--spacing-lg);
+    flex-direction: column;
+  }
+  
+  /* Grids responsive */
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .summary-stats {
+    justify-content: space-around;
+    gap: var(--spacing-md);
+  }
+  
+  /* Timeline adjustments */
+  .time-label {
+    width: 60px;
+    padding: var(--spacing-sm);
+  }
+  
+  .time-text {
+    font-size: 0.75rem;
+  }
+  
+  .timeline-task {
+    padding: var(--spacing-sm);
+    gap: var(--spacing-sm);
+  }
+  
+  .task-title {
+    font-size: 0.9rem;
+  }
+}
+
+/* ==========================================
+   MÓVIL (480px y abajo)
+   ========================================== */
+
+@media (max-width: 480px) {
+  
+  /* Ajustes extremos de spacing */
+  :root {
+    --spacing-xs: 2px;
+    --spacing-sm: 4px;
+    --spacing-md: 8px;
+    --spacing-lg: 12px;
+    --spacing-xl: 16px;
+    --spacing-2xl: 20px;
+  }
+  
+  /* Contenedores ultra compactos */
+  .dashboard-main {
+    padding: var(--spacing-sm);
+  }
+  
+  /* Tipografía móvil */
+  .app-title {
+    font-size: 1.5rem;
+  }
+  
+  .date-title {
+    font-size: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.25rem;
+  }
+  
+  /* Header compacto */
+  .header-content {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+  
+  .milari-nav {
+    padding: var(--spacing-sm) var(--spacing-md);
+    gap: 2px;
+  }
+  
+  .nav-btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.8rem;
+  }
+  
+  /* Botones más pequeños */
+  .add-event-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    font-size: 18px;
+    bottom: 16px;
+    right: 12px;
+  }
+  
+  .voice-trigger-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    font-size: 0.8rem;
+  }
+  
+  /* Timeline ultra compacta */
+  .time-label {
+    width: 50px;
+    padding: var(--spacing-xs);
+  }
+  
+  .time-text {
+    font-size: 0.7rem;
+  }
+  
+  .time-label-iphone {
+    width: 35px;
+    padding-right: 6px;
+  }
+  
+  .time-text-iphone {
+    font-size: 0.75rem;
+  }
+  
+  /* Tasks compactas */
+  .timeline-task {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 8px;
+  }
+  
+  .task-title {
+    font-size: 0.85rem;
+  }
+  
+  .task-checkbox.large {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+  
+  .task-type-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 1rem;
+  }
+  
+  /* Modales móvil */
+  .add-task-modal {
+    width: 98%;
+    margin: var(--spacing-xs);
+    border-radius: 8px;
+  }
+  
+  .task-input {
+    padding: var(--spacing-sm);
+    font-size: 0.9rem;
+  }
+  
+  /* Pomodoro móvil */
+  .timer-circle {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .timer-time {
+    font-size: 1.75rem;
+  }
+  
+  .timer-mode {
+    font-size: 0.8rem;
+  }
+  
+  /* Calendar móvil */
+  .calendar-day {
+    min-height: 50px;
+    padding: 2px;
+  }
+  
+  .day-number {
+    font-size: 0.75rem;
+  }
+  
+  .calendar-event {
+    font-size: 0.55rem;
+    padding: 1px;
+  }
+  
+  /* Voice assistant móvil */
+  .voice-main-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+  
+  .voice-visualizer {
+    height: 60px;
+  }
+}
+
+/* ==========================================
+   LANDSCAPE MÓVIL
+   ========================================== */
+
+@media (max-width: 768px) and (orientation: landscape) {
+  
+  /* Header más compacto en landscape */
+  .milari-header {
+    position: relative;
+  }
+  
+  .header-content {
+    padding: var(--spacing-xs) var(--spacing-md);
+  }
+  
+  .app-title {
+    font-size: 1.25rem;
+  }
+  
+  .current-date {
+    font-size: 0.8rem;
+  }
+  
+  .milari-nav {
+    padding: var(--spacing-xs) var(--spacing-md);
+  }
+  
+  /* Timeline landscape */
+  .today-date-header {
+    padding: var(--spacing-md);
+  }
+  
+  .date-title {
+    font-size: 1.5rem;
+  }
+  
+  /* Botones landscape */
+  .add-event-btn {
+    bottom: 16px;
+    right: 16px;
+  }
+  
+  .voice-assistant-container {
+    bottom: 60px;
+    right: 16px;
+  }
+}
+
+/* ==========================================
+   DESKTOP LARGE (1200px y arriba)
+   ========================================== */
+
+@media (min-width: 1200px) {
+  
+  /* Contenedores más anchos */
+  .milari-today {
+    max-width: 900px;
+  }
+  
+  .calendar-container {
+    max-width: 1000px;
+  }
+  
+  .pomodoro-container {
+    max-width: 700px;
+  }
+  
+  /* Timeline más espaciosa */
+  .time-label {
+    width: 100px;
+  }
+  
+  .time-label-iphone {
+    width: 60px;
+  }
+  
+  /* Tasks grid más columnas */
+  .tasks-grid {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  }
+  
+  /* Calendar más grande */
+  .calendar-day {
+    min-height: 120px;
+  }
+  
+  /* Pomodoro más grande */
+  .timer-circle {
+    width: 240px;
+    height: 240px;
+  }
+  
+  .timer-time {
+    font-size: 3rem;
+  }
+}
+
+/* ==========================================
+   PRINT STYLES
+   ========================================== */
+
+@media print {
+  
+  /* Ocultar elementos interactivos */
+  .add-event-btn,
+  .voice-assistant-container,
+  .task-delete,
+  .event-delete,
+  .nav-btn,
+  .voice-trigger-btn {
+    display: none !important;
+  }
+  
+  /* Ajustar colores para impresión */
+  .timeline-task,
+  .task-card,
+  .calendar-event {
+    border: 1px solid #000 !important;
+    background: transparent !important;
+    color: #000 !important;
+  }
+  
+  /* Fuentes para impresión */
+  body {
+    font-family: 'Times New Roman', serif !important;
+    background: white !important;
+    color: black !important;
+  }
+  
+  /* Páginas */
+  .calendar-container,
+  .pomodoro-container,
+  .tasklist-view {
+    page-break-inside: avoid;
+  }
+}
+
+/* ==========================================
+   DARK MODE (si se implementa en el futuro)
+   ========================================== */
+
+@media (prefers-color-scheme: dark) {
+  /* 
+  Aquí irían los estilos de dark mode
+  cuando se implemente en el futuro
+  */
+}
+
+/* ==========================================
+   REDUCED MOTION
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  
+  /* Eliminar animaciones para usuarios sensibles */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .voice-visualizer.active .voice-bar {
+    animation: none !important;
+  }
+  
+  .voice-main-btn.recording,
+  .voice-main-btn.processing {
+    animation: none !important;
+  }
+}

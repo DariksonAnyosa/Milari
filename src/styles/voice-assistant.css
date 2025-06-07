@@ -1,0 +1,407 @@
+/* ==========================================
+   VOICE ASSISTANT
+   ========================================== */
+
+.voice-assistant-main {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+  background: var(--color-background);
+  min-height: 100vh;
+}
+
+/* ==========================================
+   PANEL PRINCIPAL DEL ASISTENTE
+   ========================================== */
+
+.voice-assistant-card {
+  background: var(--color-surface);
+  border-radius: 16px;
+  padding: var(--spacing-2xl);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 0.5px solid var(--color-gray-2);
+  text-align: center;
+}
+
+.voice-assistant-header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.voice-assistant-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.voice-assistant-subtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================
+   VISUALIZADOR DE VOZ
+   ========================================== */
+
+.voice-visualizer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  margin-bottom: var(--spacing-xl);
+  gap: 4px;
+}
+
+.voice-bar {
+  width: 3px;
+  background: var(--color-gray-3);
+  border-radius: 2px;
+  transition: all 0.1s ease;
+}
+
+.voice-visualizer.active .voice-bar {
+  background: var(--color-primary);
+  animation: voiceWave 0.5s ease-in-out infinite alternate;
+}
+
+.voice-bar:nth-child(1) { height: 20px; animation-delay: 0s; }
+.voice-bar:nth-child(2) { height: 30px; animation-delay: 0.1s; }
+.voice-bar:nth-child(3) { height: 40px; animation-delay: 0.2s; }
+.voice-bar:nth-child(4) { height: 60px; animation-delay: 0.3s; }
+.voice-bar:nth-child(5) { height: 80px; animation-delay: 0.4s; }
+.voice-bar:nth-child(6) { height: 60px; animation-delay: 0.5s; }
+.voice-bar:nth-child(7) { height: 40px; animation-delay: 0.6s; }
+.voice-bar:nth-child(8) { height: 30px; animation-delay: 0.7s; }
+.voice-bar:nth-child(9) { height: 20px; animation-delay: 0.8s; }
+
+@keyframes voiceWave {
+  from {
+    transform: scaleY(0.5);
+    opacity: 0.7;
+  }
+  to {
+    transform: scaleY(1.2);
+    opacity: 1;
+  }
+}
+
+/* ==========================================
+   BOTÓN PRINCIPAL DE VOZ
+   ========================================== */
+
+.voice-main-btn {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--spacing-lg);
+}
+
+.voice-main-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
+}
+
+.voice-main-btn.recording {
+  background: var(--color-danger);
+  animation: pulse 1s infinite;
+}
+
+.voice-main-btn.processing {
+  background: var(--color-warning);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 4px 16px rgba(255, 59, 48, 0.3);
+  }
+  50% {
+    box-shadow: 0 6px 24px rgba(255, 59, 48, 0.6);
+  }
+  100% {
+    box-shadow: 0 4px 16px rgba(255, 59, 48, 0.3);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==========================================
+   ESTADO DEL ASISTENTE
+   ========================================== */
+
+.voice-status {
+  font-family: var(--font-text);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-lg);
+  min-height: 24px;
+}
+
+.voice-status.listening {
+  color: var(--color-danger);
+}
+
+.voice-status.processing {
+  color: var(--color-warning);
+}
+
+.voice-status.success {
+  color: var(--color-success);
+}
+
+/* ==========================================
+   TRANSCRIPCIÓN Y RESPUESTA
+   ========================================== */
+
+.voice-transcript {
+  background: var(--color-gray-1);
+  border-radius: 12px;
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.transcript-text {
+  font-family: var(--font-text);
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+  font-style: italic;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.transcript-placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.voice-response {
+  background: rgba(0, 122, 255, 0.1);
+  border: 1px solid rgba(0, 122, 255, 0.2);
+  border-radius: 12px;
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  text-align: left;
+}
+
+.response-text {
+  font-family: var(--font-text);
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ==========================================
+   COMANDOS DISPONIBLES
+   ========================================== */
+
+.voice-commands {
+  text-align: left;
+  background: var(--color-gray-1);
+  border-radius: 12px;
+  padding: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.commands-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.commands-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.command-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--color-separator);
+}
+
+.command-item:last-child {
+  border-bottom: none;
+}
+
+.command-phrase {
+  font-family: var(--font-text);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  font-style: italic;
+}
+
+.command-description {
+  font-family: var(--font-text);
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================
+   CONFIGURACIÓN DE VOZ
+   ========================================== */
+
+.voice-settings {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background: var(--color-gray-1);
+  border-radius: 8px;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.setting-label {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.voice-toggle {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background: var(--color-gray-3);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.voice-toggle.enabled {
+  background: var(--color-primary);
+}
+
+.voice-toggle::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.voice-toggle.enabled::after {
+  transform: translateX(20px);
+}
+
+/* ==========================================
+   HISTORIAL DE COMANDOS
+   ========================================== */
+
+.voice-history {
+  margin-top: var(--spacing-xl);
+  text-align: left;
+}
+
+.history-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.history-list {
+  max-height: 200px;
+  overflow-y: auto;
+  background: var(--color-gray-1);
+  border-radius: 8px;
+  padding: var(--spacing-sm);
+}
+
+.history-item {
+  padding: var(--spacing-sm);
+  border-bottom: 1px solid var(--color-separator);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.history-command {
+  font-size: 0.85rem;
+  color: var(--color-text-primary);
+  flex: 1;
+}
+
+.history-time {
+  font-size: 0.75rem;
+  color: var(--color-text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ==========================================
+   RESPONSIVE PARA VOICE ASSISTANT
+   ========================================== */
+
+@media (max-width: 768px) {
+  .voice-assistant-main {
+    padding: var(--spacing-md);
+  }
+  
+  .voice-assistant-card {
+    padding: var(--spacing-lg);
+  }
+  
+  .voice-main-btn {
+    width: 70px;
+    height: 70px;
+    font-size: 1.75rem;
+  }
+  
+  .voice-visualizer {
+    height: 80px;
+  }
+  
+  .voice-settings {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    align-items: stretch;
+  }
+  
+  .command-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+}

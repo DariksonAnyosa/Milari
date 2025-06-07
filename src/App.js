@@ -1,134 +1,39 @@
-import { useState, useEffect } from 'react';
-import './index.css';
-import Calendar from './components/Calendar';
-import TaskList from './components/TaskList';
-import TodayView from './components/TodayView';
-import VoiceAssistant from './components/VoiceAssistant';
-import { getDB } from './database/DatabaseManager';
+import { useState } from 'react';
+import './styles/index.css';
+
+// Layout Components
+import Layout from './components/layout/Layout';
+
+// View Components
+import Calendar from './components/views/Calendar';
+import TaskList from './components/views/TaskList';
+import TodayView from './components/views/TodayView';
+import PomodoroTimer from './components/views/PomodoroTimer';
+
+// Custom Hooks
+import useTasks from './hooks/useTasks';
+import useStats from './hooks/useStats';
 
 function App() {
-  const [currentView, setCurrentView] = useState('today'); // 'today', 'calendar', 'tasks'
+  const [currentView, setCurrentView] = useState('today');
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [tasks, setTasks] = useState([]);
-  const [todayStats, setTodayStats] = useState({
-    tasksToday: 0,
-    completed: 0,
-    pending: 0,
-    reminders: 0
-  });
-  const [showVoiceAssistant, setShowVoiceAssistant] = useState(false);
+  
+  // Custom hooks para manejar lógica
+  const { 
+    tasks, 
+    addTask, 
+    toggleTask, 
+    deleteTask, 
+    loadData 
+  } = useTasks(selectedDate);
+  
+  const { todayStats } = useStats(tasks);
 
-  const db = getDB();
-
-  useEffect(() => {
-    loadData();
-  }, [selectedDate]);
-
-  const loadData = async () => {
-    try {
-      const allTasks = await db.getTasks();
-      setTasks(allTasks);
-      
-      const stats = await db.getTodayStats();
-      setTodayStats(stats);
-    } catch (error) {
-      console.error('Error cargando datos:', error);
-    }
-  };
-
-  const addTask = async (taskData) => {
-    try {
-      await db.addTask(taskData);
-      await loadData(); // Recargar datos
-    } catch (error) {
-      console.error('Error agregando tarea:', error);
-    }
-  };
-
-  const toggleTask = async (taskId) => {
-    try {
-      const task = tasks.find(t => t.id === taskId);
-      if (task.status === 'pending') {
-        await db.completeTask(taskId, '😊');
-      } else {
-        // Reactivar tarea usando updateTaskStatus
-        await db.updateTaskStatus(taskId, 'pending');
-      }
-      await loadData();
-    } catch (error) {
-      console.error('Error actualizando tarea:', error);
-    }
-  };
-
-  const deleteTask = async (taskId) => {
-    try {
-      await db.deleteTask(taskId);
-      await loadData();
-    } catch (error) {
-      console.error('Error eliminando tarea:', error);
-    }
-  };
-
-  return (
-    <div className="dashboard-layout">
-      {/* Header */}
-      <header className="dashboard-header">
-        <div className="header-content">
-          <div className="header-left">
-            <h1 className="app-title">Milari</h1>
-            <div className="current-date">
-              {selectedDate.toLocaleDateString('es-ES', { 
-                weekday: 'long', 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-              })}
-            </div>
-          </div>
-          
-          <div className="header-right">
-            <div className="stats-quick">
-              <span className="stat-item">
-                <span className="stat-number">{todayStats.pending}</span>
-                <span className="stat-label">Pendientes</span>
-              </span>
-              <span className="stat-item">
-                <span className="stat-number">{todayStats.completed}</span>
-                <span className="stat-label">Completadas</span>
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Navigation */}
-        <nav className="dashboard-nav">
-          <button 
-            className={`nav-btn ${currentView === 'today' ? 'active' : ''}`}
-            onClick={() => setCurrentView('today')}
-          >
-            <span className="nav-icon">📋</span>
-            Hoy
-          </button>
-          <button 
-            className={`nav-btn ${currentView === 'calendar' ? 'active' : ''}`}
-            onClick={() => setCurrentView('calendar')}
-          >
-            <span className="nav-icon">📅</span>
-            Calendario
-          </button>
-          <button 
-            className={`nav-btn ${currentView === 'tasks' ? 'active' : ''}`}
-            onClick={() => setCurrentView('tasks')}
-          >
-            <span className="nav-icon">✅</span>
-            Todas las Tareas
-          </button>
-        </nav>
-      </header>
-
-      {/* Main Content */}
-      <main className="dashboard-main">
-        {currentView === 'today' && (
+  // Renderizar vista actual
+  const renderCurrentView = () => {
+    switch(currentView) {
+      case 'today':
+        return (
           <TodayView
             selectedDate={selectedDate}
             tasks={tasks}
@@ -137,9 +42,9 @@ function App() {
             onToggleTask={toggleTask}
             onDeleteTask={deleteTask}
           />
-        )}
-        
-        {currentView === 'calendar' && (
+        );
+      case 'calendar':
+        return (
           <Calendar
             selectedDate={selectedDate}
             onDateSelect={setSelectedDate}
@@ -147,38 +52,34 @@ function App() {
             onAddTask={addTask}
             onToggleTask={toggleTask}
           />
-        )}
-        
-        {currentView === 'tasks' && (
+        );
+      case 'tasks':
+        return (
           <TaskList
             tasks={tasks}
             onAddTask={addTask}
             onToggleTask={toggleTask}
             onDeleteTask={deleteTask}
           />
-        )}
-      </main>
+        );
+      case 'pomodoro':
+        return <PomodoroTimer />;
+      default:
+        return null;
+    }
+  };
 
-      {/* Voice Assistant - Flotante en esquina */}
-      <div className="voice-assistant-container">
-        <button 
-          className="voice-trigger-btn"
-          onClick={() => setShowVoiceAssistant(!showVoiceAssistant)}
-          title="Asistente de Voz"
-        >
-          🎤
-        </button>
-        
-        {showVoiceAssistant && (
-          <div className="voice-assistant-panel">
-            <VoiceAssistant 
-              onClose={() => setShowVoiceAssistant(false)}
-              onTaskAdded={loadData}
-            />
-          </div>
-        )}
-      </div>
-    </div>
+  return (
+    <Layout
+      currentView={currentView}
+      onViewChange={setCurrentView}
+      selectedDate={selectedDate}
+      stats={todayStats}
+      onAddTask={addTask}
+      onReloadData={loadData}
+    >
+      {renderCurrentView()}
+    </Layout>
   );
 }
 

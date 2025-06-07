@@ -1,0 +1,383 @@
+/* ==========================================
+   COMPONENTE CALENDAR
+   ========================================== */
+
+.calendar-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+  background: var(--color-background);
+  min-height: 100vh;
+}
+
+.calendar-card {
+  background: var(--color-surface);
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 0.5px solid var(--color-gray-2);
+  overflow: hidden;
+}
+
+/* ==========================================
+   HEADER DEL CALENDARIO
+   ========================================== */
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-lg) var(--spacing-xl);
+  border-bottom: 0.5px solid var(--color-separator);
+  background: var(--color-gray-1);
+}
+
+.calendar-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.nav-arrow {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: var(--color-background);
+  color: var(--color-text-secondary);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.15s ease;
+}
+
+.nav-arrow:hover {
+  background: var(--color-gray-2);
+  color: var(--color-text-primary);
+}
+
+.nav-arrow:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.today-btn {
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-text);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.today-btn:hover {
+  background: #0056b3;
+}
+
+/* ==========================================
+   DÍAS DE LA SEMANA
+   ========================================== */
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: var(--color-gray-1);
+  border-bottom: 0.5px solid var(--color-separator);
+}
+
+.weekday {
+  padding: var(--spacing-md);
+  text-align: center;
+  font-family: var(--font-text);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================
+   GRID DE DÍAS
+   ========================================== */
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: var(--color-surface);
+}
+
+.calendar-day {
+  min-height: 100px;
+  border-right: 0.5px solid var(--color-separator);
+  border-bottom: 0.5px solid var(--color-separator);
+  padding: var(--spacing-sm);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.calendar-day:hover {
+  background: var(--color-gray-1);
+}
+
+.calendar-day:nth-child(7n) {
+  border-right: none;
+}
+
+.calendar-day.other-month {
+  background: rgba(0, 0, 0, 0.02);
+  color: var(--color-text-tertiary);
+}
+
+.calendar-day.today {
+  background: rgba(0, 122, 255, 0.1);
+  border: 2px solid var(--color-primary);
+}
+
+.calendar-day.selected {
+  background: var(--color-primary);
+  color: white;
+}
+
+/* ==========================================
+   NÚMERO DEL DÍA
+   ========================================== */
+
+.day-number {
+  font-family: var(--font-text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.calendar-day.other-month .day-number {
+  color: var(--color-text-tertiary);
+}
+
+.calendar-day.today .day-number {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.calendar-day.selected .day-number {
+  color: white;
+  font-weight: 700;
+}
+
+/* ==========================================
+   EVENTOS EN EL CALENDARIO
+   ========================================== */
+
+.day-events {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 70px;
+  overflow: hidden;
+}
+
+.calendar-event {
+  background: var(--color-primary);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 2px 4px;
+  border-radius: 3px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.calendar-event:hover {
+  background: #0056b3;
+}
+
+.calendar-event.completed {
+  background: var(--color-success);
+  text-decoration: line-through;
+}
+
+.calendar-event.urgent {
+  background: var(--color-danger);
+}
+
+.calendar-event.high {
+  background: var(--color-warning);
+}
+
+.events-overflow {
+  font-size: 0.65rem;
+  color: var(--color-text-tertiary);
+  font-weight: 500;
+  text-align: center;
+  margin-top: 2px;
+}
+
+/* ==========================================
+   VISTA MENSUAL COMPACTA
+   ========================================== */
+
+.calendar-mini {
+  max-width: 300px;
+}
+
+.calendar-mini .calendar-day {
+  min-height: 40px;
+  padding: var(--spacing-xs);
+}
+
+.calendar-mini .day-number {
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.calendar-mini .day-events {
+  display: none;
+}
+
+.calendar-mini .calendar-day.has-events::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: var(--color-primary);
+  border-radius: 50%;
+}
+
+/* ==========================================
+   SIDEBAR DE DETALLES
+   ========================================== */
+
+.calendar-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--spacing-xl);
+}
+
+.calendar-sidebar {
+  background: var(--color-surface);
+  border-radius: 16px;
+  padding: var(--spacing-lg);
+  border: 0.5px solid var(--color-gray-2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.sidebar-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.sidebar-date {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-lg);
+}
+
+.sidebar-events {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.sidebar-event {
+  padding: var(--spacing-md);
+  background: var(--color-gray-1);
+  border-radius: 8px;
+  border-left: 3px solid var(--color-primary);
+}
+
+.sidebar-event-title {
+  font-weight: 500;
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.sidebar-event-time {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================
+   RESPONSIVE PARA CALENDARIO
+   ========================================== */
+
+@media (max-width: 768px) {
+  .calendar-container {
+    padding: var(--spacing-md);
+  }
+  
+  .calendar-header {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    align-items: stretch;
+  }
+  
+  .calendar-nav {
+    justify-content: center;
+  }
+  
+  .calendar-day {
+    min-height: 80px;
+    padding: var(--spacing-xs);
+  }
+  
+  .day-number {
+    font-size: 0.8rem;
+  }
+  
+  .calendar-event {
+    font-size: 0.65rem;
+  }
+  
+  .calendar-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .calendar-sidebar {
+    order: -1;
+    max-height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar-day {
+    min-height: 60px;
+  }
+  
+  .weekday {
+    padding: var(--spacing-sm);
+    font-size: 0.7rem;
+  }
+  
+  .day-events {
+    max-height: 40px;
+  }
+  
+  .calendar-event {
+    font-size: 0.6rem;
+    padding: 1px 2px;
+  }
+}

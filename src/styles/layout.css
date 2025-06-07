@@ -1,0 +1,698 @@
+ /* ==========================================
+   LAYOUT ULTRA MINIMALISTA PREMIUM
+   ========================================== */
+
+.dashboard-layout {
+  min-height: 100vh;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(0, 122, 255, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(88, 86, 214, 0.02) 0%, transparent 50%),
+    var(--color-background);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.dashboard-main {
+  flex: 1;
+  position: relative;
+}
+
+/* ==========================================
+   HEADER ULTRA MINIMALISTA
+   ========================================== */
+
+.milari-header {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.milari-header.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(30px) saturate(2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 16px 24px 8px;
+  position: relative;
+}
+
+/* ==========================================
+   BRAND SECTION MINIMALISTA
+   ========================================== */
+
+.brand-section {
+  text-align: center;
+  position: relative;
+}
+
+.app-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #1D1D1F 0%, #007AFF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 2px;
+  letter-spacing: -0.02em;
+}
+
+.current-date {
+  font-family: var(--font-text);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-transform: capitalize;
+}
+
+/* ==========================================
+   NAVEGACIÓN MINIMALISTA
+   ========================================== */
+
+.milari-nav {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 24px 12px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.nav-btn {
+  padding: 8px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 16px;
+  font-family: var(--font-text);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+  background: rgba(0, 122, 255, 0.08);
+  color: var(--color-text-primary);
+}
+
+.nav-btn.active {
+  background: var(--color-primary);
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 122, 255, 0.3);
+}
+
+/* ==========================================
+   INDICADORES MINIMALISTAS
+   ========================================== */
+
+.status-indicators {
+  position: absolute;
+  top: 50%;
+  right: 24px;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.productivity-meter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.meter-circle {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-success);
+}
+
+.meter-circle.medium { background: var(--color-warning); }
+.meter-circle.low { background: var(--color-danger); }
+
+.focus-mode-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: rgba(52, 199, 89, 0.1);
+  border: 1px solid rgba(52, 199, 89, 0.2);
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-success);
+}
+
+.focus-mode-indicator.off {
+  background: rgba(142, 142, 147, 0.1);
+  border-color: rgba(142, 142, 147, 0.2);
+  color: var(--color-text-tertiary);
+}
+
+/* ==========================================
+   HERO SECTION ULTRA LIMPIA
+   ========================================== */
+
+.hero-section {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+.greeting-section {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.greeting-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 4px;
+  letter-spacing: -0.02em;
+}
+
+.greeting-subtitle {
+  font-family: var(--font-text);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  text-transform: capitalize;
+}
+
+/* ==========================================
+   STATS GRID MINIMALISTA
+   ========================================== */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 20px 16px;
+  text-align: center;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  border-radius: 12px 0 0 12px;
+  background: var(--accent-color, var(--color-primary));
+}
+
+.stat-card.success::before { background: var(--color-success); }
+.stat-card.warning::before { background: var(--color-warning); }
+.stat-card.info::before { background: var(--color-primary); }
+
+.stat-icon {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-family: var(--font-text);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================
+   PROGRESS SECTION LIMPIA
+   ========================================== */
+
+.progress-section {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 32px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.progress-title {
+  font-family: var(--font-text);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.progress-percentage {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(0, 122, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+/* ==========================================
+   AGENDA SECTION MINIMALISTA
+   ========================================== */
+
+.agenda-section {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 0 24px 24px;
+}
+
+.agenda-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(0, 122, 255, 0.02);
+}
+
+.agenda-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* ==========================================
+   TIMELINE ULTRA LIMPIA
+   ========================================== */
+
+.iphone-timeline {
+  padding: 0;
+  background: white;
+}
+
+.time-slot-iphone {
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  min-height: 60px;
+  transition: all 0.2s ease;
+}
+
+.time-slot-iphone:hover {
+  background: rgba(0, 122, 255, 0.02);
+}
+
+.time-slot-iphone:last-child {
+  border-bottom: none;
+}
+
+.time-label-iphone {
+  width: 60px;
+  padding: 12px 0;
+  text-align: right;
+  padding-right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.time-text-iphone {
+  font-family: var(--font-text);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+.time-content-iphone {
+  flex: 1;
+  padding: 12px 0 12px 20px;
+  border-left: 1px solid rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+}
+
+/* ==========================================
+   EMPTY STATE MINIMALISTA
+   ========================================== */
+
+.empty-slot {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 0;
+}
+
+.empty-text {
+  font-size: 0.85rem;
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+
+/* ==========================================
+   EVENTOS MINIMALISTAS
+   ========================================== */
+
+.timeline-event {
+  background: rgba(0, 122, 255, 0.06);
+  border-left: 3px solid var(--color-primary);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.timeline-event:hover {
+  background: rgba(0, 122, 255, 0.1);
+  transform: translateX(2px);
+}
+
+.event-checkbox {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-gray-400);
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-checkbox:hover {
+  border-color: var(--color-primary);
+}
+
+.event-checkbox.completed {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: white;
+}
+
+.event-checkbox.completed::after {
+  content: '✓';
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.event-title {
+  flex: 1;
+  font-family: var(--font-text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.timeline-event.completed .event-title {
+  text-decoration: line-through;
+  color: var(--color-text-tertiary);
+}
+
+.event-delete {
+  background: none;
+  border: none;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 4px;
+  border-radius: 4px;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.timeline-event:hover .event-delete {
+  opacity: 1;
+}
+
+.event-delete:hover {
+  background: rgba(255, 59, 48, 0.1);
+  color: var(--color-danger);
+}
+
+/* ==========================================
+   BOTÓN AGREGAR TAREA MINIMALISTA
+   ========================================== */
+
+.add-task-section {
+  margin: 0 24px 24px;
+}
+
+.add-task-btn {
+  width: 100%;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 16px;
+  font-family: var(--font-text);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.add-task-btn:hover {
+  background: #0056b3;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.25);
+}
+
+/* ==========================================
+   RESPONSIVE MINIMALISTA
+   ========================================== */
+
+@media (max-width: 768px) {
+  .header-content {
+    padding: 12px 16px 6px;
+  }
+  
+  .app-title {
+    font-size: 1.25rem;
+  }
+  
+  .current-date {
+    font-size: 0.8rem;
+  }
+  
+  .milari-nav {
+    padding: 6px 16px 10px;
+    gap: 2px;
+  }
+  
+  .nav-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+  
+  .status-indicators {
+    position: static;
+    transform: none;
+    justify-content: center;
+    margin-top: 8px;
+    gap: 8px;
+  }
+  
+  .hero-section {
+    padding: 24px 16px;
+  }
+  
+  .greeting-title {
+    font-size: 1.75rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .stat-card {
+    padding: 16px 12px;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .agenda-section {
+    margin: 0 16px 16px;
+  }
+  
+  .agenda-header {
+    padding: 12px 16px;
+  }
+  
+  .time-label-iphone {
+    width: 50px;
+    padding-right: 12px;
+  }
+  
+  .time-content-iphone {
+    padding: 8px 0 8px 16px;
+  }
+  
+  .timeline-event {
+    padding: 10px 12px;
+    margin: 3px 0;
+  }
+  
+  .add-task-section {
+    margin: 0 16px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .stat-card {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    padding: 12px;
+    gap: 12px;
+  }
+  
+  .stat-icon {
+    font-size: 1.25rem;
+    margin-bottom: 0;
+  }
+  
+  .stat-content {
+    flex: 1;
+  }
+  
+  .stat-number {
+    font-size: 1.25rem;
+  }
+  
+  .stat-label {
+    font-size: 0.75rem;
+  }
+}
+
+/* ==========================================
+   DARK MODE MINIMALISTA
+   ========================================== */
+
+@media (prefers-color-scheme: dark) {
+  .dashboard-layout {
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(0, 122, 255, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(88, 86, 214, 0.03) 0%, transparent 50%),
+      #000000;
+  }
+  
+  .milari-header {
+    background: rgba(28, 28, 30, 0.9);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .milari-header.scrolled {
+    background: rgba(28, 28, 30, 0.95);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .stat-card,
+  .progress-section,
+  .agenda-section,
+  .iphone-timeline {
+    background: rgba(28, 28, 30, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .agenda-header {
+    background: rgba(0, 122, 255, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .time-slot-iphone {
+    border-bottom-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  .time-content-iphone {
+    border-left-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  .timeline-event {
+    background: rgba(0, 122, 255, 0.15);
+  }
+  
+  .timeline-event:hover {
+    background: rgba(0, 122, 255, 0.2);
+  }
+  
+  .event-checkbox {
+    background: rgba(44, 44, 46, 0.8);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .productivity-meter {
+    background: rgba(44, 44, 46, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+  }
+}

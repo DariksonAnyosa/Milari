@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { getDB } from '../database/DatabaseManager';
+import { getDB } from '../../database/DatabaseManager';
 
 const VoiceAssistant = ({ onClose, onTaskAdded }) => {
   const [isListening, setIsListening] = useState(false);

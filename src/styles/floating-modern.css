@@ -1,0 +1,313 @@
+/* Floating Actions - Rediseñados completamente */
+.floating-actions-modern {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+/* Botón principal - FAB mejorado */
+.fab-primary {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 
+    0 8px 25px rgba(14, 165, 233, 0.4),
+    0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.fab-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.fab-primary:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 12px 35px rgba(14, 165, 233, 0.5),
+    0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.fab-primary:hover::before {
+  opacity: 1;
+}
+
+.fab-primary:active {
+  transform: translateY(-2px);
+}
+
+.fab-primary.active {
+  transform: rotate(45deg) translateY(-2px);
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  box-shadow: 
+    0 12px 35px rgba(245, 158, 11, 0.5),
+    0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.fab-icon {
+  font-size: 24px;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.fab-primary.active .fab-icon {
+  transform: rotate(-45deg);
+}
+
+/* Botones secundarios */
+.fab-secondary-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fab-secondary {
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 14px;
+  color: #64748b;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.1),
+    0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.fab-secondary:hover {
+  transform: translateY(-2px) scale(1.05);
+  background: rgba(255, 255, 255, 1);
+  color: #0ea5e9;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.15),
+    0 4px 10px rgba(14, 165, 233, 0.2);
+  border-color: rgba(14, 165, 233, 0.2);
+}
+
+.fab-secondary:active {
+  transform: scale(0.95);
+}
+
+.fab-icon-small {
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* Indicador de modo focus */
+.focus-mode-indicator-fab {
+  position: absolute;
+  top: -60px;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(34, 197, 94, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 12px;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+  animation: slideInFocus 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.focus-pulse {
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  animation: pulse-focus 2s infinite;
+}
+
+@keyframes pulse-focus {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.6; 
+    transform: scale(1.2);
+  }
+}
+
+@keyframes slideInFocus {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.focus-text-fab {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Tooltips mejorados */
+.fab-secondary::before {
+  content: attr(title);
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.fab-secondary::after {
+  content: '';
+  position: absolute;
+  right: 52px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 4px 0 4px 8px;
+  border-color: transparent transparent transparent rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.fab-secondary:hover::before,
+.fab-secondary:hover::after {
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .floating-actions-modern {
+    bottom: 20px;
+    right: 20px;
+    gap: 12px;
+  }
+  
+  .fab-primary {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+  }
+  
+  .fab-icon {
+    font-size: 20px;
+  }
+  
+  .fab-secondary {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+  
+  .fab-icon-small {
+    font-size: 16px;
+  }
+  
+  /* Ocultar tooltips en móvil */
+  .fab-secondary::before,
+  .fab-secondary::after {
+    display: none;
+  }
+  
+  .focus-mode-indicator-fab {
+    top: -50px;
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+}
+
+/* Animaciones de entrada */
+@media (prefers-reduced-motion: no-preference) {
+  .fab-primary {
+    animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .fab-secondary:nth-child(1) {
+    animation: slideInRight 0.4s ease 0.1s both;
+  }
+  
+  .fab-secondary:nth-child(2) {
+    animation: slideInRight 0.4s ease 0.2s both;
+  }
+  
+  .fab-secondary:nth-child(3) {
+    animation: slideInRight 0.4s ease 0.3s both;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
