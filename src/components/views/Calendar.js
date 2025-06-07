@@ -1,295 +1,372 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const Calendar = ({ selectedDate, onDateSelect, tasks, onAddTask, onToggleTask }) => {
-  const [currentMonth, setCurrentMonth] = useState(new Date(selectedDate));
-  const [showAddTask, setShowAddTask] = useState(false);
+const Calendar = ({ selectedDate, tasks, onDateSelect, onAddTask, onToggleTask, onDeleteTask }) => {
+  const [currentMonth, setCurrentMonth] = useState(selectedDate);
+  const [selectedDay, setSelectedDay] = useState(selectedDate);
+  const [showTaskForm, setShowTaskForm] = useState(false);
   const [newTaskText, setNewTaskText] = useState('');
+  const [newTaskTime, setNewTaskTime] = useState('');
 
-  // Generar días del calendario
-  const generateCalendarDays = () => {
-    const year = currentMonth.getFullYear();
-    const month = currentMonth.getMonth();
-    
-    const firstDayOfMonth = new Date(year, month, 1);
-    const lastDayOfMonth = new Date(year, month + 1, 0);
-    const firstDayOfWeek = firstDayOfMonth.getDay();
-    
+  // Helpers para fechas sin dependencias
+  const monthNames = [
+    'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+  ];
+
+  const dayNames = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+  const dayNamesShort = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+
+  // Generar días del mes
+  const getDaysInMonth = (date) => {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
     const days = [];
-    
-    // Días del mes anterior (para completar la primera semana)
-    for (let i = firstDayOfWeek; i > 0; i--) {
-      const date = new Date(year, month, -i + 1);
-      days.push({
-        date,
-        isCurrentMonth: false,
-        tasks: getTasksForDate(date)
-      });
+
+    for (let i = 1; i <= lastDay.getDate(); i++) {
+      days.push(new Date(year, month, i));
     }
-    
-    // Días del mes actual
-    for (let day = 1; day <= lastDayOfMonth.getDate(); day++) {
-      const date = new Date(year, month, day);
-      days.push({
-        date,
-        isCurrentMonth: true,
-        tasks: getTasksForDate(date)
-      });
-    }
-    
-    // Días del mes siguiente (para completar la última semana)
-    const remainingDays = 42 - days.length; // 6 semanas × 7 días
-    for (let day = 1; day <= remainingDays; day++) {
-      const date = new Date(year, month + 1, day);
-      days.push({
-        date,
-        isCurrentMonth: false,
-        tasks: getTasksForDate(date)
-      });
-    }
-    
+
     return days;
   };
 
-  const getTasksForDate = (date) => {
-    const dateString = date.toDateString();
+  // Navegación de mes
+  const goToPreviousMonth = () => {
+    const newDate = new Date(currentMonth);
+    newDate.setMonth(newDate.getMonth() - 1);
+    setCurrentMonth(newDate);
+  };
+
+  const goToNextMonth = () => {
+    const newDate = new Date(currentMonth);
+    newDate.setMonth(newDate.getMonth() + 1);
+    setCurrentMonth(newDate);
+  };
+
+  // Obtener tareas para un día específico
+  const getTasksForDay = (day) => {
     return tasks.filter(task => {
       const taskDate = task.scheduled_time ? 
-        new Date(task.scheduled_time).toDateString() : 
-        new Date(task.created_at).toDateString();
-      return taskDate === dateString;
+        new Date(task.scheduled_time) : 
+        new Date(task.created_at);
+      
+      return (
+        taskDate.getDate() === day.getDate() &&
+        taskDate.getMonth() === day.getMonth() &&
+        taskDate.getFullYear() === day.getFullYear()
+      );
     });
   };
 
-  const navigateMonth = (direction) => {
-    const newMonth = new Date(currentMonth);
-    newMonth.setMonth(newMonth.getMonth() + direction);
-    setCurrentMonth(newMonth);
+  // Obtener estadísticas del día
+  const getDayStats = (day) => {
+    const dayTasks = getTasksForDay(day);
+    const completed = dayTasks.filter(task => task.status === 'completed').length;
+    const total = dayTasks.length;
+    const completionRate = total > 0 ? (completed / total) * 100 : 0;
+    
+    return {
+      total,
+      completed,
+      pending: total - completed,
+      completionRate: Math.round(completionRate)
+    };
   };
 
+  // Verificar si es el día de hoy
   const isToday = (date) => {
     const today = new Date();
-    return date.toDateString() === today.toDateString();
+    return (
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear()
+    );
   };
 
-  const isSelected = (date) => {
-    return date.toDateString() === selectedDate.toDateString();
+  // Verificar si es el día seleccionado
+  const isSameDay = (date1, date2) => {
+    return (
+      date1.getDate() === date2.getDate() &&
+      date1.getMonth() === date2.getMonth() &&
+      date1.getFullYear() === date2.getFullYear()
+    );
   };
 
-  const handleDateClick = (date) => {
-    onDateSelect(date);
-    setShowAddTask(true);
+  // Manejar selección de día
+  const handleDayClick = (day) => {
+    setSelectedDay(day);
+    onDateSelect(day);
   };
 
+  // Agregar tarea al día seleccionado
   const handleAddTask = async (e) => {
     e.preventDefault();
     if (!newTaskText.trim()) return;
 
+    let scheduledTime = new Date(selectedDay);
+    if (newTaskTime) {
+      const [hours, minutes] = newTaskTime.split(':');
+      scheduledTime.setHours(parseInt(hours), parseInt(minutes), 0, 0);
+    }
+
     await onAddTask({
       text: newTaskText,
-      scheduled_time: selectedDate.toISOString(),
+      scheduled_time: scheduledTime.toISOString(),
       priority: 'normal',
       type: 'task'
     });
 
     setNewTaskText('');
-    setShowAddTask(false);
+    setNewTaskTime('');
+    setShowTaskForm(false);
   };
 
-  const monthNames = [
-    'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-    'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-  ];
-
-  const dayNames = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
-
-  const calendarDays = generateCalendarDays();
-  const selectedDateTasks = getTasksForDate(selectedDate);
+  const daysInMonth = getDaysInMonth(currentMonth);
+  const selectedDayTasks = getTasksForDay(selectedDay);
+  const selectedDayStats = getDayStats(selectedDay);
 
   return (
-    <div className="calendar-view">
+    <div className="calendar-view-premium">
       <div className="calendar-container">
-        {/* Header del calendario */}
-        <div className="calendar-header">
-          <button 
-            className="nav-arrow"
-            onClick={() => navigateMonth(-1)}
-          >
-            ‹
-          </button>
-          <h2 className="calendar-title">
-            {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
-          </h2>
-          <button 
-            className="nav-arrow"
-            onClick={() => navigateMonth(1)}
-          >
-            ›
-          </button>
-        </div>
-
-        {/* Nombres de los días */}
-        <div className="calendar-days-header">
-          {dayNames.map(day => (
-            <div key={day} className="day-header">
-              {day}
-            </div>
-          ))}
-        </div>
-
-        {/* Grid del calendario */}
-        <div className="calendar-grid">
-          {calendarDays.map((dayData, index) => {
-            const { date, isCurrentMonth, tasks: dayTasks } = dayData;
-            const pendingTasks = dayTasks.filter(t => t.status === 'pending');
-            const completedTasks = dayTasks.filter(t => t.status === 'completed');
+        {/* Calendar Grid */}
+        <div className="calendar-main">
+          {/* Header del calendario */}
+          <div className="calendar-header-premium">
+            <button 
+              className="month-nav-btn"
+              onClick={goToPreviousMonth}
+            >
+              ‹
+            </button>
             
-            return (
-              <div
-                key={index}
-                className={`calendar-day ${
-                  !isCurrentMonth ? 'other-month' : ''
-                } ${
-                  isToday(date) ? 'today' : ''
-                } ${
-                  isSelected(date) ? 'selected' : ''
-                } ${
-                  dayTasks.length > 0 ? 'has-tasks' : ''
-                }`}
-                onClick={() => handleDateClick(date)}
-              >
-                <div className="day-number">
-                  {date.getDate()}
-                </div>
-                
-                {/* Indicadores de tareas */}
-                {dayTasks.length > 0 && (
-                  <div className="task-indicators">
-                    {pendingTasks.length > 0 && (
-                      <div className="task-dot pending" title={`${pendingTasks.length} pendientes`}>
-                        {pendingTasks.length}
-                      </div>
-                    )}
-                    {completedTasks.length > 0 && (
-                      <div className="task-dot completed" title={`${completedTasks.length} completadas`}>
-                        ✓
-                      </div>
-                    )}
-                  </div>
-                )}
+            <h2 className="month-title">
+              {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
+            </h2>
+            
+            <button 
+              className="month-nav-btn"
+              onClick={goToNextMonth}
+            >
+              ›
+            </button>
+          </div>
+
+          {/* Días de la semana */}
+          <div className="weekdays-grid">
+            {dayNamesShort.map(day => (
+              <div key={day} className="weekday-header">
+                {day}
               </div>
-            );
-          })}
-        </div>
-      </div>
+            ))}
+          </div>
 
-      {/* Panel lateral para el día seleccionado */}
-      <div className="calendar-sidebar">
-        <div className="sidebar-header">
-          <h3 className="sidebar-title">
-            {selectedDate.toLocaleDateString('es-ES', { 
-              weekday: 'long', 
-              day: 'numeric', 
-              month: 'long' 
-            })}
-          </h3>
-          <button 
-            className="btn-primary"
-            onClick={() => setShowAddTask(true)}
-          >
-            + Agregar
-          </button>
-        </div>
-
-        {/* Formulario para agregar tarea */}
-        {showAddTask && (
-          <form onSubmit={handleAddTask} className="add-task-form sidebar-form">
-            <input
-              type="text"
-              value={newTaskText}
-              onChange={(e) => setNewTaskText(e.target.value)}
-              placeholder="Nueva tarea para este día"
-              className="task-input"
-              autoFocus
-            />
-            <div className="form-actions">
-              <button type="submit" className="btn-primary">
-                Agregar
-              </button>
-              <button 
-                type="button" 
-                className="btn-secondary"
-                onClick={() => setShowAddTask(false)}
-              >
-                Cancelar
-              </button>
-            </div>
-          </form>
-        )}
-
-        {/* Lista de tareas del día seleccionado */}
-        {selectedDateTasks.length > 0 ? (
-          <div className="day-tasks">
-            <h4 className="tasks-subtitle">Tareas de este día:</h4>
-            <div className="task-list sidebar-tasks">
-              {selectedDateTasks.map(task => (
-                <div key={task.id} className={`task-item ${task.status}`}>
-                  <button 
-                    className="task-checkbox"
-                    onClick={() => onToggleTask(task.id)}
-                  >
-                    <span className="checkbox-icon">
-                      {task.status === 'completed' ? '✓' : '○'}
-                    </span>
-                  </button>
-                  <div className="task-content">
-                    <div className="task-text">{task.text}</div>
-                    <div className="task-meta">
-                      <span className="task-time">
-                        {new Date(task.created_at).toLocaleTimeString('es-ES', {
-                          hour: '2-digit',
-                          minute: '2-digit'
-                        })}
-                      </span>
-                      {task.priority !== 'normal' && (
-                        <span className={`priority-badge ${task.priority}`}>
-                          {task.priority}
-                        </span>
+          {/* Grid de días */}
+          <div className="calendar-grid-premium">
+            {daysInMonth.map((day) => {
+              const dayStats = getDayStats(day);
+              const isSelected = isSameDay(day, selectedDay);
+              const isCurrentDay = isToday(day);
+              
+              return (
+                <div
+                  key={day.toISOString()}
+                  className={`calendar-day-premium ${
+                    isSelected ? 'selected' : ''
+                  } ${
+                    isCurrentDay ? 'today' : ''
+                  } ${
+                    dayStats.total > 0 ? 'has-tasks' : ''
+                  }`}
+                  onClick={() => handleDayClick(day)}
+                >
+                  <div className="day-number">
+                    {day.getDate()}
+                  </div>
+                  
+                  {dayStats.total > 0 && (
+                    <div className="day-indicators">
+                      <div className="task-dots">
+                        {Array.from({ length: Math.min(dayStats.total, 3) }).map((_, i) => (
+                          <div 
+                            key={i} 
+                            className={`task-dot ${
+                              i < dayStats.completed ? 'completed' : 'pending'
+                            }`}
+                          />
+                        ))}
+                        {dayStats.total > 3 && (
+                          <div className="task-dot-more">+{dayStats.total - 3}</div>
+                        )}
+                      </div>
+                      
+                      {dayStats.completionRate === 100 && dayStats.total > 0 && (
+                        <div className="perfect-day">✓</div>
                       )}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Sidebar con detalles del día */}
+        <div className="calendar-sidebar">
+          <div className="selected-day-card">
+            <div className="selected-day-header">
+              <h3 className="selected-day-title">
+                {dayNames[selectedDay.getDay()]}, {selectedDay.getDate()} de {monthNames[selectedDay.getMonth()]}
+              </h3>
+              
+              {selectedDayStats.total > 0 && (
+                <div className="day-progress-mini">
+                  <div className="progress-circle-mini">
+                    <div 
+                      className="progress-fill-circle"
+                      style={{ 
+                        background: `conic-gradient(#10b981 ${selectedDayStats.completionRate}%, #e5e7eb 0%)` 
+                      }}
+                    >
+                      <div className="progress-inner">
+                        {selectedDayStats.completionRate}%
+                      </div>
                     </div>
                   </div>
                 </div>
-              ))}
+              )}
             </div>
-          </div>
-        ) : (
-          <div className="empty-day">
-            <div className="empty-icon">📅</div>
-            <div className="empty-text">No hay tareas para este día</div>
+
+            {/* Stats del día */}
+            <div className="day-stats-row">
+              <div className="day-stat">
+                <span className="stat-number-day">{selectedDayStats.total}</span>
+                <span className="stat-label-day">Total</span>
+              </div>
+              <div className="day-stat">
+                <span className="stat-number-day">{selectedDayStats.completed}</span>
+                <span className="stat-label-day">Hechas</span>
+              </div>
+              <div className="day-stat">
+                <span className="stat-number-day">{selectedDayStats.pending}</span>
+                <span className="stat-label-day">Pendientes</span>
+              </div>
+            </div>
+
+            {/* Botón para agregar tarea */}
             <button 
-              className="btn-secondary"
-              onClick={() => setShowAddTask(true)}
+              className="add-task-calendar-btn"
+              onClick={() => setShowTaskForm(true)}
             >
-              Agregar la primera
+              <span className="add-icon-calendar">+</span>
+              Agregar tarea
             </button>
           </div>
-        )}
 
-        {/* Resumen rápido */}
-        <div className="day-summary-quick">
-          <div className="summary-item">
-            <span className="summary-number">
-              {selectedDateTasks.filter(t => t.status === 'pending').length}
-            </span>
-            <span className="summary-label">Pendientes</span>
-          </div>
-          <div className="summary-item">
-            <span className="summary-number">
-              {selectedDateTasks.filter(t => t.status === 'completed').length}
-            </span>
-            <span className="summary-label">Completadas</span>
-          </div>
+          {/* Lista de tareas del día */}
+          {selectedDayTasks.length > 0 ? (
+            <div className="day-tasks-list">
+              <h4 className="tasks-title">Tareas del día</h4>
+              <div className="tasks-container-calendar">
+                {selectedDayTasks.map((task) => (
+                  <div 
+                    key={task.id} 
+                    className={`task-item-calendar ${task.status}`}
+                  >
+                    <button 
+                      className="task-checkbox-calendar"
+                      onClick={() => onToggleTask(task.id)}
+                    >
+                      {task.status === 'completed' ? '✓' : '○'}
+                    </button>
+                    
+                    <div className="task-content-calendar">
+                      <span className="task-text-calendar">{task.text}</span>
+                      {task.scheduled_time && (
+                        <span className="task-time-calendar">
+                          {new Date(task.scheduled_time).toLocaleTimeString('es-ES', { 
+                            hour: '2-digit', 
+                            minute: '2-digit' 
+                          })}
+                        </span>
+                      )}
+                    </div>
+                    
+                    <button 
+                      className="task-delete-calendar"
+                      onClick={() => onDeleteTask(task.id)}
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="no-tasks-message">
+              <div className="empty-state-icon">📅</div>
+              <p>No hay tareas programadas para este día</p>
+              <button 
+                className="quick-add-btn"
+                onClick={() => setShowTaskForm(true)}
+              >
+                Agregar la primera
+              </button>
+            </div>
+          )}
         </div>
       </div>
+
+      {/* Modal para agregar tarea */}
+      {showTaskForm && (
+        <div className="task-form-overlay" onClick={() => setShowTaskForm(false)}>
+          <div className="task-form-modal" onClick={(e) => e.stopPropagation()}>
+            <form onSubmit={handleAddTask}>
+              <div className="form-header-calendar">
+                <h3>Nueva tarea para {selectedDay.getDate()} de {monthNames[selectedDay.getMonth()]}</h3>
+                <button 
+                  type="button"
+                  className="close-form-btn"
+                  onClick={() => setShowTaskForm(false)}
+                >
+                  ×
+                </button>
+              </div>
+
+              <div className="form-content-calendar">
+                <input
+                  type="text"
+                  value={newTaskText}
+                  onChange={(e) => setNewTaskText(e.target.value)}
+                  placeholder="¿Qué necesitas hacer?"
+                  className="task-input-calendar"
+                  autoFocus
+                />
+
+                <input
+                  type="time"
+                  value={newTaskTime}
+                  onChange={(e) => setNewTaskTime(e.target.value)}
+                  className="time-input-calendar"
+                />
+              </div>
+
+              <div className="form-actions-calendar">
+                <button type="submit" className="submit-task-btn">
+                  Agregar tarea
+                </button>
+                <button 
+                  type="button"
+                  className="cancel-task-btn"
+                  onClick={() => setShowTaskForm(false)}
+                >
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

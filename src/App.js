@@ -51,6 +51,7 @@ function App() {
             tasks={tasks}
             onAddTask={addTask}
             onToggleTask={toggleTask}
+            onDeleteTask={deleteTask}
           />
         );
       case 'tasks':

@@ -1,6 +1,6 @@
 /* ==========================================
-   MINDFLOW - SISTEMA DE ESTILOS PRINCIPAL
-   Archivo principal que importa todos los estilos
+   MILARI - SISTEMA DE ESTILOS PRINCIPAL
+   Archivo principal que importa todos los estilos activos
    ========================================== */
 
 /* ORDEN CRÍTICO - NO CAMBIAR */
@@ -8,50 +8,41 @@
 /* 1. Variables globales, reset y base */
 @import './globals.css';
 
-/* 2. Nuevos estilos premium */
+/* 2. Estilos premium activos */
 @import './header-personal.css';
 @import './hero-clean.css';
 @import './today-clean.css';
 @import './floating-modern.css';
+@import './calendar.css';
 
 /* 3. Layout principal y navegación */
 @import './layout.css';
 
-/* 3. Componentes reutilizables */
+/* 4. Componentes reutilizables */
 @import './components.css';
 
-/* 4. Vista hoy estándar (timeline iPhone) */   
-@import './today-view.css';
-
-/* 6. Lista de tareas */
+/* 5. Vistas específicas */
 @import './tasks.css';
-
-/* 7. Componentes específicos (cuando los crees) */
-@import './calendar.css';  
 @import './pomodoro.css';
 @import './voice-assistant.css';
 
-/* 8. Responsive global (siempre al final) */
+/* 6. Responsive global (siempre al final) */
 @import './responsive.css';
 
 /* ==========================================
-   NOTAS IMPORTANTES:
+   ARCHIVOS ACTIVOS:
    
-   ✅ Este archivo debe ser importado UNA sola vez en App.js
-   ✅ NO importes archivos CSS individuales en componentes
-   ✅ El orden de los @import es crítico para evitar conflictos
-   ✅ Las variables CSS en globals.css están disponibles en todos los archivos
-   ✅ Cada archivo tiene su responsabilidad específica
-   
-   ESTRUCTURA:
-   - globals.css: Variables, reset, animaciones globales
-   - layout.css: Header, navegación, layout principal
-   - components.css: Botones, modales, formularios reutilizables
-   - today-view.css: Timeline de iPhone para vista hoy estándar
-   - today-premium.css: Vista hoy con diseño premium
-   - tasks.css: Lista de tareas con filtros y búsqueda
-   - calendar.css: Vista de calendario (pendiente)
-   - pomodoro.css: Timer Pomodoro (pendiente)
-   - voice-assistant.css: Asistente de voz (pendiente)
-   - responsive.css: Media queries globales (pendiente)
+   ✅ globals.css - Variables y reset global
+   ✅ header-personal.css - Header con "Hola, Darikson"
+   ✅ hero-clean.css - HeroSection centrado sin repeticiones
+   ✅ today-clean.css - Timeline moderna para vista Hoy
+   ✅ floating-modern.css - Botones flotantes rediseñados
+   ✅ calendar-premium.css - Calendario premium con sidebar
+   ✅ layout.css - Layout principal
+   ✅ components.css - Componentes reutilizables
+   ✅ tasks.css - Lista de tareas
+   ✅ pomodoro.css - Timer Pomodoro
+   ✅ voice-assistant.css - Asistente de voz
+   ✅ responsive.css - Media queries globales
+
    ========================================== */
