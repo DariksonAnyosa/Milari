@@ -4,7 +4,8 @@ const Navigation = ({ currentView, onViewChange }) => {
     { key: 'today', label: 'Hoy' },
     { key: 'calendar', label: 'Calendario' },
     { key: 'tasks', label: 'Tareas' },
-    { key: 'pomodoro', label: 'Enfoque' }
+    { key: 'focus', label: 'Enfoque' },
+    { key: 'pomodoro', label: 'Pomodoro' }
   ];
 
   return (

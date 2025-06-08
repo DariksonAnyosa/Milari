@@ -2,24 +2,30 @@ import { useState } from 'react';
 import Header from './Header';
 import FloatingActions from './FloatingActions';
 import HeroSection from '../sections/HeroSection';
-import AddTaskModal from '../modals/AddTaskModal';
-import VoiceAssistantPanel from '../modals/VoiceAssistantPanel';
+import MilariModal from '../modals/MilariModal';
 
 const Layout = ({ 
   currentView, 
   onViewChange, 
   selectedDate, 
   stats, 
+  tasks,
   onAddTask, 
   onReloadData,
   children 
 }) => {
-  const [showVoiceAssistant, setShowVoiceAssistant] = useState(false);
-  const [showAddTask, setShowAddTask] = useState(false);
+  const [showMilari, setShowMilari] = useState(false);
 
-  const handleAddTask = async (taskData) => {
-    await onAddTask(taskData);
-    setShowAddTask(false);
+  const handleShowMilari = () => {
+    setShowMilari(true);
+  };
+
+  const handleCloseMilari = () => {
+    setShowMilari(false);
+  };
+
+  const handleTaskAdded = async () => {
+    await onReloadData();
   };
 
   return (
@@ -38,7 +44,10 @@ const Layout = ({
         {currentView === 'today' && (
           <HeroSection 
             selectedDate={selectedDate} 
-            stats={stats} 
+            stats={stats}
+            tasks={tasks}
+            onAddTask={onAddTask}
+            onShowAddTask={handleShowMilari}
           />
         )}
         
@@ -46,27 +55,24 @@ const Layout = ({
         {children}
       </main>
 
-      {/* Floating Actions */}
+      {/* MILARI IA - Floating Actions rediseñado */}
       <FloatingActions
         currentView={currentView}
         onViewChange={onViewChange}
-        onShowVoiceAssistant={() => setShowVoiceAssistant(true)}
-        onShowAddTask={() => setShowAddTask(true)}
-        showAddTask={showAddTask}
+        onShowJarvis={handleShowMilari}
+        tasks={tasks}
+        stats={stats}
       />
 
-      {/* Modales */}
-      {showVoiceAssistant && (
-        <VoiceAssistantPanel
-          onClose={() => setShowVoiceAssistant(false)}
-          onTaskAdded={onReloadData}
-        />
-      )}
-
-      {showAddTask && (
-        <AddTaskModal
-          onClose={() => setShowAddTask(false)}
-          onAddTask={handleAddTask}
+      {/* Modal MILARI IA Unificado */}
+      {showMilari && (
+        <MilariModal
+          onClose={handleCloseMilari}
+          onTaskAdded={handleTaskAdded}
+          selectedDate={selectedDate}
+          tasks={tasks}
+          stats={stats}
+          currentView={currentView}
         />
       )}
     </div>

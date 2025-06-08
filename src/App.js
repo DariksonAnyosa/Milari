@@ -9,6 +9,7 @@ import Calendar from './components/views/Calendar';
 import TaskList from './components/views/TaskList';
 import TodayView from './components/views/TodayView';
 import PomodoroTimer from './components/views/PomodoroTimer';
+import FocusView from './components/views/FocusView';
 
 // Custom Hooks
 import useTasks from './hooks/useTasks';
@@ -65,6 +66,15 @@ function App() {
         );
       case 'pomodoro':
         return <PomodoroTimer />;
+      case 'focus':
+        return (
+          <FocusView
+            tasks={tasks}
+            stats={todayStats}
+            onToggleTask={toggleTask}
+            onDeleteTask={deleteTask}
+          />
+        );
       default:
         return null;
     }
@@ -76,6 +86,7 @@ function App() {
       onViewChange={setCurrentView}
       selectedDate={selectedDate}
       stats={todayStats}
+      tasks={tasks}
       onAddTask={addTask}
       onReloadData={loadData}
     >

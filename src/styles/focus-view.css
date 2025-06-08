@@ -1,0 +1,371 @@
+/* ==========================================
+   VISTA FOCUS - ANÁLISIS Y PRODUCTIVIDAD
+   ========================================== */
+
+.focus-view {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+}
+
+.focus-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+/* Header de la vista */
+.focus-header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+
+.focus-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+  background: linear-gradient(135deg, var(--color-primary), #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.focus-subtitle {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Análisis de productividad */
+.productivity-analysis {
+  background: white;
+  border-radius: 16px;
+  padding: var(--spacing-2xl);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-gray-2);
+}
+
+.analysis-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-xl) 0;
+  text-align: center;
+}
+
+.analysis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.analysis-card {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-radius: 12px;
+  padding: var(--spacing-lg);
+  border: 1px solid var(--color-gray-2);
+  transition: all 0.3s ease;
+}
+
+.analysis-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.analysis-card h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.analysis-card p {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--spacing-md) 0;
+  line-height: 1.5;
+}
+
+/* Gráficos simples */
+.time-chart,
+.week-chart {
+  margin-top: var(--spacing-md);
+}
+
+.time-bars,
+.week-bars {
+  display: flex;
+  align-items: end;
+  gap: var(--spacing-xs);
+  height: 60px;
+}
+
+.time-bar,
+.week-bar {
+  flex: 1;
+  background: var(--color-gray-3);
+  border-radius: 4px 4px 0 0;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: var(--color-text-secondary);
+  padding-bottom: var(--spacing-xs);
+  transition: all 0.3s ease;
+  min-height: 20px;
+}
+
+.time-bar.high,
+.week-bar.high {
+  background: linear-gradient(180deg, var(--color-primary), #4f46e5);
+  color: white;
+  font-weight: 600;
+}
+
+.time-bar:hover,
+.week-bar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Tipos de tareas */
+.task-types {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+
+.task-type-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.task-type-icon {
+  font-size: 1.2rem;
+}
+
+.task-type-name {
+  flex: 1;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.task-type-time {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  background: var(--color-gray-1);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: 4px;
+}
+
+/* Recomendaciones personalizadas */
+.personalized-recommendations {
+  background: white;
+  border-radius: 16px;
+  padding: var(--spacing-2xl);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-gray-2);
+}
+
+.recommendations-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-xl) 0;
+  text-align: center;
+}
+
+.recommendations-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.recommendation-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border-radius: 12px;
+  border-left: 4px solid #22c55e;
+  transition: all 0.3s ease;
+}
+
+.recommendation-card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.2);
+}
+
+.recommendation-icon {
+  font-size: 2rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.recommendation-content h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.recommendation-content p {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Lista de tareas en focus */
+.focus-tasks {
+  background: white;
+  border-radius: 16px;
+  padding: var(--spacing-2xl);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-gray-2);
+  margin-bottom: var(--spacing-xl);
+}
+
+.focus-tasks h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--spacing-lg) 0;
+  text-align: center;
+}
+
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.focus-task-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--color-gray-1);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.focus-task-item:hover {
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.focus-task-item .task-checkbox {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.focus-task-item .task-text {
+  flex: 1;
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+}
+
+.focus-task-item .task-delete {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: #ef4444;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.focus-task-item:hover .task-delete {
+  opacity: 1;
+}
+
+.focus-task-item .task-delete:hover {
+  background: #dc2626;
+  transform: scale(1.05);
+}
+
+.no-tasks {
+  text-align: center;
+  padding: var(--spacing-2xl);
+  color: var(--color-text-secondary);
+}
+
+.no-tasks p {
+  font-style: italic;
+}
+
+
+@media (max-width: 768px) {
+  .focus-view {
+    padding: var(--spacing-lg);
+  }
+  
+  .focus-title {
+    font-size: 1.5rem;
+  }
+  
+  .focus-subtitle {
+    font-size: 1rem;
+  }
+  
+  .productivity-analysis,
+  .personalized-recommendations {
+    padding: var(--spacing-lg);
+  }
+  
+  .analysis-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+  }
+  
+  .recommendation-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .recommendation-icon {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .focus-view {
+    padding: var(--spacing-md);
+  }
+  
+  .productivity-analysis,
+  .personalized-recommendations {
+    padding: var(--spacing-md);
+  }
+  
+  .analysis-card {
+    padding: var(--spacing-md);
+  }
+  
+  .time-bars,
+  .week-bars {
+    height: 40px;
+  }
+  
+  .recommendation-card {
+    padding: var(--spacing-md);
+  }
+}

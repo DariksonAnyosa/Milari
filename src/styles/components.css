@@ -432,7 +432,7 @@
   border-radius: 2px;
 }
 
-.time-input, .priority-select {
+.time-input, .date-input, .priority-select {
   padding: 14px 18px;
   border: 2px solid rgba(0, 122, 255, 0.1);
   border-radius: 12px;
@@ -449,7 +449,7 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
-.time-input:focus, .priority-select:focus {
+.time-input:focus, .date-input:focus, .priority-select:focus {
   outline: none;
   border-color: var(--color-primary);
   background: rgba(255, 255, 255, 0.95);
@@ -696,6 +696,11 @@
   border-color: rgba(255, 59, 48, 0.2);
 }
 
+.priority-chip.urgent {
+  color: #d73502;
+  border-color: rgba(215, 53, 2, 0.2);
+}
+
 .priority-chip:hover {
   transform: translateY(-2px) scale(1.05);
   background: rgba(255, 255, 255, 0.95);
@@ -729,6 +734,13 @@
   background: linear-gradient(135deg, #FF3B30, #FF6B60);
   box-shadow: 
     0 8px 25px rgba(255, 59, 48, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.priority-chip.selected.urgent {
+  background: linear-gradient(135deg, #d73502, #ff6b35);
+  box-shadow: 
+    0 8px 25px rgba(215, 53, 2, 0.3),
     0 4px 12px rgba(0, 0, 0, 0.15);
 }
 

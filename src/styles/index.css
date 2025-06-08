@@ -12,7 +12,6 @@
 @import './header-personal.css';
 @import './hero-clean.css';
 @import './today-clean.css';
-@import './floating-modern.css';
 @import './calendar.css';
 
 /* 3. Layout principal y navegación */
@@ -20,11 +19,14 @@
 
 /* 4. Componentes reutilizables */
 @import './components.css';
+@import './ai-components.css';
 
 /* 5. Vistas específicas */
 @import './tasks.css';
 @import './pomodoro.css';
-@import './voice-assistant.css';
+@import './adaptive-mode.css';
+@import './focus-view.css';
+@import './milari-ai.css';
 
 /* 6. Responsive global (siempre al final) */
 @import './responsive.css';
@@ -36,13 +38,15 @@
    ✅ header-personal.css - Header con "Hola, Darikson"
    ✅ hero-clean.css - HeroSection centrado sin repeticiones
    ✅ today-clean.css - Timeline moderna para vista Hoy
-   ✅ floating-modern.css - Botones flotantes rediseñados
-   ✅ calendar-premium.css - Calendario premium con sidebar
+   ✅ calendar.css - Calendario con sidebar
    ✅ layout.css - Layout principal
    ✅ components.css - Componentes reutilizables
+   ✅ ai-components.css - Componentes de IA
    ✅ tasks.css - Lista de tareas
    ✅ pomodoro.css - Timer Pomodoro
-   ✅ voice-assistant.css - Asistente de voz
+   ✅ adaptive-mode.css - Modo adaptativo
+   ✅ focus-view.css - Vista de enfoque
+   ✅ milari-ai.css - MILARI IA minimalista
    ✅ responsive.css - Media queries globales
 
    ========================================== */

@@ -1,55 +1,77 @@
+import { useState } from 'react';
+
 const FloatingActions = ({ 
   currentView, 
   onViewChange, 
-  onShowVoiceAssistant, 
-  onShowAddTask, 
-  showAddTask 
+  onShowJarvis,
+  tasks,
+  stats
 }) => {
+  const [isListening, setIsListening] = useState(false);
+
+  const handleMilariClick = () => {
+    // Abrir MILARI IA - UN SOLO BOTÓN para todo
+    onShowJarvis();
+  };
+
+  // Detectar estado inteligente - simplificado y coherente con la app
+  const getMilariStatus = () => {
+    const pendingTasks = tasks?.filter(t => t.status === 'pending').length || 0;
+    const overdueTask = tasks?.find(t => {
+      if (!t.scheduled_time) return false;
+      const taskDate = new Date(t.scheduled_time);
+      const now = new Date();
+      return taskDate < now && t.status === 'pending';
+    });
+
+    if (overdueTask) return { 
+      type: 'urgent', 
+      message: 'Urgente',
+      icon: '🚨'
+    };
+    if (pendingTasks > 5) return { 
+      type: 'warning', 
+      message: `${pendingTasks} tareas`,
+      icon: '⚠️'
+    };
+    if (currentView === 'pomodoro') return { 
+      type: 'focus', 
+      message: 'Enfocado',
+      icon: '🎯'
+    };
+    return { 
+      type: 'ready', 
+      message: 'Listo',
+      icon: '🧠'
+    };
+  };
+
+  const milariStatus = getMilariStatus();
+
   return (
-    <div className="floating-actions-modern">
-      {/* Botón principal de agregar - Más prominente */}
+    <div className="floating-actions-milari">
+      {/* UN SOLO BOTÓN MILARI IA - Ultra minimalista y coherente */}
       <button 
-        className={`fab-primary ${showAddTask ? 'active' : ''}`}
-        onClick={onShowAddTask}
-        title="Agregar nueva tarea"
+        className={`milari-main-button ${milariStatus.type} ${isListening ? 'listening' : ''}`}
+        onClick={handleMilariClick}
+        title={`MILARI IA - ${milariStatus.message}`}
       >
-        <span className="fab-icon">+</span>
+        <div className="milari-core">
+          <div className="milari-ring"></div>
+          <div className="milari-center">
+            <span className="milari-icon">
+              {isListening ? '🔴' : milariStatus.icon}
+            </span>
+          </div>
+        </div>
+        <div className="milari-label">MILARI IA</div>
       </button>
 
-      {/* Botones secundarios - Más elegantes */}
-      <div className="fab-secondary-group">
-        <button 
-          className="fab-secondary"
-          onClick={onShowVoiceAssistant}
-          title="Asistente de voz"
-        >
-          <span className="fab-icon-small">🎤</span>
-        </button>
-        
-        <button 
-          className="fab-secondary"
-          onClick={() => onViewChange('calendar')}
-          title="Ver calendario"
-        >
-          <span className="fab-icon-small">📅</span>
-        </button>
-        
-        <button 
-          className="fab-secondary"
-          onClick={() => onViewChange('pomodoro')}
-          title="Modo enfoque"
-        >
-          <span className="fab-icon-small">🍅</span>
-        </button>
+      {/* Indicador de estado súper minimalista */}
+      <div className={`milari-status ${milariStatus.type}`}>
+        <div className="status-dot"></div>
+        <span className="status-text">{milariStatus.message}</span>
       </div>
-
-      {/* Indicador de modo focus */}
-      {currentView === 'pomodoro' && (
-        <div className="focus-mode-indicator-fab">
-          <span className="focus-pulse"></span>
-          <span className="focus-text-fab">Enfocado</span>
-        </div>
-      )}
     </div>
   );
 };

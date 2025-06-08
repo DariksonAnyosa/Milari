@@ -1,9 +1,8 @@
-import useGreeting from '../../hooks/useGreeting';
-import useTime from '../../hooks/useTime';
+import SmartGreeting from '../ai/SmartGreeting';
+import InsightsPanel from '../ai/InsightsPanel';
+import AdaptiveModeSelector from '../adaptive/AdaptiveModeSelector';
 
-const HeroSection = ({ selectedDate, stats, onAddTask }) => {
-  const greeting = useGreeting();
-
+const HeroSection = ({ selectedDate, stats, tasks, onAddTask, onShowAddTask }) => {
   const getMotivationalMessage = () => {
     const completed = stats.completed;
     const total = stats.tasksToday;
@@ -20,10 +19,17 @@ const HeroSection = ({ selectedDate, stats, onAddTask }) => {
   return (
     <div className="hero-section-clean">
       <div className="hero-container-clean">
-        {/* Tarjeta principal con saludo y stats integradas */}
+        {/* Selector de modo adaptativo - Más compacto */}
+        <div className="adaptive-mode-compact">
+          <AdaptiveModeSelector tasks={tasks} stats={stats} compact={true} />
+        </div>
+
+        {/* Saludo Inteligente con IA */}
+        <SmartGreeting tasks={tasks} selectedDate={selectedDate} />
+
+        {/* Tarjeta principal con stats integradas */}
         <div className="main-card">
           <div className="card-header">
-            <h2 className="greeting-title-clean">{greeting}</h2>
             <div className="motivational-text">
               {getMotivationalMessage()}
             </div>
@@ -65,16 +71,19 @@ const HeroSection = ({ selectedDate, stats, onAddTask }) => {
             </div>
           </div>
 
-          {/* Botón de agregar tarea prominente */}
+          {/* Botón de agregar tarea prominente - ARREGLADO */}
           <button 
             className="add-task-primary"
-            onClick={() => {/* Función para abrir modal */}}
+            onClick={onShowAddTask}
           >
             <span className="add-icon">+</span>
             <span className="add-text">Agregar nueva tarea</span>
             <span className="add-shortcut">⌘N</span>
           </button>
         </div>
+
+        {/* Panel de Insights de IA - Solo el más relevante */}
+        <InsightsPanel tasks={tasks} compact={true} />
       </div>
     </div>
   );
