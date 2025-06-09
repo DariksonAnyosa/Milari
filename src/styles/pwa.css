@@ -1,0 +1,393 @@
+/* ==========================================
+   PWA STYLES - Install Prompt & Offline
+   ========================================== */
+
+/* INSTALL PROMPT */
+.install-prompt {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 1500;
+  display: flex;
+  justify-content: center;
+  animation: slideInUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.install-prompt-content {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 122, 255, 0.2);
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 
+    0 20px 25px rgba(0, 0, 0, 0.1),
+    0 10px 10px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 122, 255, 0.15);
+  position: relative;
+}
+
+.install-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.install-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.install-text h4 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 4px 0;
+}
+
+.install-text p {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 12px;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.install-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.install-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  white-space: nowrap;
+}
+
+.install-btn.primary {
+  background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+  color: white;
+}
+
+.install-btn.primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+}
+
+.install-btn.secondary {
+  background: rgba(100, 116, 139, 0.1);
+  color: #64748b;
+  border: 1px solid rgba(100, 116, 139, 0.2);
+}
+
+.install-btn.secondary:hover {
+  background: rgba(100, 116, 139, 0.15);
+  color: #475569;
+}
+
+/* STATUS INDICATOR */
+.status-indicator {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+}
+
+.status-indicator.online {
+  background: rgba(52, 199, 89, 0.9);
+  color: white;
+}
+
+.status-indicator.offline {
+  background: rgba(255, 149, 0, 0.9);
+  color: white;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.status-text {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* OFFLINE BANNER */
+.offline-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(135deg, #FF9500 0%, #FFAD33 100%);
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 2000;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+
+.offline-banner.show {
+  transform: translateY(0);
+}
+
+.offline-banner-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* PWA SPLASH SCREEN STYLES */
+.pwa-splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(248, 250, 252, 0.95) 0%,
+    rgba(241, 245, 249, 0.98) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+}
+
+.pwa-splash-logo {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: white;
+  margin-bottom: 24px;
+  animation: logoFloat 2s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.pwa-splash-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.pwa-splash-subtitle {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 16px;
+  color: #64748b;
+  margin-bottom: 32px;
+}
+
+.pwa-splash-loader {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(0, 122, 255, 0.1);
+  border-top: 3px solid #007AFF;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* RESPONSIVE PWA */
+@media (max-width: 768px) {
+  .install-prompt {
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+  }
+  
+  .install-prompt-content {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+  
+  .install-icon {
+    font-size: 20px;
+  }
+  
+  .install-text h4 {
+    font-size: 13px;
+  }
+  
+  .install-text p {
+    font-size: 11px;
+  }
+  
+  .install-btn {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  
+  .status-indicator {
+    top: -6px;
+    right: -6px;
+    padding: 3px 6px;
+  }
+  
+  .pwa-splash-logo {
+    width: 100px;
+    height: 100px;
+    font-size: 40px;
+    border-radius: 20px;
+  }
+  
+  .pwa-splash-title {
+    font-size: 24px;
+  }
+  
+  .pwa-splash-subtitle {
+    font-size: 14px;
+  }
+}
+
+/* TABLET SPECIFIC */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .install-prompt {
+    bottom: 24px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    width: auto;
+  }
+  
+  .install-prompt-content {
+    min-width: 360px;
+  }
+}
+
+/* DARK MODE PWA */
+@media (prefers-color-scheme: dark) {
+  .install-prompt-content {
+    background: rgba(28, 28, 30, 0.95);
+    border-color: rgba(0, 122, 255, 0.3);
+  }
+  
+  .install-text h4 {
+    color: #f8fafc;
+  }
+  
+  .install-text p {
+    color: #94a3b8;
+  }
+  
+  .install-btn.secondary {
+    background: rgba(148, 163, 184, 0.15);
+    color: #94a3b8;
+    border-color: rgba(148, 163, 184, 0.3);
+  }
+  
+  .install-btn.secondary:hover {
+    background: rgba(148, 163, 184, 0.2);
+    color: #f1f5f9;
+  }
+  
+  .pwa-splash {
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.95) 0%,
+      rgba(30, 41, 59, 0.98) 50%,
+      rgba(28, 28, 30, 1) 100%
+    );
+  }
+  
+  .pwa-splash-title {
+    color: #f8fafc;
+  }
+  
+  .pwa-splash-subtitle {
+    color: #94a3b8;
+  }
+}
+
+/* HIGH CONTRAST SUPPORT */
+@media (prefers-contrast: high) {
+  .install-prompt-content {
+    border-width: 2px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .install-btn {
+    border-width: 2px;
+  }
+  
+  .status-indicator {
+    border: 2px solid currentColor;
+  }
+}
+
+/* REDUCED MOTION */
+@media (prefers-reduced-motion: reduce) {
+  .install-prompt {
+    animation: none;
+  }
+  
+  .logoFloat,
+  .statusPulse,
+  .spin {
+    animation: none;
+  }
+  
+  .install-btn:hover {
+    transform: none;
+  }
+}

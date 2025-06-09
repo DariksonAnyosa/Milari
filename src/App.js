@@ -3,6 +3,7 @@ import './styles/index.css';
 
 // Layout Components
 import Layout from './components/layout/Layout';
+import MobileOptimizer from './components/MobileOptimizer';
 
 // View Components
 import Calendar from './components/views/Calendar';
@@ -81,17 +82,19 @@ function App() {
   };
 
   return (
-    <Layout
-      currentView={currentView}
-      onViewChange={setCurrentView}
-      selectedDate={selectedDate}
-      stats={todayStats}
-      tasks={tasks}
-      onAddTask={addTask}
-      onReloadData={loadData}
-    >
-      {renderCurrentView()}
-    </Layout>
+    <MobileOptimizer>
+      <Layout
+        currentView={currentView}
+        onViewChange={setCurrentView}
+        selectedDate={selectedDate}
+        stats={todayStats}
+        tasks={tasks}
+        onAddTask={addTask}
+        onReloadData={loadData}
+      >
+        {renderCurrentView()}
+      </Layout>
+    </MobileOptimizer>
   );
 }
 

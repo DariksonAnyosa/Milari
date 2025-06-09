@@ -9,8 +9,8 @@
 @import './globals.css';
 
 /* 2. Estilos premium activos */
-@import './header-personal.css';
-@import './hero-clean.css';
+@import './header-clean.css';
+@import './hero-ultra-minimal.css';
 @import './today-clean.css';
 @import './calendar.css';
 
@@ -28,8 +28,9 @@
 @import './focus-view.css';
 @import './milari-ai.css';
 
-/* 6. Responsive global (siempre al final) */
+/* 6. PWA y Responsive (siempre al final) */
 @import './responsive.css';
+@import './pwa.css';
 
 /* ==========================================
    ARCHIVOS ACTIVOS:

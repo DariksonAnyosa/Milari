@@ -16,6 +16,15 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
+/* MÓVIL: Header compacto sin redundancia */
+.milari-header-personal.mobile {
+  padding: 12px 0;
+}
+
+.milari-header-personal.mobile.scrolled {
+  padding: 8px 0;
+}
+
 .header-container-personal {
   max-width: 1200px;
   margin: 0 auto;
@@ -51,7 +60,7 @@
   box-shadow: 0 6px 16px rgba(14, 165, 233, 0.4);
 }
 
-/* Personal Greeting */
+/* Personal Greeting - Solo desktop */
 .personal-greeting {
   display: flex;
   flex-direction: column;
@@ -76,6 +85,19 @@
   color: #64748b;
   font-weight: 500;
   text-transform: capitalize;
+}
+
+/* Mobile Header Content */
+.mobile-header-content {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.mobile-productivity {
+  display: flex;
+  align-items: center;
 }
 
 /* Status Indicators Right */
@@ -111,8 +133,8 @@
   50% { opacity: 0.5; }
 }
 
-/* Navigation mejorada */
-.milari-nav {
+/* Navigation - DESKTOP */
+.milari-nav.desktop {
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -124,6 +146,20 @@
   border: 1px solid rgba(226, 232, 240, 0.6);
 }
 
+/* Navigation - MÓVIL */
+.milari-nav.mobile {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
+  margin-top: 12px;
+  padding: 8px;
+  background: rgba(248, 250, 252, 0.9);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+/* Botones de navegación - DESKTOP */
 .nav-btn {
   padding: 10px 20px;
   border: none;
@@ -135,6 +171,36 @@
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* Botones de navegación - MÓVIL */
+.mobile-nav-btn {
+  padding: 8px 4px !important;
+  font-size: 11px !important;
+  flex-direction: column !important;
+  gap: 2px !important;
+  min-height: 50px;
+}
+
+.nav-icon {
+  font-size: 16px;
+  display: block;
+}
+
+.nav-label {
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mobile-nav-btn .nav-label {
+  font-size: 10px;
+  line-height: 1.2;
 }
 
 .nav-btn:hover {
@@ -149,6 +215,11 @@
   transform: translateY(-1px);
 }
 
+.mobile-nav-btn.active {
+  transform: none;
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.2);
+}
+
 /* ProductivityMeter actualizado */
 .productivity-meter {
   display: flex;
@@ -161,6 +232,11 @@
   font-size: 12px;
   font-weight: 600;
   color: #475569;
+}
+
+.productivity-meter.compact {
+  padding: 6px 10px;
+  font-size: 11px;
 }
 
 .meter-circle {
@@ -182,24 +258,39 @@
   background: linear-gradient(135deg, #ef4444, #dc2626);
 }
 
-/* Responsive */
+/* Responsive Breakpoints */
 @media (max-width: 768px) {
   .header-container-personal {
     padding: 0 16px;
   }
   
-  .greeting-personal {
-    font-size: 22px;
-  }
-  
   .logo-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
   }
   
-  .milari-nav {
-    margin-top: 16px;
-    flex-wrap: wrap;
+  /* OCULTAR saludo en móvil para evitar redundancia */
+  .personal-greeting {
+    display: none;
+  }
+  
+  .status-indicators-right {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-nav-btn .nav-label {
+    font-size: 9px;
+  }
+  
+  .nav-icon {
+    font-size: 14px;
+  }
+  
+  .milari-nav.mobile {
+    gap: 2px;
+    padding: 6px;
   }
 }

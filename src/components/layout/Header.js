@@ -1,67 +1,57 @@
 import { useState, useEffect } from 'react';
 import Navigation from './Navigation';
-import ProductivityMeter from '../ui/ProductivityMeter';
 
 const Header = ({ currentView, onViewChange, selectedDate, stats }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   // Efecto scroll para header
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
+    
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
-  const getProductivityLevel = () => {
-    const completionRate = stats.tasksToday ? (stats.completed / stats.tasksToday) * 100 : 0;
-    if (completionRate >= 80) return 'high';
-    if (completionRate >= 50) return 'medium';
-    return 'low';
-  };
-
   return (
-    <header className={`milari-header-personal ${isScrolled ? 'scrolled' : ''}`}>
-      <div className="header-container-personal">
+    <header className={`milari-header-clean ${isScrolled ? 'scrolled' : ''} ${isMobile ? 'mobile' : 'desktop'}`}>
+      <div className="header-container-clean">
         {/* Logo a la izquierda */}
         <div className="logo-section">
           <div className="logo-icon">M</div>
         </div>
 
-        {/* Saludo personalizado centrado */}
-        <div className="personal-greeting">
-          <h1 className="greeting-personal">Hola, Darikson</h1>
-          <div className="date-simple">
+        {/* Navegación centrada */}
+        <div className="nav-section">
+          <Navigation 
+            currentView={currentView} 
+            onViewChange={onViewChange}
+            isMobile={isMobile}
+          />
+        </div>
+
+        {/* Fecha a la derecha */}
+        <div className="date-section">
+          <div className="date-display">
             {selectedDate.toLocaleDateString('es-ES', { 
-              weekday: 'long', 
+              weekday: 'short', 
               day: 'numeric', 
-              month: 'long' 
+              month: 'short' 
             })}
           </div>
         </div>
-
-        {/* Indicadores de estado a la derecha */}
-        <div className="status-indicators-right">
-          <ProductivityMeter 
-            percentage={Math.round((stats.completed / stats.tasksToday) * 100) || 0}
-            level={getProductivityLevel()}
-          />
-          
-          {currentView === 'pomodoro' && (
-            <div className="focus-mode-active">
-              <span className="focus-dot"></span>
-              <span className="focus-label">Enfoque</span>
-            </div>
-          )}
-        </div>
       </div>
-
-      {/* Navigation */}
-      <Navigation 
-        currentView={currentView} 
-        onViewChange={onViewChange} 
-      />
     </header>
   );
 };

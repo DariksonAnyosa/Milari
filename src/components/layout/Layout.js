@@ -3,6 +3,7 @@ import Header from './Header';
 import FloatingActions from './FloatingActions';
 import HeroSection from '../sections/HeroSection';
 import MilariModal from '../modals/MilariModal';
+import InstallPrompt from '../pwa/InstallPrompt';
 
 const Layout = ({ 
   currentView, 
@@ -75,6 +76,9 @@ const Layout = ({
           currentView={currentView}
         />
       )}
+
+      {/* PWA Install Prompt */}
+      <InstallPrompt />
     </div>
   );
 };
