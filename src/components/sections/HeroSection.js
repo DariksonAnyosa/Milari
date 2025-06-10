@@ -22,9 +22,9 @@ const HeroSection = ({ selectedDate, stats, tasks, onAddTask, onShowAddTask }) =
         </div>
 
         {/* Botón MILARI IA Principal */}
-        <button className="milari-button">
+        <button className="milari-button" onClick={onShowAddTask}>
           <div className="milari-orb"></div>
-          <span className="milari-text">Hablar con MILARI IA</span>
+          <span className="milari-text">Hablar con MILARI</span>
         </button>
 
         {/* Botón secundario para agregar tarea rápida */}

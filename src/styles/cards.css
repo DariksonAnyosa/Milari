@@ -1,0 +1,136 @@
+/* ==========================================
+   TARJETAS DE LA VISTA PRINCIPAL
+   ========================================== */
+
+/* Tarjeta de saludo */
+.greeting-card {
+  background: var(--color-card-bg);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 32px;
+  margin: 32px auto;
+  max-width: 600px;
+  box-shadow: var(--apple-shadow);
+  border: 1px solid var(--color-border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.greeting-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--color-shadow-hover);
+}
+
+.greeting-card h1 {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.greeting-card p {
+  font-family: var(--font-text);
+  font-size: 1.2rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+  text-align: center;
+}
+
+/* Botón de hablar con MILARI IA */
+.ai-action-button {
+  background: var(--color-card-bg);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--apple-shadow);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin: 24px auto;
+  max-width: 450px;
+}
+
+.ai-action-button:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--color-shadow-hover);
+  border-color: var(--color-primary);
+}
+
+.ai-action-button .ai-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--color-primary-gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.ai-action-button .ai-text {
+  font-family: var(--font-text);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* Botón de nueva tarea */
+.new-task-button {
+  background: var(--color-primary-light);
+  border: 1px solid rgba(var(--color-primary-rgb), 0.2);
+  color: var(--color-primary);
+  font-family: var(--font-text);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 24px auto;
+  max-width: 200px;
+}
+
+.new-task-button:hover {
+  background: rgba(var(--color-primary-rgb), 0.15);
+  border-color: rgba(var(--color-primary-rgb), 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(var(--color-primary-rgb), 0.15);
+}
+
+/* Versión móvil de las tarjetas */
+@media (max-width: 768px) {
+  .greeting-card {
+    max-width: 90%;
+    width: 90%;
+    padding: 24px;
+    text-align: center;
+  }
+  
+  .greeting-card h1 {
+    font-size: 2rem;
+  }
+  
+  .greeting-card p {
+    font-size: 1.1rem;
+  }
+  
+  .ai-action-button {
+    max-width: 85%;
+    width: 85%;
+    justify-content: flex-start;
+  }
+  
+  .new-task-button {
+    max-width: 180px;
+  }
+}

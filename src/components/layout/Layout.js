@@ -4,6 +4,7 @@ import FloatingActions from './FloatingActions';
 import HeroSection from '../sections/HeroSection';
 import MilariModal from '../modals/MilariModal';
 import InstallPrompt from '../pwa/InstallPrompt';
+import ThemeProvider from './ThemeProvider';
 
 const Layout = ({ 
   currentView, 
@@ -13,6 +14,8 @@ const Layout = ({
   tasks,
   onAddTask, 
   onReloadData,
+  darkMode,
+  toggleTheme,
   children 
 }) => {
   const [showMilari, setShowMilari] = useState(false);
@@ -30,56 +33,60 @@ const Layout = ({
   };
 
   return (
-    <div className="dashboard-layout">
-      {/* Header */}
-      <Header
-        currentView={currentView}
-        onViewChange={onViewChange}
-        selectedDate={selectedDate}
-        stats={stats}
-      />
-
-      {/* Main Content */}
-      <main className="dashboard-main">
-        {/* Hero Section solo para vista 'today' */}
-        {currentView === 'today' && (
-          <HeroSection 
-            selectedDate={selectedDate} 
-            stats={stats}
-            tasks={tasks}
-            onAddTask={onAddTask}
-            onShowAddTask={handleShowMilari}
-          />
-        )}
-        
-        {/* Contenido dinámico de las vistas */}
-        {children}
-      </main>
-
-      {/* MILARI IA - Floating Actions rediseñado */}
-      <FloatingActions
-        currentView={currentView}
-        onViewChange={onViewChange}
-        onShowJarvis={handleShowMilari}
-        tasks={tasks}
-        stats={stats}
-      />
-
-      {/* Modal MILARI IA Unificado */}
-      {showMilari && (
-        <MilariModal
-          onClose={handleCloseMilari}
-          onTaskAdded={handleTaskAdded}
+    <ThemeProvider darkMode={darkMode}>
+      <div className="dashboard-layout">
+        {/* Header */}
+        <Header
+          currentView={currentView}
+          onViewChange={onViewChange}
           selectedDate={selectedDate}
+          stats={stats}
+          darkMode={darkMode}
+          toggleTheme={toggleTheme}
+        />
+
+        {/* Main Content */}
+        <main className="dashboard-main">
+          {/* Hero Section solo para vista 'today' */}
+          {currentView === 'today' && (
+            <HeroSection 
+              selectedDate={selectedDate} 
+              stats={stats}
+              tasks={tasks}
+              onAddTask={onAddTask}
+              onShowAddTask={handleShowMilari}
+            />
+          )}
+          
+          {/* Contenido dinámico de las vistas */}
+          {children}
+        </main>
+
+        {/* MILARI IA - Floating Actions rediseñado */}
+        <FloatingActions
+          currentView={currentView}
+          onViewChange={onViewChange}
+          onShowJarvis={handleShowMilari}
           tasks={tasks}
           stats={stats}
-          currentView={currentView}
         />
-      )}
 
-      {/* PWA Install Prompt */}
-      <InstallPrompt />
-    </div>
+        {/* Modal MILARI IA Unificado */}
+        {showMilari && (
+          <MilariModal
+            onClose={handleCloseMilari}
+            onTaskAdded={handleTaskAdded}
+            selectedDate={selectedDate}
+            tasks={tasks}
+            stats={stats}
+            currentView={currentView}
+          />
+        )}
+
+        {/* PWA Install Prompt */}
+        <InstallPrompt />
+      </div>
+    </ThemeProvider>
   );
 };
 

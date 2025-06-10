@@ -6,7 +6,6 @@
 
 /* 1. Variables globales, reset y base */
 @import './globals.css';
-@import './adaptive-mode.css';
 
 /* 2. Estilos principales */
 @import './header.css';
@@ -19,6 +18,9 @@
 
 /* 4. Componentes reutilizables */
 @import './components.css';
+@import './cards.css';
+@import './theme-toggle.css';
+@import './theme-provider.css';
 @import './ui.css';
 
 /* 5. Vistas específicas */
@@ -27,8 +29,13 @@
 @import './focus-view.css';
 @import './voice.css';
 
-/* 6. PWA y Responsive (siempre al final) */
+/* 6. Modo adaptativo y modo oscuro */
+@import './adaptive-mode.css';
+@import './dark-mode.css';
+
+/* 7. PWA y Responsive (siempre al final) */
 @import './mobile-nav.css';
+@import './mobile-nav-extra.css';
 @import './responsive.css';
 @import './pwa.css';
 

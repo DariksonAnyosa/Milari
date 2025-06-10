@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './styles/index.css';
 
 // Layout Components
@@ -19,6 +19,46 @@ import useStats from './hooks/useStats';
 function App() {
   const [currentView, setCurrentView] = useState('today');
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [darkMode, setDarkMode] = useState(false);
+  
+  // Inicialización del modo oscuro basado en preferencias del sistema
+  useEffect(() => {
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setDarkMode(prefersDarkMode);
+    
+    if (prefersDarkMode) {
+      document.body.classList.add('dark-mode');
+      document.documentElement.classList.add('dark-mode');
+    }
+    
+    // Escuchar cambios en la preferencia del sistema
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e) => {
+      setDarkMode(e.matches);
+      if (e.matches) {
+        document.body.classList.add('dark-mode');
+        document.documentElement.classList.add('dark-mode');
+      } else {
+        document.body.classList.remove('dark-mode');
+        document.documentElement.classList.remove('dark-mode');
+      }
+    };
+    
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+  
+  // Función para cambiar manualmente el tema
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+    if (!darkMode) {
+      document.body.classList.add('dark-mode');
+      document.documentElement.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+      document.documentElement.classList.remove('dark-mode');
+    }
+  };
   
   // Custom hooks para manejar lógica
   const { 
@@ -83,17 +123,21 @@ function App() {
 
   return (
     <MobileOptimizer>
-      <Layout
-        currentView={currentView}
-        onViewChange={setCurrentView}
-        selectedDate={selectedDate}
-        stats={todayStats}
-        tasks={tasks}
-        onAddTask={addTask}
-        onReloadData={loadData}
-      >
-        {renderCurrentView()}
-      </Layout>
+      <div className={`app ${darkMode ? 'dark-mode' : ''}`}>
+        <Layout
+          currentView={currentView}
+          onViewChange={setCurrentView}
+          selectedDate={selectedDate}
+          stats={todayStats}
+          tasks={tasks}
+          onAddTask={addTask}
+          onReloadData={loadData}
+          darkMode={darkMode}
+          toggleTheme={toggleTheme}
+        >
+          {renderCurrentView()}
+        </Layout>
+      </div>
     </MobileOptimizer>
   );
 }

@@ -9,6 +9,36 @@
   --apple-border: rgba(0, 0, 0, 0.05);
   --apple-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 20px 40px rgba(0, 0, 0, 0.08);
   --apple-font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  
+  /* Colores estándar CSS */
+  --color-background: #f5f5f7;
+  --color-surface: #ffffff;
+  --color-text-primary: #1d1d1f;
+  --color-text-secondary: #64748b;
+  --color-text-tertiary: #94a3b8;
+  --color-primary: #007AFF;
+  --color-primary-rgb: 0, 122, 255;
+  --color-primary-light: rgba(0, 122, 255, 0.1);
+  --color-primary-gradient: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+  --color-success: #34C759;
+  --color-warning: #FF9500;
+  --color-danger: #FF3B30;
+  --color-gray-100: #f1f5f9;
+  --color-gray-200: #e2e8f0;
+  --color-gray-300: #cbd5e1;
+  --color-gray-400: #94a3b8;
+  --color-gray-500: #64748b;
+  --color-border: rgba(0, 0, 0, 0.06);
+  --color-shadow: rgba(0, 0, 0, 0.08);
+  --color-shadow-hover: rgba(0, 0, 0, 0.12);
+  --color-shadow-dark: rgba(0, 0, 0, 0.15);
+  --color-shadow-accent: rgba(0, 122, 255, 0.3);
+  --color-card-bg: rgba(255, 255, 255, 0.8);
+  --color-nav-bg: rgba(248, 250, 252, 0.9);
+  --header-bg: rgba(255, 255, 255, 0.95);
+  --header-border: rgba(0, 0, 0, 0.06);
+  --nav-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  --glass-blur: blur(20px);
 }
 
 /* Reset Apple */
@@ -20,8 +50,8 @@
 
 body {
   font-family: var(--apple-font);
-  background: var(--apple-bg);
-  color: var(--apple-text);
+  background: var(--color-background);
+  color: var(--color-text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -30,13 +60,13 @@ body {
 
 #root {
   min-height: 100vh;
-  background: var(--apple-bg);
+  background: var(--color-background);
 }
 
 /* App Container Apple Style */
 .app {
   min-height: 100vh;
-  background: var(--apple-bg);
+  background: var(--color-background);
   display: flex;
   flex-direction: column;
 }
@@ -58,7 +88,7 @@ button {
 /* Main content area */
 .main-content {
   flex: 1;
-  background: var(--apple-bg);
+  background: var(--color-background);
   min-height: calc(100vh - 80px);
 }
 
@@ -80,8 +110,8 @@ button {
   background: rgba(0, 0, 0, 0.3);
 }
 
-/* Dark mode Apple - compatible con la clase dark-mode */
-@media (prefers-color-scheme: dark), .dark-mode {
+/* Dark mode Apple */
+@media (prefers-color-scheme: dark) {
   :root {
     --apple-bg: #000000;
     --apple-text: #f5f5f7;
@@ -102,25 +132,66 @@ button {
   }
 }
 
+/* Clase para modo oscuro manual */
+.dark-mode {
+  --apple-bg: #000000;
+  --apple-text: #f5f5f7;
+  --apple-secondary: #a1a1a6;
+  --apple-blue: #0a84ff;
+  --apple-purple: #bf5af2;
+  --apple-card: rgba(28, 28, 30, 0.8);
+  --apple-border: rgba(255, 255, 255, 0.1);
+  --apple-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 20px 40px rgba(0, 0, 0, 0.5);
+  
+  /* Actualizar todas las variables CSS para modo oscuro */
+  --color-background: #000000;
+  --color-surface: #1c1c1e;
+  --color-text-primary: #f5f5f7;
+  --color-text-secondary: #a1a1a6;
+  --color-text-tertiary: #6e6e73;
+  --color-primary: #0a84ff;
+  --color-primary-rgb: 10, 132, 255;
+  --color-primary-light: rgba(10, 132, 255, 0.15);
+  --color-primary-gradient: linear-gradient(135deg, #0a84ff 0%, #bf5af2 100%);
+  --color-success: #30d158;
+  --color-warning: #ff9f0a;
+  --color-danger: #ff453a;
+  --color-gray-100: #2c2c2e;
+  --color-gray-200: #3a3a3c;
+  --color-gray-300: #48484a;
+  --color-gray-400: #636366;
+  --color-gray-500: #8e8e93;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-shadow: rgba(0, 0, 0, 0.3);
+  --color-shadow-hover: rgba(0, 0, 0, 0.4);
+  --color-shadow-dark: rgba(0, 0, 0, 0.5);
+  --color-shadow-accent: rgba(10, 132, 255, 0.3);
+  --color-card-bg: rgba(28, 28, 30, 0.8);
+  --color-nav-bg: rgba(28, 28, 30, 0.9);
+  --header-bg: rgba(0, 0, 0, 0.95);
+  --header-border: rgba(255, 255, 255, 0.1);
+  --nav-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
 /* Typography Apple */
 h1, h2, h3, h4, h5, h6 {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
   font-weight: 700;
   letter-spacing: -0.03em;
-  color: var(--apple-text);
+  color: var(--color-text-primary);
 }
 
 p {
   font-family: var(--apple-font);
-  color: var(--apple-text);
+  color: var(--color-text-primary);
   line-height: 1.5;
 }
 
 /* Glass morphism base */
 .glass {
-  background: var(--apple-card);
+  background: var(--color-card-bg);
   backdrop-filter: blur(20px);
-  border: 1px solid var(--apple-border);
+  border: 1px solid var(--color-border);
   box-shadow: var(--apple-shadow);
 }
 
@@ -128,14 +199,14 @@ p {
 input:focus,
 button:focus,
 textarea:focus {
-  outline: 2px solid var(--apple-blue);
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 
 /* Selection Apple */
 ::selection {
-  background: rgba(0, 122, 255, 0.2);
-  color: var(--apple-text);
+  background: rgba(var(--color-primary-rgb), 0.2);
+  color: var(--color-text-primary);
 }
 
 /* Reduced motion */

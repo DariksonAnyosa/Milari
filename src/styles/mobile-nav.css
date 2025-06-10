@@ -2,15 +2,6 @@
    NAVEGACIÓN MÓVIL CON MENÚ HAMBURGUESA
    ========================================== */
 
-/* Contenedor de navegación móvil */
-.nav-wrapper.mobile {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  position: relative;
-}
-
 /* Botón hamburguesa */
 .hamburger-btn {
   background: transparent;
@@ -20,8 +11,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 200;
-  margin-right: 8px;
+  z-index: 10000;
+  position: relative;
 }
 
 .hamburger-icon {
@@ -55,25 +46,18 @@
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Indicador de vista actual en móvil */
-.current-view-indicator {
-  font-family: var(--font-text);
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--color-text-primary);
-}
-
 /* Overlay para cerrar el menú */
 .mobile-menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-  z-index: 250;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(4px) !important;
+  z-index: 999998 !important;
   animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  isolation: isolate;
 }
 
 @keyframes fadeIn {
@@ -83,22 +67,24 @@
 
 /* Menú móvil desplegable */
 .mobile-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 280px;
-  background: var(--color-surface);
-  box-shadow: var(--apple-shadow);
-  z-index: 300;
-  display: flex;
-  flex-direction: column;
-  transform: translateX(-100%);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  width: 280px !important;
+  background: var(--color-surface) !important;
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.4), 0 16px 32px rgba(0, 0, 0, 0.2) !important;
+  z-index: 999999 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transform: translateX(-100%) !important;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  overflow-y: auto !important;
+  isolation: isolate;
 }
 
 .mobile-menu.open {
-  transform: translateX(0);
+  transform: translateX(0) !important;
 }
 
 /* Cabecera del menú */
@@ -108,6 +94,10 @@
   justify-content: space-between;
   padding: 20px 24px;
   border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  background: var(--color-surface);
+  z-index: 1650;
 }
 
 .mobile-menu-title {
@@ -131,6 +121,8 @@
   font-size: 24px;
   cursor: pointer;
   transition: background 0.2s ease;
+  z-index: 1650;
+  position: relative;
 }
 
 .mobile-menu-close:hover {
@@ -138,23 +130,51 @@
   color: var(--color-text-primary);
 }
 
-/* Navegación del menú */
-.mobile-menu-nav {
-  flex: 1;
+/* Sección de fecha en el menú */
+.mobile-menu-date {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-text);
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  text-transform: capitalize;
+  background-color: var(--color-gray-100);
+}
+
+/* Secciones del menú */
+.mobile-menu-section {
   padding: 16px 0;
-  overflow-y: auto;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.mobile-menu-section-title {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin: 0 0 8px 0;
+  padding: 0 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Items de menú */
+.mobile-menu-nav {
+  display: flex;
+  flex-direction: column;
 }
 
 .mobile-menu-item {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 16px 24px;
+  padding: 14px 24px;
   background: transparent;
   border: none;
   cursor: pointer;
   transition: background 0.2s ease;
   text-align: left;
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
 
 .mobile-menu-item:hover {
@@ -174,52 +194,29 @@
   width: 24px;
   height: 24px;
   margin-right: 16px;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .mobile-menu-label {
   font-family: var(--font-text);
   font-size: 16px;
   color: var(--color-text-primary);
+  font-weight: 500;
 }
 
-/* Pie del menú */
-.mobile-menu-footer {
-  padding: 24px;
-  border-top: 1px solid var(--color-border);
-}
-
-.mobile-theme-toggle {
+/* Toggle de tema en móvil */
+.mobile-theme-toggle-container {
   display: flex;
   align-items: center;
-  width: 100%;
-  padding: 16px;
-  background: var(--color-gray-100);
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-.mobile-theme-toggle:hover {
-  background: var(--color-gray-200);
-}
-
-.mobile-theme-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  margin-right: 16px;
-  font-size: 16px;
+  justify-content: space-between;
+  padding: 14px 24px;
 }
 
 .mobile-theme-label {
   font-family: var(--font-text);
-  font-size: 14px;
+  font-size: 16px;
   color: var(--color-text-primary);
-  text-align: left;
+  font-weight: 500;
 }
 
 /* Ajustes para dispositivos más pequeños */
@@ -229,27 +226,10 @@
   }
   
   .mobile-menu-item {
-    padding: 14px 20px;
+    padding: 12px 20px;
   }
   
   .mobile-menu-label {
     font-size: 15px;
   }
-}
-
-/* Dark mode ajustes para menú móvil */
-.dark-mode .hamburger-icon span {
-  background: var(--color-text-primary);
-}
-
-.dark-mode .mobile-menu-overlay {
-  background: rgba(0, 0, 0, 0.7);
-}
-
-.dark-mode .mobile-menu {
-  background: var(--color-surface);
-}
-
-.dark-mode .mobile-menu-close:hover {
-  background: var(--color-gray-100);
 }
