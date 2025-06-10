@@ -28,6 +28,7 @@
 @import './voice.css';
 
 /* 6. PWA y Responsive (siempre al final) */
+@import './mobile-nav.css';
 @import './responsive.css';
 @import './pwa.css';
 

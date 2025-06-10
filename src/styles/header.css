@@ -136,12 +136,12 @@
   letter-spacing: -0.01em;
 }
 
-/* MÓVIL - Navigation compacta premium */
+/* MÓVIL - Layout con hamburguesa */
 @media (max-width: 768px) {
   .header-container {
     padding: 0 16px;
     gap: 16px;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 1fr auto;
   }
   
   .logo-icon {
@@ -156,76 +156,18 @@
     display: none;
   }
   
-  .nav {
-    justify-self: end;
-    padding: 6px;
-    gap: 4px;
+  /* Navegación móvil */
+  .nav-section {
+    flex: 1;
   }
   
-  .nav-btn {
-    padding: 8px 12px;
-    font-size: 13px;
-    border-radius: 8px;
+  /* Se oculta la navegación estándar en móvil */
+  .nav.desktop {
+    display: none;
   }
 }
 
-@media (max-width: 640px) {
-  .header-container {
-    padding: 0 12px;
-    gap: 12px;
-  }
-  
-  .logo-icon {
-    width: 36px;
-    height: 36px;
-    font-size: 18px;
-  }
-  
-  .nav {
-    padding: 4px;
-    gap: 2px;
-  }
-  
-  .nav-btn {
-    padding: 6px 10px;
-    font-size: 12px;
-    font-weight: 500;
-  }
-}
-
-@media (max-width: 480px) {
-  .header-container {
-    gap: 8px;
-  }
-  
-  .nav {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 2px;
-    padding: 4px;
-    width: auto;
-    min-width: 240px;
-  }
-  
-  .nav-btn {
-    padding: 8px 4px;
-    font-size: 10px;
-    flex-direction: column;
-    gap: 2px;
-    min-height: 40px;
-    border-radius: 6px;
-  }
-  
-  .nav-icon {
-    font-size: 12px;
-    display: block;
-  }
-  
-  .nav-label {
-    font-weight: 600;
-    line-height: 1;
-  }
-}
+/* NOTA: Los estilos de navegación móvil están ahora en mobile-nav.css */
 
 /* Estilos base para el modo oscuro - se aplican también con la clase dark-mode */
 @media (prefers-color-scheme: dark) {

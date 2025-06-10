@@ -27,12 +27,12 @@ const Header = ({ currentView, onViewChange, selectedDate, stats }) => {
   return (
     <header className={`header ${isScrolled ? 'scrolled' : ''} ${isMobile ? 'mobile' : 'desktop'}`}>
       <div className="header-container">
-        {/* Logo a la izquierda */}
+        {/* Logo a la izquierda (en móvil a la derecha) */}
         <div className="logo-section">
           <div className="logo-icon">M</div>
         </div>
 
-        {/* Navegación centrada */}
+        {/* Navegación centrada (en móvil con hamburguesa) */}
         <div className="nav-section">
           <Navigation 
             currentView={currentView} 
@@ -41,7 +41,7 @@ const Header = ({ currentView, onViewChange, selectedDate, stats }) => {
           />
         </div>
 
-        {/* Fecha a la derecha */}
+        {/* Fecha a la derecha (oculta en móvil) */}
         <div className="date-section">
           <div className="date-display">
             {selectedDate.toLocaleDateString('es-ES', { 

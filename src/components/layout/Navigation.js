@@ -1,9 +1,12 @@
 // components/layout/Navigation.js
 import { useState, useEffect } from 'react';
+import MobileMenu from './MobileMenu';
 
 const Navigation = ({ currentView, onViewChange, isMobile }) => {
   // Estado para controlar el tema (oscuro/claro)
   const [darkMode, setDarkMode] = useState(false);
+  // Estado para el menú móvil
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   // Detectar la preferencia de tema del sistema al inicio
   useEffect(() => {
@@ -42,17 +45,65 @@ const Navigation = ({ currentView, onViewChange, isMobile }) => {
     }
   };
 
+  // Función para abrir/cerrar el menú móvil
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  // Cerrar menú móvil al seleccionar una opción
+  const handleViewChange = (view) => {
+    onViewChange(view);
+    setMobileMenuOpen(false);
+  };
+
   const navItems = [
     { key: 'today', label: 'Hoy', icon: '📅' },
     { key: 'calendar', label: 'Calendario', icon: '🗓️' },
-    { key: 'tasks', label: 'Tareas', icon: '✅' },
-    { key: 'focus', label: 'Enfoque', icon: '🎯' },
-    { key: 'pomodoro', label: 'Pomodoro', icon: '🍅' }
+    { key: 'tasks', label: 'Tareas', icon: '✓' },
+    { key: 'focus', label: 'Enfoque', icon: '◎' },
+    { key: 'pomodoro', label: 'Pomodoro', icon: '⏱️' }
   ];
 
+  // Renderizado condicional basado en si es móvil o desktop
+  if (isMobile) {
+    return (
+      <div className="nav-wrapper mobile">
+        {/* Botón hamburguesa para móvil */}
+        <button 
+          className="hamburger-btn"
+          onClick={toggleMobileMenu}
+          aria-label="Menú de navegación"
+        >
+          <div className={`hamburger-icon ${mobileMenuOpen ? 'open' : ''}`}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+        
+        {/* Menú móvil desplegable */}
+        <MobileMenu 
+          isOpen={mobileMenuOpen}
+          navItems={navItems}
+          currentView={currentView}
+          onViewChange={handleViewChange}
+          darkMode={darkMode}
+          toggleTheme={toggleTheme}
+          onClose={() => setMobileMenuOpen(false)}
+        />
+        
+        {/* Botón activo visible (solo texto) */}
+        <div className="current-view-indicator">
+          {navItems.find(item => item.key === currentView)?.label || 'Inicio'}
+        </div>
+      </div>
+    );
+  }
+
+  // Versión desktop
   return (
-    <div className="nav-wrapper">
-      <nav className={`nav ${isMobile ? 'mobile' : 'desktop'}`}>
+    <div className="nav-wrapper desktop">
+      <nav className="nav desktop">
         {navItems.map(item => (
           <button 
             key={item.key}
@@ -60,9 +111,6 @@ const Navigation = ({ currentView, onViewChange, isMobile }) => {
             onClick={() => onViewChange(item.key)}
             aria-label={item.label}
           >
-            {isMobile && (
-              <span className="nav-icon">{item.icon}</span>
-            )}
             <span className="nav-label">{item.label}</span>
           </button>
         ))}
@@ -76,11 +124,9 @@ const Navigation = ({ currentView, onViewChange, isMobile }) => {
           <span className="theme-icon">
             {darkMode ? '☀️' : '🌙'}
           </span>
-          {!isMobile && (
-            <span className="theme-label">
-              {darkMode ? 'Claro' : 'Oscuro'}
-            </span>
-          )}
+          <span className="theme-label">
+            {darkMode ? 'Claro' : 'Oscuro'}
+          </span>
         </button>
       </nav>
     </div>
