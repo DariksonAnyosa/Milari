@@ -25,8 +25,8 @@ const Header = ({ currentView, onViewChange, selectedDate, stats }) => {
   }, []);
 
   return (
-    <header className={`milari-header-clean ${isScrolled ? 'scrolled' : ''} ${isMobile ? 'mobile' : 'desktop'}`}>
-      <div className="header-container-clean">
+    <header className={`header ${isScrolled ? 'scrolled' : ''} ${isMobile ? 'mobile' : 'desktop'}`}>
+      <div className="header-container">
         {/* Logo a la izquierda */}
         <div className="logo-section">
           <div className="logo-icon">M</div>

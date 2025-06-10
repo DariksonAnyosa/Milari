@@ -1,17 +1,17 @@
 /* ==========================================
    MILARI - SISTEMA DE ESTILOS PRINCIPAL
-   Archivo principal que importa todos los estilos activos
    ========================================== */
 
 /* ORDEN CRÍTICO - NO CAMBIAR */
 
 /* 1. Variables globales, reset y base */
 @import './globals.css';
+@import './adaptive-mode.css';
 
-/* 2. Estilos premium activos */
-@import './header-clean.css';
-@import './hero-ultra-minimal.css';
-@import './today-clean.css';
+/* 2. Estilos principales */
+@import './header.css';
+@import './hero.css';
+@import './today.css';
 @import './calendar.css';
 
 /* 3. Layout principal y navegación */
@@ -19,14 +19,13 @@
 
 /* 4. Componentes reutilizables */
 @import './components.css';
-@import './ai-components.css';
+@import './ui.css';
 
 /* 5. Vistas específicas */
 @import './tasks.css';
 @import './pomodoro.css';
-@import './adaptive-mode.css';
 @import './focus-view.css';
-@import './milari-ai.css';
+@import './voice.css';
 
 /* 6. PWA y Responsive (siempre al final) */
 @import './responsive.css';
