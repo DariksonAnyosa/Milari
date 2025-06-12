@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import MobileMenu from './MobileMenu';
 
-const Navigation = ({ currentView, onViewChange, isMobile, selectedDate, darkMode, toggleTheme }) => {
+const Navigation = ({ currentView, onViewChange, screenSize, selectedDate, darkMode, toggleTheme }) => {
   // Estado para el menú móvil
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -38,8 +38,8 @@ const Navigation = ({ currentView, onViewChange, isMobile, selectedDate, darkMod
     { key: 'pomodoro', label: 'Pomodoro', icon: '⏱️' }
   ];
 
-  // Renderizado condicional basado en si es móvil o desktop
-  if (isMobile) {
+  // Renderizado condicional basado en el tamaño de pantalla
+  if (screenSize.isMobile) {
     return (
       <>
         {/* Botón hamburguesa para móvil */}
@@ -70,9 +70,9 @@ const Navigation = ({ currentView, onViewChange, isMobile, selectedDate, darkMod
     );
   }
 
-  // Versión desktop
+  // Versión desktop y tablet
   return (
-    <nav className="nav desktop">
+    <nav className={`nav ${screenSize.isDesktop ? 'desktop' : 'tablet'}`}>
       {navItems.map(item => (
         <button 
           key={item.key}

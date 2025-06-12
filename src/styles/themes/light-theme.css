@@ -1,0 +1,174 @@
+/* ==========================================
+   MILARI - TEMA CLARO
+   Sistema de tema claro para toda la aplicación
+   ========================================== */
+
+/* ==========================================
+   VARIABLES TEMA CLARO
+   ========================================== */
+
+:root,
+:root.light-mode,
+.light-mode {
+  /* Colores base */
+  --bg-primary: #f5f5f7;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f8f9fa;
+  
+  /* Texto */
+  --text-primary: #1d1d1f;
+  --text-secondary: #64748b;
+  --text-tertiary: #94a3b8;
+  --text-inverse: #ffffff;
+  
+  /* Bordes */
+  --border-light: rgba(0, 0, 0, 0.05);
+  --border-medium: rgba(0, 0, 0, 0.1);
+  --border-dark: rgba(0, 0, 0, 0.15);
+  
+  /* Colores semánticos */
+  --color-primary: #007AFF;
+  --color-primary-dark: #0062cc;
+  --color-primary-light: rgba(0, 122, 255, 0.1);
+  --color-primary-rgb: 0, 122, 255;
+  
+  --color-accent: #5856D6;
+  --color-accent-rgb: 88, 86, 214;
+  
+  --color-success: #34C759;
+  --color-success-light: rgba(52, 199, 89, 0.1);
+  --color-success-dark: #27ae38;
+  --color-success-rgb: 52, 199, 89;
+  
+  --color-warning: #FF9500;
+  --color-warning-light: rgba(255, 149, 0, 0.1);
+  --color-warning-dark: #cc7a00;
+  --color-warning-rgb: 255, 149, 0;
+  
+  --color-danger: #FF3B30;
+  --color-danger-light: rgba(255, 59, 48, 0.1);
+  --color-danger-dark: #cc2f26;
+  --color-danger-rgb: 255, 59, 48;
+  
+  --color-neutral: #8E8E93;
+  --color-neutral-light: rgba(142, 142, 147, 0.1);
+  --color-neutral-dark: #6e6e73;
+  --color-neutral-rgb: 142, 142, 147;
+  
+  /* Gradientes */
+  --gradient-primary: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+  --gradient-accent: linear-gradient(135deg, #5856D6 0%, #bf5af2 100%);
+  --gradient-success: linear-gradient(135deg, #34C759 0%, #30D158 100%);
+  --gradient-danger: linear-gradient(135deg, #FF3B30 0%, #FF6B6B 100%);
+  --gradient-warning: linear-gradient(135deg, #FF9500 0%, #FFCC00 100%);
+  --gradient-text: linear-gradient(135deg, #1e293b 0%, #3730a3 100%);
+  
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-bg-heavy: rgba(255, 255, 255, 0.9);
+  --glass-bg-light: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-blur: blur(15px);
+  --glass-saturation: saturate(180%);
+  
+  /* Sombras */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.16);
+  
+  /* Sombras de acento */
+  --shadow-accent: 0 6px 16px rgba(0, 122, 255, 0.25);
+  --shadow-accent-lg: 0 8px 24px rgba(0, 122, 255, 0.35);
+  
+  /* Overlay y modal */
+  --bg-overlay: rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================
+   APLICACIÓN DE TEMA CLARO
+   ========================================== */
+
+/* Base */
+html,
+body,
+.app,
+.light-mode,
+.app.light-mode,
+body.light-mode,
+html.light-mode {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Modo claro para contenedores específicos */
+.container,
+.light-mode .container,
+.app.light-mode .container,
+body.light-mode .container {
+  background: var(--bg-secondary);
+  border-color: var(--border-light);
+}
+
+/* ==========================================
+   COMPATIBILIDAD CON NAVEGADORES
+   ========================================== */
+
+/* Navegador Brave */
+.brave-browser,
+html.brave-browser,
+body.brave-browser {
+  background: var(--bg-primary) !important;
+}
+
+.brave-browser .container,
+html.brave-browser .container,
+body.brave-browser .container {
+  background: var(--bg-secondary) !important;
+}
+
+/* Navegador Zen */
+.zen-browser,
+html.zen-browser,
+body.zen-browser {
+  background: var(--bg-primary) !important;
+}
+
+.zen-browser .container,
+html.zen-browser .container,
+body.zen-browser .container {
+  background: var(--bg-secondary) !important;
+}
+
+/* ==========================================
+   FORZAR MODO CLARO
+   ========================================== */
+
+:root.force-light {
+  /* Colores base */
+  --bg-primary: #f5f5f7 !important;
+  --bg-secondary: #ffffff !important;
+  --bg-tertiary: #f8f9fa !important;
+  
+  /* Texto */
+  --text-primary: #1d1d1f !important;
+  --text-secondary: #64748b !important;
+  --text-tertiary: #94a3b8 !important;
+  --text-inverse: #ffffff !important;
+  
+  /* Bordes */
+  --border-light: rgba(0, 0, 0, 0.05) !important;
+  --border-medium: rgba(0, 0, 0, 0.1) !important;
+  --border-dark: rgba(0, 0, 0, 0.15) !important;
+  
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.8) !important;
+  --glass-bg-heavy: rgba(255, 255, 255, 0.9) !important;
+  --glass-bg-light: rgba(255, 255, 255, 0.7) !important;
+  --glass-border: rgba(255, 255, 255, 0.4) !important;
+}
+
+body.force-light {
+  background: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}

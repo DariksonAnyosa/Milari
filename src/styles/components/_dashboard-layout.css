@@ -1,0 +1,282 @@
+/* ==========================================
+   MILARI DASHBOARD LAYOUT PROFESSIONAL
+   Layout principal rediseñado 2025
+   ========================================== */
+
+.dashboard-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-primary);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-feature-settings: "ss01" on;
+  transition: background-color var(--duration-slow) var(--ease-in-out);
+}
+
+/* ==========================================
+   MAIN CONTENT AREA
+   ========================================== */
+
+.dashboard-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* Permite flex shrinking */
+  position: relative;
+}
+
+.dynamic-content {
+  flex: 1;
+  padding: 0 var(--space-6) var(--space-8);
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ==========================================
+   RESPONSIVE LAYOUT
+   ========================================== */
+
+/* Desktop */
+@media (min-width: 769px) {
+  .dashboard-main {
+    padding-top: var(--nav-height-desktop);
+  }
+  
+  .dynamic-content {
+    padding: 0 var(--space-8) var(--space-12);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .dashboard-main {
+    padding-bottom: calc(var(--nav-height-mobile) + var(--space-6));
+  }
+  
+  .dynamic-content {
+    padding: 0 var(--space-4) var(--space-8);
+  }
+}
+
+/* ==========================================
+   CONTENT GRID SYSTEM
+   ========================================== */
+
+.dynamic-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  align-content: start;
+}
+
+@media (min-width: 1024px) {
+  .dynamic-content--with-sidebar {
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-10);
+  }
+  
+  .main-content-area {
+    grid-column: 1;
+  }
+  
+  .sidebar-area {
+    grid-column: 2;
+  }
+}
+
+/* ==========================================
+   SCROLL BEHAVIOR
+   ========================================== */
+
+.dashboard-main {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--neutral-300) var(--surface-primary);
+}
+
+.dashboard-main::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dashboard-main::-webkit-scrollbar-track {
+  background: var(--surface-primary);
+}
+
+.dashboard-main::-webkit-scrollbar-thumb {
+  background: var(--neutral-300);
+  border-radius: 3px;
+}
+
+.dashboard-main::-webkit-scrollbar-thumb:hover {
+  background: var(--neutral-400);
+}
+
+/* Scroll margin for navigation */
+.dynamic-content {
+  scroll-margin-top: calc(var(--nav-height-desktop) + var(--space-6));
+}
+
+@media (max-width: 768px) {
+  .dynamic-content {
+    scroll-margin-top: var(--space-6);
+  }
+}
+
+/* ==========================================
+   LOADING STATES
+   ========================================== */
+
+.dashboard-layout--loading .dynamic-content {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.content-skeleton {
+  background: linear-gradient(90deg, 
+    var(--neutral-200) 25%, 
+    var(--neutral-100) 50%, 
+    var(--neutral-200) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-md);
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ==========================================
+   DARK MODE ADJUSTMENTS
+   ========================================== */
+
+.dark.dashboard-layout {
+  background: var(--surface-primary);
+}
+
+.dark .dashboard-main::-webkit-scrollbar-track {
+  background: var(--surface-primary);
+}
+
+.dark .dashboard-main::-webkit-scrollbar-thumb {
+  background: var(--neutral-600);
+}
+
+.dark .dashboard-main::-webkit-scrollbar-thumb:hover {
+  background: var(--neutral-500);
+}
+
+.dark .content-skeleton {
+  background: linear-gradient(90deg, 
+    var(--neutral-700) 25%, 
+    var(--neutral-600) 50%, 
+    var(--neutral-700) 75%
+  );
+}
+
+/* ==========================================
+   FOCUS MANAGEMENT
+   ========================================== */
+
+.dashboard-layout:focus-within {
+  /* Mejorar visibilidad del foco cuando hay elementos enfocados */
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--brand-primary);
+  color: var(--text-inverse);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: var(--font-medium);
+  z-index: var(--z-toast);
+  transition: top var(--duration-fast) var(--ease-out);
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* ==========================================
+   PRINT STYLES
+   ========================================== */
+
+@media print {
+  .dashboard-layout {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .dynamic-content {
+    padding: var(--space-4) !important;
+    max-width: none !important;
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Hide interactive elements */
+  .fab-container,
+  .bottom-navigation,
+  .desktop-header {
+    display: none !important;
+  }
+}
+
+/* ==========================================
+   REDUCED MOTION
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .dashboard-layout,
+  .dynamic-content,
+  .content-skeleton {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .dashboard-main {
+    scroll-behavior: auto;
+  }
+}
+
+/* ==========================================
+   HIGH CONTRAST MODE
+   ========================================== */
+
+@media (prefers-contrast: high) {
+  .dashboard-layout {
+    border: 2px solid currentColor;
+  }
+  
+  .dashboard-main::-webkit-scrollbar-thumb {
+    background: currentColor;
+    border: 1px solid var(--surface-primary);
+  }
+}
+
+/* ==========================================
+   EMERGENCY STYLES - TEMPORAL
+   ========================================== */
+
+/* Asegurar que el layout funcione incluso sin CSS variables */
+.dashboard-layout {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Fallback para navegadores sin soporte CSS Grid */
+@supports not (display: grid) {
+  .dynamic-content {
+    display: flex;
+    flex-direction: column;
+  }
+}

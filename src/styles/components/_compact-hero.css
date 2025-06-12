@@ -1,0 +1,345 @@
+/* ==========================================
+   MILARI - COMPACT HERO SECTION
+   Bloque de saludo con modo dual (full/compact)
+   ========================================== */
+
+/* ==========================================
+   HERO BASE
+   ========================================== */
+
+.compact-hero {
+  padding: var(--space-8) 0; /* MÁS ESPACIOSO */
+  transition: all var(--duration-normal) var(--ease-out);
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--surface-primary);
+}
+
+.compact-hero.compact {
+  padding: var(--space-3) 0;
+  background: rgba(var(--surface-primary), 0.95);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.compact-hero.mobile {
+  padding: var(--space-6) 0; /* MÁS ESPACIOSO EN MOBILE */
+}
+
+.hero-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--space-10); /* MÁS PADDING LATERAL */
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.compact-hero.compact .hero-container {
+  padding: 0 var(--space-6);
+}
+
+.compact-hero.mobile .hero-container {
+  padding: 0 var(--space-6); /* MÁS ESPACIOSO EN MOBILE */
+}
+
+/* ==========================================
+   MODO COMPLETO
+   ========================================== */
+
+.greeting-section {
+  margin-bottom: var(--space-6);
+}
+
+.greeting-title {
+  font-size: clamp(var(--text-display-sm), 2.5vw, 32px);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-2) 0;
+  line-height: var(--leading-display-sm);
+  letter-spacing: -0.02em;
+}
+
+.greeting-subtitle {
+  font-size: var(--text-body);
+  font-weight: var(--font-medium);
+  margin: 0 0 var(--space-4) 0;
+  line-height: var(--leading-body);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.quick-guide-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  color: var(--brand-primary);
+  font-size: var(--text-label);
+  font-weight: var(--font-medium);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.quick-guide-btn:hover {
+  background: rgba(var(--brand-primary), 0.06);
+  border-color: var(--brand-primary);
+  transform: translateY(-1px);
+  text-decoration: underline;
+}
+
+.quick-guide-btn svg {
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.quick-guide-btn:hover svg {
+  transform: translateX(2px) translateY(-2px);
+}
+
+.context-section {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.current-date {
+  font-size: var(--text-label);
+  font-weight: var(--font-medium);
+  color: var(--text-secondary);
+  text-transform: capitalize;
+}
+
+.live-time {
+  font-size: var(--text-label);
+  font-weight: var(--font-medium);
+  color: var(--text-tertiary);
+  padding: var(--space-1) var(--space-3);
+  background: var(--surface-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+/* ==========================================
+   MODO COMPACTO
+   ========================================== */
+
+.greeting-compact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  opacity: 0;
+  transform: translateY(10px) scale(0.95);
+  animation: compactFadeIn var(--duration-normal) var(--ease-out) forwards;
+}
+
+.greeting-name {
+  font-size: var(--text-title-xs);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.greeting-compact .live-time {
+  font-size: var(--text-caption);
+  padding: var(--space-1) var(--space-2);
+  background: var(--surface-tertiary);
+  border: none;
+}
+
+@keyframes compactFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==========================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================== */
+
+@media (max-width: 1023px) {
+  .compact-hero {
+    padding: var(--space-5) 0;
+  }
+  
+  .hero-container {
+    padding: 0 var(--space-6);
+  }
+  
+  .greeting-title {
+    font-size: clamp(24px, 4vw, 28px);
+  }
+  
+  .context-section {
+    gap: var(--space-3);
+  }
+}
+
+@media (max-width: 767px) {
+  .compact-hero {
+    padding: var(--space-4) 0;
+  }
+  
+  .hero-container {
+    padding: 0 var(--space-4);
+  }
+  
+  .greeting-section {
+    margin-bottom: var(--space-4);
+  }
+  
+  .greeting-title {
+    font-size: 22px;
+    margin-bottom: var(--space-2);
+  }
+  
+  .greeting-subtitle {
+    font-size: var(--text-label);
+    margin-bottom: var(--space-3);
+  }
+  
+  .quick-guide-btn {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-caption);
+  }
+  
+  .context-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+  
+  .current-date {
+    font-size: var(--text-caption);
+  }
+  
+  /* Ocultar hora en móvil para modo completo */
+  .compact-hero.mobile .live-time {
+    display: none;
+  }
+}
+
+/* ==========================================
+   DARK MODE - SURFACE-2 PARA GREETING
+   ========================================== */
+
+.dark .compact-hero {
+  background: var(--surface-0); /* Background principal */
+  border-bottom-color: var(--border-subtle);
+}
+
+.dark .compact-hero.compact {
+  background: rgba(var(--surface-0), 0.95);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Usar surface-2 para el greeting en dark mode */
+.dark .greeting-section {
+  background: var(--surface-2);
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-subtle);
+  margin-bottom: var(--space-8);
+}
+
+.dark .quick-guide-btn {
+  border-color: var(--border-moderate);
+  background: rgba(var(--brand-primary), 0.1);
+}
+
+.dark .quick-guide-btn:hover {
+  background: rgba(var(--brand-primary), 0.15);
+  border-color: var(--brand-primary);
+}
+
+.dark .live-time {
+  background: var(--surface-1);
+  border-color: var(--border-subtle);
+}
+
+.dark .greeting-compact .live-time {
+  background: var(--surface-1);
+}
+
+/* Mejorar contraste de texto en dark mode */
+.dark .greeting-title {
+  color: var(--text-primary); /* text-hi */
+}
+
+.dark .greeting-subtitle {
+  color: var(--text-secondary); /* text-lo */
+}
+
+.dark .current-date {
+  color: var(--text-secondary);
+}
+
+.dark .greeting-name {
+  color: var(--text-primary);
+}
+
+/* ==========================================
+   ACCESSIBILITY
+   ========================================== */
+
+.quick-guide-btn:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .compact-hero,
+  .greeting-compact,
+  .quick-guide-btn {
+    transition: none;
+    animation: none;
+  }
+  
+  .quick-guide-btn:hover {
+    transform: none;
+  }
+  
+  .quick-guide-btn:hover svg {
+    transform: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .compact-hero {
+    border-bottom-width: 2px;
+  }
+  
+  .quick-guide-btn {
+    border-width: 2px;
+  }
+  
+  .live-time {
+    border-width: 2px;
+  }
+}
+
+/* ==========================================
+   PRINT STYLES
+   ========================================== */
+
+@media print {
+  .compact-hero {
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid #000;
+    background: white !important;
+    box-shadow: none !important;
+  }
+  
+  .quick-guide-btn {
+    display: none;
+  }
+  
+  .greeting-title {
+    color: #000 !important;
+  }
+  
+  .greeting-subtitle {
+    color: #333 !important;
+  }
+}

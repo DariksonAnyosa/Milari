@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 
 const PomodoroTimer = () => {
   const [mode, setMode] = useState('focus'); // 'focus', 'shortBreak', 'longBreak'
@@ -28,11 +28,11 @@ const PomodoroTimer = () => {
     longBreak: 15 * 60
   });
 
-  const modeLabels = {
+  const modeLabels = useMemo(() => ({
     focus: 'Enfoque',
     shortBreak: 'Descanso corto',
     longBreak: 'Descanso largo'
-  };
+  }), []);
 
   const motivationalMessages = [
     "¡Mantén el enfoque! Cada minuto cuenta.",
@@ -42,98 +42,15 @@ const PomodoroTimer = () => {
     "¡Estás construyendo el hábito del éxito!"
   ];
 
-  // Cargar datos guardados al inicializar
-  useEffect(() => {
-    loadStoredData();
-  }, []);
-
-  // Actualizar título de la página con el timer
-  useEffect(() => {
-    if (isRunning) {
-      document.title = `${formatTime(timeLeft)} - ${modeLabels[mode]} | MILARI`;
-    } else {
-      document.title = 'MILARI - Tu asistente de productividad';
-    }
-    
-    return () => {
-      document.title = 'MILARI - Tu asistente de productividad';
-    };
-  }, [timeLeft, isRunning, mode]);
-
-  // Timer principal
-  useEffect(() => {
-    if (isRunning && timeLeft > 0) {
-      intervalRef.current = setInterval(() => {
-        setTimeLeft(prev => prev - 1);
-      }, 1000);
-    } else if (timeLeft === 0) {
-      handleTimerComplete();
-    } else {
-      clearInterval(intervalRef.current);
-    }
-
-    return () => clearInterval(intervalRef.current);
-  }, [isRunning, timeLeft]);
-
-  const loadStoredData = () => {
-    try {
-      const savedSessions = localStorage.getItem('milari_pomodoro_sessions');
-      const savedStats = localStorage.getItem('milari_daily_stats');
-      const savedTasks = localStorage.getItem('milari_completed_tasks');
-      
-      if (savedSessions) {
-        const parsedSessions = JSON.parse(savedSessions);
-        setSessionHistory(parsedSessions);
-        setSessions(parsedSessions.filter(s => isToday(new Date(s.date))).length);
-      }
-      
-      if (savedStats) {
-        setDailyStats(JSON.parse(savedStats));
-      }
-      
-      if (savedTasks) {
-        setCompletedTasks(JSON.parse(savedTasks));
-      }
-    } catch (error) {
-      console.warn('Error cargando datos del Pomodoro:', error);
-    }
+  // Funciones auxiliares
+  const isToday = (date) => {
+    return date.toDateString() === new Date().toDateString();
   };
 
-  const saveSessionData = (sessionData) => {
-    try {
-      const updatedHistory = [...sessionHistory, sessionData];
-      setSessionHistory(updatedHistory);
-      localStorage.setItem('milari_pomodoro_sessions', JSON.stringify(updatedHistory));
-      
-      // Actualizar estadísticas diarias
-      updateDailyStats(sessionData);
-    } catch (error) {
-      console.warn('Error guardando datos del Pomodoro:', error);
-    }
-  };
-
-  const updateDailyStats = (sessionData) => {
-    const today = new Date().toDateString();
-    const todaySessions = sessionHistory.filter(s => 
-      new Date(s.date).toDateString() === today
-    );
-    
-    const newStats = {
-      totalFocusTime: todaySessions.reduce((acc, s) => 
-        s.mode === 'focus' ? acc + s.duration : acc, 0
-      ),
-      tasksCompleted: completedTasks.filter(t => 
-        new Date(t.completedAt).toDateString() === today
-      ).length,
-      averageSessionLength: todaySessions.length > 0 
-        ? todaySessions.reduce((acc, s) => acc + s.duration, 0) / todaySessions.length 
-        : 0,
-      bestFocusHour: getBestFocusHour(todaySessions),
-      consecutiveDays: calculateConsecutiveDays()
-    };
-    
-    setDailyStats(newStats);
-    localStorage.setItem('milari_daily_stats', JSON.stringify(newStats));
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
   const getBestFocusHour = (sessions) => {
@@ -170,11 +87,109 @@ const PomodoroTimer = () => {
     return streak;
   };
 
-  const isToday = (date) => {
-    return date.toDateString() === new Date().toDateString();
+  const updateDailyStats = (sessionData) => {
+    const today = new Date().toDateString();
+    const todaySessions = sessionHistory.filter(s => 
+      new Date(s.date).toDateString() === today
+    );
+    
+    const newStats = {
+      totalFocusTime: todaySessions.reduce((acc, s) => 
+        s.mode === 'focus' ? acc + s.duration : acc, 0
+      ),
+      tasksCompleted: completedTasks.filter(t => 
+        new Date(t.completedAt).toDateString() === today
+      ).length,
+      averageSessionLength: todaySessions.length > 0 
+        ? todaySessions.reduce((acc, s) => acc + s.duration, 0) / todaySessions.length 
+        : 0,
+      bestFocusHour: getBestFocusHour(todaySessions),
+      consecutiveDays: calculateConsecutiveDays()
+    };
+    
+    setDailyStats(newStats);
+    localStorage.setItem('milari_daily_stats', JSON.stringify(newStats));
   };
 
-  const handleTimerComplete = () => {
+  const saveSessionData = (sessionData) => {
+    try {
+      const updatedHistory = [...sessionHistory, sessionData];
+      setSessionHistory(updatedHistory);
+      localStorage.setItem('milari_pomodoro_sessions', JSON.stringify(updatedHistory));
+      
+      // Actualizar estadísticas diarias
+      updateDailyStats(sessionData);
+    } catch (error) {
+      console.warn('Error guardando datos del Pomodoro:', error);
+    }
+  };
+
+  const getMotivationalMessage = (sessionCount) => {
+    if (sessionCount === 1) return "¡Gran comienzo! El primer paso es el más importante.";
+    if (sessionCount === 4) return "¡Increíble! Has completado un ciclo completo de Pomodoro.";
+    if (sessionCount === 8) return "¡Eres imparable! Tu enfoque es admirable.";
+    if (sessionCount >= 12) return "¡Leyenda! Tu disciplina es inspiradora.";
+    
+    return motivationalMessages[Math.floor(Math.random() * motivationalMessages.length)];
+  };
+
+  const playNotificationSound = () => {
+    // Sonido más suave y agradable
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    
+    // Secuencia de tonos más melódica
+    const frequencies = [523.25, 659.25, 783.99]; // Do, Mi, Sol
+    
+    frequencies.forEach((freq, index) => {
+      setTimeout(() => {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        oscillator.frequency.setValueAtTime(freq, audioContext.currentTime);
+        gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 0.3);
+      }, index * 200);
+    });
+  };
+
+  const switchMode = (newMode) => {
+    setMode(newMode);
+    setTimeLeft(customTimes[newMode]);
+    setIsRunning(false);
+  };
+
+  // useCallback functions
+  const loadStoredData = useCallback(() => {
+    try {
+      const savedSessions = localStorage.getItem('milari_pomodoro_sessions');
+      const savedStats = localStorage.getItem('milari_daily_stats');
+      const savedTasks = localStorage.getItem('milari_completed_tasks');
+      
+      if (savedSessions) {
+        const parsedSessions = JSON.parse(savedSessions);
+        setSessionHistory(parsedSessions);
+        setSessions(parsedSessions.filter(s => isToday(new Date(s.date))).length);
+      }
+      
+      if (savedStats) {
+        setDailyStats(JSON.parse(savedStats));
+      }
+      
+      if (savedTasks) {
+        setCompletedTasks(JSON.parse(savedTasks));
+      }
+    } catch (error) {
+      console.warn('Error cargando datos del Pomodoro:', error);
+    }
+  }, []);
+
+  const handleTimerComplete = useCallback(() => {
     setIsRunning(false);
     playNotificationSound();
     
@@ -239,47 +254,40 @@ const PomodoroTimer = () => {
     
     // Guardar datos de la sesión
     saveSessionData(sessionData);
-  };
+  }, [mode, customTimes, currentTask, sessions, personalBest, completedTasks]);
 
-  const getMotivationalMessage = (sessionCount) => {
-    if (sessionCount === 1) return "¡Gran comienzo! El primer paso es el más importante.";
-    if (sessionCount === 4) return "¡Increíble! Has completado un ciclo completo de Pomodoro.";
-    if (sessionCount === 8) return "¡Eres imparable! Tu enfoque es admirable.";
-    if (sessionCount >= 12) return "¡Leyenda! Tu disciplina es inspiradora.";
+  // Cargar datos guardados al inicializar
+  useEffect(() => {
+    loadStoredData();
+  }, [loadStoredData]);
+
+  // Actualizar título de la página con el timer
+  useEffect(() => {
+    if (isRunning) {
+      document.title = `${formatTime(timeLeft)} - ${modeLabels[mode]} | MILARI`;
+    } else {
+      document.title = 'MILARI - Tu asistente de productividad';
+    }
     
-    return motivationalMessages[Math.floor(Math.random() * motivationalMessages.length)];
-  };
+    return () => {
+      document.title = 'MILARI - Tu asistente de productividad';
+    };
+  }, [timeLeft, isRunning, mode, modeLabels]);
 
-  const playNotificationSound = () => {
-    // Sonido más suave y agradable
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    
-    // Secuencia de tonos más melódica
-    const frequencies = [523.25, 659.25, 783.99]; // Do, Mi, Sol
-    
-    frequencies.forEach((freq, index) => {
-      setTimeout(() => {
-        const oscillator = audioContext.createOscillator();
-        const gainNode = audioContext.createGain();
+  // Timer principal
+  useEffect(() => {
+    if (isRunning && timeLeft > 0) {
+      intervalRef.current = setInterval(() => {
+        setTimeLeft(prev => prev - 1);
+      }, 1000);
+    } else if (timeLeft === 0) {
+      handleTimerComplete();
+    } else {
+      clearInterval(intervalRef.current);
+    }
 
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-
-        oscillator.frequency.setValueAtTime(freq, audioContext.currentTime);
-        gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
-
-        oscillator.start(audioContext.currentTime);
-        oscillator.stop(audioContext.currentTime + 0.3);
-      }, index * 200);
-    });
-  };
-
-  const switchMode = (newMode) => {
-    setMode(newMode);
-    setTimeLeft(customTimes[newMode]);
-    setIsRunning(false);
-  };
+    return () => clearInterval(intervalRef.current);
+  }, [isRunning, timeLeft, handleTimerComplete]);
 
   const toggleTimer = () => {
     if (isRunning) {
@@ -301,12 +309,6 @@ const PomodoroTimer = () => {
     if (mode === 'focus') {
       setCurrentStreak(0);
     }
-  };
-
-  const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
   const getProgressPercentage = () => {

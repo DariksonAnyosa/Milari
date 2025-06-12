@@ -1,0 +1,192 @@
+/* ==========================================
+   RESPONSIVE COMPONENTS
+   Componentes específicos responsive
+   ========================================== */
+
+/* ==========================================
+   TIPOGRAFÍA RESPONSIVE
+   ========================================== */
+
+@media (max-width: 768px) {
+  .app-title {
+    font-size: 1.75rem;
+  }
+  
+  .date-title {
+    font-size: 1.75rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-title {
+    font-size: 1.5rem;
+  }
+  
+  .date-title {
+    font-size: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 1.25rem;
+  }
+}
+
+/* ==========================================
+   BOTONES RESPONSIVE
+   ========================================== */
+
+@media (max-width: 768px) {
+  .add-event-btn {
+    bottom: 20px;
+    right: 16px;
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    font-size: 20px;
+  }
+  
+  .voice-trigger-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+  }
+  
+  .nav-btn {
+    padding: var(--spacing-responsive-xs) var(--spacing-responsive-sm);
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .add-event-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    font-size: 18px;
+    bottom: 16px;
+    right: 12px;
+  }
+  
+  .voice-trigger-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    font-size: 0.8rem;
+  }
+}
+
+/* ==========================================
+   MODALES RESPONSIVE
+   ========================================== */
+
+@media (max-width: 768px) {
+  .add-task-modal {
+    width: 95%;
+    margin: var(--spacing-responsive-md);
+  }
+  
+  .modal-header {
+    padding: var(--spacing-responsive-md) var(--spacing-responsive-lg);
+  }
+  
+  .form-content {
+    padding: var(--spacing-responsive-lg);
+  }
+  
+  .modal-actions {
+    padding: var(--spacing-responsive-lg);
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .add-task-modal {
+    width: 98%;
+    margin: var(--spacing-responsive-xs);
+    border-radius: 8px;
+  }
+  
+  .task-input {
+    padding: var(--spacing-responsive-sm);
+    font-size: 0.9rem;
+  }
+}
+
+/* ==========================================
+   TIMELINE RESPONSIVE
+   ========================================== */
+
+@media (max-width: 768px) {
+  .time-label {
+    width: 60px;
+    padding: var(--spacing-responsive-sm);
+  }
+  
+  .time-text {
+    font-size: 0.75rem;
+  }
+  
+  .timeline-task {
+    padding: var(--spacing-responsive-sm);
+    gap: var(--spacing-responsive-sm);
+  }
+  
+  .task-title {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .time-label {
+    width: 50px;
+    padding: var(--spacing-responsive-xs);
+  }
+  
+  .time-text {
+    font-size: 0.7rem;
+  }
+  
+  .time-label-iphone {
+    width: 35px;
+    padding-right: 6px;
+  }
+  
+  .time-text-iphone {
+    font-size: 0.75rem;
+  }
+  
+  .timeline-task {
+    padding: var(--spacing-responsive-xs) var(--spacing-responsive-sm);
+    border-radius: 8px;
+  }
+  
+  .task-title {
+    font-size: 0.85rem;
+  }
+  
+  .task-checkbox.large {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+  
+  .task-type-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .time-label {
+    width: 100px;
+  }
+  
+  .time-label-iphone {
+    width: 60px;
+  }
+}

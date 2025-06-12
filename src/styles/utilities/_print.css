@@ -1,0 +1,110 @@
+/* ==========================================
+   PRINT STYLES
+   Estilos optimizados para impresión
+   ========================================== */
+
+@media print {
+  
+  /* ==========================================
+     RESET PARA IMPRESIÓN
+     ========================================== */
+  
+  * {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  
+  /* ==========================================
+     OCULTAR ELEMENTOS INTERACTIVOS
+     ========================================== */
+  
+  .add-event-btn,
+  .voice-assistant-container,
+  .task-delete,
+  .event-delete,
+  .nav-btn,
+  .voice-trigger-btn,
+  .close-btn,
+  .modal-actions,
+  .button-secondary,
+  .button-primary {
+    display: none !important;
+  }
+  
+  /* ==========================================
+     AJUSTAR COMPONENTES PARA IMPRESIÓN
+     ========================================== */
+  
+  .timeline-task,
+  .task-card,
+  .calendar-event {
+    border: 1px solid #000 !important;
+    background: transparent !important;
+    color: #000 !important;
+    margin-bottom: 4px !important;
+  }
+  
+  /* ==========================================
+     FUENTES PARA IMPRESIÓN
+     ========================================== */
+  
+  body {
+    font-family: 'Times New Roman', serif !important;
+    font-size: 12pt !important;
+    line-height: 1.4 !important;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Arial', sans-serif !important;
+    page-break-after: avoid !important;
+  }
+  
+  /* ==========================================
+     CONTROL DE PÁGINAS
+     ========================================== */
+  
+  .calendar-container,
+  .pomodoro-container,
+  .tasklist-view {
+    page-break-inside: avoid !important;
+  }
+  
+  .timeline-task {
+    page-break-inside: avoid !important;
+  }
+  
+  /* ==========================================
+     ENCABEZADOS Y TÍTULOS
+     ========================================== */
+  
+  .app-title::after {
+    content: " - Milari App";
+    font-size: 0.8em;
+    color: #666;
+  }
+  
+  .current-date::before {
+    content: "Fecha: ";
+    font-weight: bold;
+  }
+  
+  /* ==========================================
+     ESPACIADO PARA IMPRESIÓN
+     ========================================== */
+  
+  @page {
+    margin: 2cm;
+  }
+  
+  .dashboard-main {
+    padding: 0 !important;
+  }
+  
+  .milari-header {
+    border-bottom: 2px solid #000 !important;
+    margin-bottom: 20px !important;
+    padding-bottom: 10px !important;
+  }
+}

@@ -1,0 +1,298 @@
+/* ==========================================
+   MILARI VOICE - MODAL Y INTERFAZ PRINCIPAL
+   Modal principal para interacción con IA de voz
+   ========================================== */
+
+/* ==========================================
+   MODAL OVERLAY
+   ========================================== */
+
+.milari-modal-overlay,
+.voice-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-overlay);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+  animation: overlayAppear var(--duration-slow) var(--ease-out);
+}
+
+@keyframes overlayAppear {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(25px);
+  }
+}
+
+/* ==========================================
+   MODAL CONTAINER
+   ========================================== */
+
+.milari-modal,
+.voice-modal-container {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur) var(--glass-saturation);
+  -webkit-backdrop-filter: var(--glass-blur) var(--glass-saturation);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-2xl);
+  width: 90%;
+  max-width: 500px;
+  max-height: 85vh;
+  overflow: hidden;
+  box-shadow: 
+    var(--shadow-xl),
+    var(--shadow-accent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  animation: modalSlideUp 0.6s var(--ease-out);
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ==========================================
+   MODAL HEADER
+   ========================================== */
+
+.milari-header,
+.voice-modal-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-xl) var(--space-2xl);
+  background: linear-gradient(135deg, 
+    rgba(var(--color-primary-rgb), 0.08) 0%, 
+    rgba(88, 86, 214, 0.08) 100%);
+  border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.1);
+  position: relative;
+}
+
+.voice-modal-header {
+  justify-content: space-between;
+  padding: var(--space-xl) var(--space-xl) var(--space-lg) var(--space-xl);
+}
+
+.milari-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.6) 50%, 
+    transparent 100%);
+}
+
+/* ==========================================
+   HEADER CONTENT
+   ========================================== */
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.milari-avatar {
+  width: 44px;
+  height: 44px;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-inverse);
+  font-size: 18px;
+  box-shadow: var(--shadow-accent);
+  position: relative;
+  overflow: hidden;
+}
+
+.milari-avatar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+  opacity: 0.7;
+}
+
+.milari-info,
+.header-text {
+  flex: 1;
+}
+
+.milari-info h2,
+.header-text h2 {
+  font-family: var(--font-display);
+  font-size: var(--font-xl);
+  font-weight: var(--font-bold);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  line-height: var(--leading-tight);
+}
+
+.milari-info p,
+.header-text p {
+  font-family: var(--font-primary);
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  font-weight: var(--font-medium);
+  margin: var(--space-xs) 0 0 0;
+  line-height: var(--leading-normal);
+}
+
+/* ==========================================
+   CLOSE BUTTON
+   ========================================== */
+
+.close-btn,
+.close-button {
+  margin-left: auto;
+  width: 36px;
+  height: 36px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  color: var(--text-secondary);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-normal) var(--ease-out);
+  box-shadow: var(--shadow-sm);
+}
+
+.close-btn:hover,
+.close-button:hover {
+  background: var(--color-danger-light);
+  border-color: rgba(255, 59, 48, 0.2);
+  color: var(--color-danger);
+  transform: scale(1.1);
+  box-shadow: 0 4px 16px rgba(255, 59, 48, 0.2);
+}
+
+/* ==========================================
+   INTERACTION MODES
+   ========================================== */
+
+.interaction-modes {
+  display: flex;
+  background: rgba(248, 250, 252, 0.8);
+  border-bottom: 1px solid rgba(var(--color-primary-rgb), 0.1);
+}
+
+.mode-btn {
+  flex: 1;
+  padding: var(--space-md) var(--space-lg);
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-primary);
+  font-size: var(--font-sm);
+  font-weight: var(--font-semibold);
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out);
+  position: relative;
+}
+
+.mode-btn:hover {
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.mode-btn.active {
+  color: var(--color-primary);
+  background: rgba(var(--color-primary-rgb), 0.08);
+}
+
+.mode-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 2px;
+  background: var(--gradient-primary);
+  border-radius: 1px;
+}
+
+/* ==========================================
+   MODAL CONTENT
+   ========================================== */
+
+.milari-content {
+  padding: var(--space-xl);
+  min-height: 300px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--color-primary-rgb), 0.3) transparent;
+}
+
+.milari-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.milari-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.milari-content::-webkit-scrollbar-thumb {
+  background: rgba(var(--color-primary-rgb), 0.3);
+  border-radius: 2px;
+}
+
+/* ==========================================
+   RESPONSIVE MODAL
+   ========================================== */
+
+@media (max-width: 768px) {
+  .milari-modal,
+  .voice-modal-container {
+    width: 95%;
+    margin: 0 var(--space-lg);
+    border-radius: var(--radius-xl);
+  }
+  
+  .milari-header,
+  .voice-modal-header {
+    padding: var(--space-lg) var(--space-xl);
+  }
+  
+  .milari-content {
+    padding: var(--space-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .milari-modal,
+  .voice-modal-container {
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+    margin: 0;
+  }
+}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React from 'react';
 
 const FocusView = ({ tasks, stats, onToggleTask, onDeleteTask }) => {
   return (

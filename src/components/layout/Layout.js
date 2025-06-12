@@ -1,8 +1,10 @@
-import { useState } from 'react';
-import Header from './Header';
-import FloatingActions from './FloatingActions';
-import HeroSection from '../sections/HeroSection';
+import { useState, useCallback } from 'react';
+import UnifiedNavigation from '../navigation/UnifiedNavigation';
+import CompactHeroSection from '../sections/CompactHeroSection';
+import KPIDashboard from '../dashboard/KPIDashboard';
+import FloatingActionButton from '../ui/FloatingActionButton';
 import MilariModal from '../modals/MilariModal';
+import VoiceModal from '../voice/VoiceModal';
 import InstallPrompt from '../pwa/InstallPrompt';
 import ThemeProvider from './ThemeProvider';
 
@@ -19,59 +21,77 @@ const Layout = ({
   children 
 }) => {
   const [showMilari, setShowMilari] = useState(false);
+  const [showVoice, setShowVoice] = useState(false);
 
-  const handleShowMilari = () => {
+  const handleShowMilari = useCallback(() => {
+    console.log('📋 Abriendo MilariModal');
     setShowMilari(true);
-  };
+  }, []);
 
-  const handleCloseMilari = () => {
+  const handleCloseMilari = useCallback(() => {
+    console.log('❌ Cerrando MilariModal');
     setShowMilari(false);
-  };
+  }, []);
 
-  const handleTaskAdded = async () => {
+  const handleShowVoice = useCallback(() => {
+    setShowVoice(true);
+  }, []);
+
+  const handleCloseVoice = useCallback(() => {
+    setShowVoice(false);
+  }, []);
+
+  const handleTaskAdded = useCallback(async () => {
+    console.log('✅ Tarea agregada, recargando datos...');
     await onReloadData();
-  };
+    console.log('✅ Datos recargados');
+  }, [onReloadData]);
 
   return (
     <ThemeProvider darkMode={darkMode}>
-      <div className="dashboard-layout">
-        {/* Header */}
-        <Header
+      <div className={`dashboard-layout ${darkMode ? 'dark' : ''}`}>
+        
+        {/* Navegación unificada */}
+        <UnifiedNavigation 
           currentView={currentView}
           onViewChange={onViewChange}
-          selectedDate={selectedDate}
-          stats={stats}
           darkMode={darkMode}
           toggleTheme={toggleTheme}
         />
-
-        {/* Main Content */}
+        
+        {/* Contenido principal */}
         <main className="dashboard-main">
-          {/* Hero Section solo para vista 'today' */}
+          
+          {/* Hero compacto - siempre visible */}
+          <CompactHeroSection 
+            selectedDate={selectedDate}
+            stats={stats}
+          />
+          
+          {/* KPI Dashboard - solo en vista 'today' */}
           {currentView === 'today' && (
-            <HeroSection 
-              selectedDate={selectedDate} 
-              stats={stats}
+            <KPIDashboard 
               tasks={tasks}
-              onAddTask={onAddTask}
-              onShowAddTask={handleShowMilari}
+              stats={stats}
+              selectedDate={selectedDate}
             />
           )}
           
-          {/* Contenido dinámico de las vistas */}
-          {children}
+          {/* Contenido dinámico según vista */}
+          <div className="dynamic-content">
+            {children}
+          </div>
+          
         </main>
-
-        {/* MILARI IA - Floating Actions rediseñado */}
-        <FloatingActions
-          currentView={currentView}
-          onViewChange={onViewChange}
-          onShowJarvis={handleShowMilari}
-          tasks={tasks}
-          stats={stats}
+        
+        {/* FAB único */}
+        <FloatingActionButton 
+          onShowMilari={handleShowMilari}
+          onShowVoice={handleShowVoice}
+          darkMode={darkMode}
         />
 
-        {/* Modal MILARI IA Unificado */}
+        {/* Modal MILARI IA para agregar tareas */}
         {showMilari && (
           <MilariModal
             onClose={handleCloseMilari}
@@ -80,6 +100,19 @@ const Layout = ({
             tasks={tasks}
             stats={stats}
             currentView={currentView}
+            darkMode={darkMode}
+          />
+        )}
+
+        {/* Modal de Voz para hablar con MILARI */}
+        {showVoice && (
+          <VoiceModal
+            onClose={handleCloseVoice}
+            onTaskAdded={handleTaskAdded}
+            selectedDate={selectedDate}
+            tasks={tasks}
+            stats={stats}
+            darkMode={darkMode}
           />
         )}
 

@@ -1,0 +1,271 @@
+/* ==========================================
+   MILARI - SISTEMA DE VARIABLES GLOBAL
+   Todas las variables CSS centralizadas
+   ========================================== */
+
+:root {
+  /* ==========================================
+     SISTEMA DE COLORES
+     ========================================== */
+  
+  /* Colores principales */
+  --color-primary: #007AFF;
+  --color-primary-hover: #0056b3;
+  --color-primary-light: rgba(0, 122, 255, 0.1);
+  --color-primary-rgb: 0, 122, 255;
+  
+  --color-secondary: #5856D6;
+  --color-secondary-light: rgba(88, 86, 214, 0.1);
+  
+  /* Estados */
+  --color-success: #34C759;
+  --color-success-light: rgba(52, 199, 89, 0.1);
+  --color-warning: #FF9500;
+  --color-warning-light: rgba(255, 149, 0, 0.1);
+  --color-danger: #FF3B30;
+  --color-danger-light: rgba(255, 59, 48, 0.1);
+  --color-info: #007AFF;
+  --color-info-light: rgba(0, 122, 255, 0.1);
+  
+  /* Escala de grises */
+  --color-white: #ffffff;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  --color-black: #000000;
+  
+  /* ==========================================
+     TEMA CLARO (por defecto)
+     ========================================== */
+  
+  /* Fondos */
+  --bg-primary: #f5f5f7;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f9fafb;
+  --bg-card: rgba(255, 255, 255, 0.8);
+  --bg-overlay: rgba(0, 0, 0, 0.6);
+  
+  /* Textos */
+  --text-primary: #1d1d1f;
+  --text-secondary: #64748b;
+  --text-tertiary: #94a3b8;
+  --text-muted: #a1a1a6;
+  --text-inverse: #ffffff;
+  
+  /* Bordes */
+  --border-light: rgba(0, 0, 0, 0.06);
+  --border-medium: rgba(0, 0, 0, 0.12);
+  --border-strong: rgba(0, 0, 0, 0.18);
+  
+  /* Sombras */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.15);
+  --shadow-accent: 0 8px 25px rgba(0, 122, 255, 0.3);
+  
+  /* ==========================================
+     TIPOGRAFÍA
+     ========================================== */
+  
+  /* Familias de fuentes */
+  --font-primary: -apple-system, BlinkMacSystemFont, 'SF Pro Text', system-ui, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+  --font-mono: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  
+  /* Tamaños de fuente */
+  --font-xs: 0.75rem;    /* 12px */
+  --font-sm: 0.875rem;   /* 14px */
+  --font-base: 1rem;     /* 16px */
+  --font-lg: 1.125rem;   /* 18px */
+  --font-xl: 1.25rem;    /* 20px */
+  --font-2xl: 1.5rem;    /* 24px */
+  --font-3xl: 1.875rem;  /* 30px */
+  --font-4xl: 2.25rem;   /* 36px */
+  
+  /* Pesos de fuente */
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+  
+  /* Altura de línea */
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  
+  /* ==========================================
+     ESPACIADO
+     ========================================== */
+  
+  --space-xs: 0.25rem;   /* 4px */
+  --space-sm: 0.5rem;    /* 8px */
+  --space-md: 0.75rem;   /* 12px */
+  --space-lg: 1rem;      /* 16px */
+  --space-xl: 1.5rem;    /* 24px */
+  --space-2xl: 2rem;     /* 32px */
+  --space-3xl: 3rem;     /* 48px */
+  --space-4xl: 4rem;     /* 64px */
+  
+  /* ==========================================
+     RADIOS DE BORDE
+     ========================================== */
+  
+  --radius-sm: 0.375rem;  /* 6px */
+  --radius-md: 0.5rem;    /* 8px */
+  --radius-lg: 0.75rem;   /* 12px */
+  --radius-xl: 1rem;      /* 16px */
+  --radius-2xl: 1.5rem;   /* 24px */
+  --radius-full: 9999px;
+  
+  /* ==========================================
+     BREAKPOINTS (para JS)
+     ========================================== */
+  
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1200px;
+  
+  /* ==========================================
+     Z-INDEX SCALE
+     ========================================== */
+  
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal: 1040;
+  --z-popover: 1050;
+  --z-tooltip: 1060;
+  --z-toast: 1070;
+  
+  /* ==========================================
+     ANIMACIONES
+     ========================================== */
+  
+  /* Duración */
+  --duration-fast: 0.15s;
+  --duration-normal: 0.3s;
+  --duration-slow: 0.5s;
+  
+  /* Easing */
+  --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* ==========================================
+     EFECTOS
+     ========================================== */
+  
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-blur: blur(20px);
+  --glass-saturation: saturate(1.8);
+  
+  /* Gradientes */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  --gradient-success: linear-gradient(135deg, #34C759 0%, #30D158 100%);
+  --gradient-warning: linear-gradient(135deg, #FF9500 0%, #FFAD33 100%);
+  --gradient-danger: linear-gradient(135deg, #FF3B30 0%, #FF6B60 100%);
+}
+
+/* ==========================================
+   MODO OSCURO - OVERRIDE DE VARIABLES
+   ========================================== */
+
+:root.dark-mode,
+.dark-mode,
+html.dark-mode,
+body.dark-mode {
+  /* Fondos */
+  --bg-primary: #000000;
+  --bg-secondary: #1c1c1e;
+  --bg-tertiary: #2c2c2e;
+  --bg-card: rgba(28, 28, 30, 0.8);
+  --bg-overlay: rgba(0, 0, 0, 0.8);
+  
+  /* Textos */
+  --text-primary: #f5f5f7;
+  --text-secondary: #a1a1a6;
+  --text-tertiary: #8e8e93;
+  --text-muted: #6e6e73;
+  --text-inverse: #000000;
+  
+  /* Colores principales ajustados para modo oscuro */
+  --color-primary: #0a84ff;
+  --color-secondary: #bf5af2;
+  --color-success: #30d158;
+  --color-warning: #ff9f0a;
+  --color-danger: #ff453a;
+  
+  /* Bordes */
+  --border-light: rgba(255, 255, 255, 0.1);
+  --border-medium: rgba(255, 255, 255, 0.2);
+  --border-strong: rgba(255, 255, 255, 0.3);
+  
+  /* Sombras */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.6);
+  --shadow-accent: 0 8px 25px rgba(10, 132, 255, 0.3);
+  
+  /* Glassmorphism oscuro */
+  --glass-bg: rgba(28, 28, 30, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  
+  /* Gradientes oscuros */
+  --gradient-primary: linear-gradient(135deg, #0a84ff 0%, #bf5af2 100%);
+}
+
+/* ==========================================
+   DETECCIÓN AUTOMÁTICA DE MODO OSCURO
+   ========================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.force-light) {
+    /* Aplica automáticamente las variables de modo oscuro */
+    --bg-primary: #000000;
+    --bg-secondary: #1c1c1e;
+    --bg-tertiary: #2c2c2e;
+    --bg-card: rgba(28, 28, 30, 0.8);
+    --bg-overlay: rgba(0, 0, 0, 0.8);
+    
+    --text-primary: #f5f5f7;
+    --text-secondary: #a1a1a6;
+    --text-tertiary: #8e8e93;
+    --text-muted: #6e6e73;
+    --text-inverse: #000000;
+    
+    --color-primary: #0a84ff;
+    --color-secondary: #bf5af2;
+    --color-success: #30d158;
+    --color-warning: #ff9f0a;
+    --color-danger: #ff453a;
+    
+    --border-light: rgba(255, 255, 255, 0.1);
+    --border-medium: rgba(255, 255, 255, 0.2);
+    --border-strong: rgba(255, 255, 255, 0.3);
+    
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.6);
+    --shadow-accent: 0 8px 25px rgba(10, 132, 255, 0.3);
+    
+    --glass-bg: rgba(28, 28, 30, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    
+    --gradient-primary: linear-gradient(135deg, #0a84ff 0%, #bf5af2 100%);
+  }
+}

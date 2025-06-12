@@ -1,0 +1,280 @@
+/* ==========================================
+   MILARI DESIGN TOKENS - HEADER REFACTOR
+   Tokens específicos para header y navegación
+   ========================================== */
+
+:root {
+  /* ==========================================
+     HEADER HEIGHT TOKENS
+     Sistema fluido con clamp()
+     ========================================== */
+  
+  /* Alturas fijas por breakpoint - MÁS ESPACIOSAS */
+  --h-header-desktop: 72px;    /* Aumentado de 56px */
+  --h-header-tablet: 60px;     /* Aumentado de 52px */
+  --h-header-mobile: 48px;     /* Mantener mobile compacto */
+  
+  /* Altura fluida responsiva MÁS ESPACIOSA */
+  --header-height: clamp(
+    var(--h-header-mobile), 
+    5vw, 
+    var(--h-header-desktop)
+  );
+  
+  /* ==========================================
+     NAVIGATION TOKENS
+     ========================================== */
+  
+  /* Indicador de navegación activa */
+  --nav-indicator-width: 60%;
+  --nav-indicator-height: 2px;
+  --nav-indicator-color: var(--brand-primary);
+  --nav-indicator-radius: 1px;
+  
+  /* Espaciado interno de botones */
+  --nav-btn-padding-desktop: var(--space-3) var(--space-5);
+  --nav-btn-padding-tablet: var(--space-2) var(--space-4);
+  --nav-btn-padding-mobile: var(--space-2) var(--space-3);
+  
+  /* ==========================================
+     THEME TOGGLE TOKENS
+     ========================================== */
+  
+  /* Dimensiones del toggle */
+  --toggle-width-desktop: 60px;
+  --toggle-height-desktop: 32px;
+  --toggle-width-mobile: 52px;
+  --toggle-height-mobile: 28px;
+  
+  /* Thumb del toggle */
+  --toggle-thumb-size-desktop: 24px;
+  --toggle-thumb-size-mobile: 20px;
+  --toggle-thumb-travel-desktop: 32px;
+  --toggle-thumb-travel-mobile: 28px;
+  
+  /* Colores específicos del toggle */
+  --toggle-sun-color: #F59E0B;
+  --toggle-moon-color: #3B82F6;
+  --toggle-track-bg: var(--surface-tertiary);
+  --toggle-thumb-bg: var(--surface-elevated);
+  
+  /* ==========================================
+     HERO SECTION TOKENS
+     ========================================== */
+  
+  /* Modos del hero */
+  --hero-padding-full: var(--space-6) 0;
+  --hero-padding-compact: var(--space-3) 0;
+  --hero-padding-mobile: var(--space-4) 0;
+  
+  /* Scroll threshold para modo compacto */
+  --hero-compact-threshold: 120px;
+  
+  /* Tamaños de texto del saludo */
+  --greeting-title-size: clamp(var(--text-display-sm), 2.5vw, 32px);
+  --greeting-name-compact: var(--text-title-xs);
+  --greeting-subtitle-size: var(--text-body);
+  
+  /* ==========================================
+     LOGO TOKENS
+     ========================================== */
+  
+  /* Logo más grande y prominente */
+  --logo-size-desktop: 56px;
+  --logo-size-tablet: 48px;
+  --logo-size-mobile: 36px;
+  --logo-font-size-desktop: 28px;
+  --logo-font-size-tablet: 24px;
+  --logo-font-size-mobile: 18px;
+  
+  /* Espaciado logo + texto */
+  --logo-text-gap: var(--space-3);
+  --logo-text-margin: var(--space-1);
+  
+  /* ==========================================
+     ANIMATION TOKENS
+     ========================================== */
+  
+  /* Transiciones específicas */
+  --header-transition: all var(--duration-normal) var(--ease-out);
+  --nav-btn-transition: all var(--duration-fast) var(--ease-out);
+  --toggle-transition: all var(--duration-normal) var(--ease-out);
+  --hero-transition: all var(--duration-normal) var(--ease-out);
+  
+  /* Efectos hover */
+  --hover-lift: translateY(-1px);
+  --hover-scale: scale(1.05);
+  --indicator-scale: scaleX(1.1);
+  
+  /* ==========================================
+     BREAKPOINT TOKENS
+     ========================================== */
+  
+  /* Breakpoints específicos del header */
+  --bp-mobile-max: 767px;
+  --bp-tablet-min: 768px;
+  --bp-tablet-max: 1023px;
+  --bp-desktop-min: 1024px;
+  --bp-desktop-large: 1440px;
+  
+  /* ==========================================
+     ACCESSIBILITY TOKENS
+     ========================================== */
+  
+  /* Focus ring */
+  --focus-ring-header: 2px solid var(--brand-primary);
+  --focus-ring-offset: 2px;
+  
+  /* Contraste mínimo */
+  --min-contrast-ratio: 4.5;
+  --aa-contrast-ratio: 7;
+  
+  /* Touch targets */
+  --min-touch-target: 44px;
+  --recommended-touch-target: 48px;
+}
+
+/* ==========================================
+   RESPONSIVE OVERWRITES
+   ========================================== */
+
+@media (max-width: 767px) {
+  :root {
+    /* Header mobile específico */
+    --header-height: var(--h-header-mobile);
+    
+    /* Logo mobile */
+    --logo-size: var(--logo-mobile-size);
+    --logo-font-size: var(--logo-mobile-font);
+    
+    /* Toggle mobile */
+    --toggle-width: var(--toggle-width-mobile);
+    --toggle-height: var(--toggle-height-mobile);
+    --toggle-thumb-size: var(--toggle-thumb-size-mobile);
+    
+    /* Hero mobile */
+    --hero-padding-full: var(--hero-padding-mobile);
+    
+    /* Tipografía mobile */
+    --greeting-title-size: 22px;
+    --greeting-subtitle-size: var(--text-label);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    /* Header tablet */
+    --header-height: var(--h-header-tablet);
+    
+    /* Navegación tablet */
+    --nav-btn-padding: var(--nav-btn-padding-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    /* Header desktop */
+    --header-height: var(--h-header-desktop);
+    
+    /* Logo con texto */
+    --logo-show-text: block;
+    
+    /* Navegación centrada */
+    --nav-justify: center;
+  }
+}
+
+/* ==========================================
+   DARK MODE SPECIFIC TOKENS
+   ========================================== */
+
+.dark {
+  /* Header dark */
+  --header-bg-scrolled: rgba(var(--surface-primary), 0.95);
+  --header-shadow-scrolled: 0 1px 2px rgba(0, 0, 0, 0.3);
+  
+  /* Toggle dark */
+  --toggle-track-bg: var(--surface-secondary);
+  --toggle-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  
+  /* Navigation dark */
+  --nav-bg-dark: rgba(var(--surface-secondary), 0.9);
+  --nav-btn-hover-dark: rgba(var(--brand-primary), 0.1);
+  --nav-btn-active-dark: rgba(var(--brand-primary), 0.15);
+}
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+
+/* Header utilities */
+.header-height {
+  height: var(--header-height);
+}
+
+.header-offset {
+  margin-top: var(--header-height);
+}
+
+.header-padding {
+  padding-top: var(--header-height);
+}
+
+/* Logo utilities */
+.logo-responsive {
+  width: var(--logo-size);
+  height: var(--logo-size);
+  font-size: var(--logo-font-size);
+}
+
+/* Navigation utilities */
+.nav-indicator {
+  width: var(--nav-indicator-width);
+  height: var(--nav-indicator-height);
+  background: var(--nav-indicator-color);
+  border-radius: var(--nav-indicator-radius);
+}
+
+/* Toggle utilities */
+.toggle-responsive {
+  width: var(--toggle-width-desktop);
+  height: var(--toggle-height-desktop);
+}
+
+@media (max-width: 767px) {
+  .toggle-responsive {
+    width: var(--toggle-width-mobile);
+    height: var(--toggle-height-mobile);
+  }
+}
+
+/* ==========================================
+   DESIGN SYSTEM NOTES
+   
+   📏 ESPACIADO:
+   - Header: Altura fluida con clamp(48px, 4.5vw, 56px)
+   - Padding: Escala de 0 en desktop a var(--space-2) en mobile
+   - Gaps: var(--space-6) desktop → var(--space-3) mobile
+   
+   🎨 COLORES:
+   - Brand primary: #2563EB (ratio 4.5:1 AA)
+   - Toggle sun: #F59E0B (cálido)
+   - Toggle moon: #3B82F6 (frío)
+   
+   📱 RESPONSIVE:
+   - Mobile: ≤767px (logo solo, header 48px)
+   - Tablet: 768-1023px (logo solo, header 52px)
+   - Desktop: ≥1024px (logo + texto, header 56px)
+   
+   ♿ ACCESIBILIDAD:
+   - Touch targets: mínimo 44px, recomendado 48px
+   - Contraste: mínimo 4.5:1, objetivo 7:1
+   - Focus ring: 2px solid brand-primary
+   - Reduce motion: respetado en todas las animaciones
+   
+   ⚡ PERFORMANCE:
+   - Transiciones optimizadas con transform y opacity
+   - Backdrop-filter solo en scroll
+   - Passive event listeners
+   - CSS containment donde corresponde
+   ========================================== */

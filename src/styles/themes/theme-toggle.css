@@ -1,0 +1,214 @@
+/* ==========================================
+   MILARI - THEME TOGGLE ESTILIZADO
+   Toggle moderno con iconos SVG y animaciones
+   ========================================== */
+
+/* ==========================================
+   TOGGLE DE TEMA PRINCIPAL
+   ========================================== */
+
+.theme-toggle-container {
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle {
+  position: relative;
+  width: 60px;
+  height: 32px;
+  background: var(--surface-tertiary);
+  border-radius: 32px;
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out);
+  display: flex;
+  align-items: center;
+  padding: 0;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.theme-toggle:hover {
+  background: var(--surface-secondary);
+  border-color: var(--border-moderate);
+  box-shadow: 
+    inset 0 1px 3px rgba(0, 0, 0, 0.1),
+    var(--shadow-card);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+
+.theme-toggle-track {
+  position: absolute;
+  inset: 0;
+  border-radius: 32px;
+  overflow: hidden;
+}
+
+.theme-toggle-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(var(--brand-primary), 0.1) 0%,
+    rgba(var(--brand-primary), 0.05) 50%,
+    rgba(59, 130, 246, 0.1) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.theme-toggle.dark .theme-toggle-gradient {
+  opacity: 1;
+}
+
+.theme-toggle-thumb {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  background: var(--surface-elevated);
+  border-radius: 50%;
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.15),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all var(--duration-normal) var(--ease-out);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transform: translateX(4px);
+  margin: 0;
+}
+
+.theme-toggle.dark .theme-toggle-thumb {
+  transform: translateX(32px);
+  background: var(--surface-elevated);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.25),
+    0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.theme-toggle-icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-normal) var(--ease-out);
+  width: 12px;
+  height: 12px;
+}
+
+.theme-toggle-icon svg {
+  width: 100%;
+  height: 100%;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.theme-toggle-icon.sun {
+  opacity: 1;
+  color: #F59E0B;
+  transform: rotate(0deg) scale(1);
+}
+
+.theme-toggle-icon.moon {
+  opacity: 0;
+  color: #3B82F6;
+  transform: rotate(180deg) scale(0.8);
+}
+
+.theme-toggle.dark .theme-toggle-icon.sun {
+  opacity: 0;
+  transform: rotate(-180deg) scale(0.8);
+}
+
+.theme-toggle.dark .theme-toggle-icon.moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* ==========================================
+   DARK MODE STYLES
+   ========================================== */
+
+.dark .theme-toggle {
+  background: var(--surface-secondary);
+  border-color: var(--border-moderate);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.dark .theme-toggle:hover {
+  background: var(--surface-tertiary);
+  border-color: var(--border-strong);
+}
+
+.dark .theme-toggle-thumb {
+  background: var(--surface-elevated);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.4),
+    0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================== */
+
+@media (max-width: 768px) {
+  .theme-toggle {
+    width: 52px;
+    height: 28px;
+  }
+  
+  .theme-toggle-thumb {
+    width: 20px;
+    height: 20px;
+    transform: translateX(4px);
+  }
+  
+  .theme-toggle.dark .theme-toggle-thumb {
+    transform: translateX(28px);
+  }
+  
+  .theme-toggle-icon {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* ==========================================
+   ACCESSIBILITY
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
+  .theme-toggle-thumb,
+  .theme-toggle-icon,
+  .theme-toggle-gradient {
+    transition: none;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .theme-toggle {
+    border-width: 2px;
+  }
+  
+  .theme-toggle-thumb {
+    border: 1px solid var(--border-strong);
+  }
+}
+
+/* ==========================================
+   LEGACY STYLES CLEANUP
+   (Mantener compatibilidad temporal)
+   ========================================== */
+
+/* Ocultar estilos antiguos */
+.theme-toggle-btn,
+.theme-toggle-slider,
+.navbar-theme-toggle,
+.mobile-theme-toggle {
+  display: none;
+}

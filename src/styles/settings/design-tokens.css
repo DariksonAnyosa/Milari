@@ -1,0 +1,297 @@
+/* ==========================================
+   MILARI DESIGN TOKENS 2025
+   Sistema profesional con paleta brand
+   ========================================== */
+
+:root {
+  /* ==========================================
+     BRAND COLORS
+     ========================================== */
+  --brand-primary: #2563EB;
+  --brand-primary-hover: #1D4ED8;
+  --brand-primary-active: #1E40AF;
+  --brand-gradient-start: #2B6EEA;
+  --brand-gradient-end: #74A9FF;
+  --brand-gradient: linear-gradient(135deg, var(--brand-gradient-start), var(--brand-gradient-end));
+  
+  /* ==========================================
+     SEMANTIC COLORS
+     ========================================== */
+  --accent-success: #22C55E;
+  --accent-success-bg: #F0FDF4;
+  --accent-warning: #F59E0B;
+  --accent-warning-bg: #FFFBEB;
+  --accent-error: #EF4444;
+  --accent-error-bg: #FEF2F2;
+  
+  /* ==========================================
+     NEUTRAL SCALE
+     ========================================== */
+  --neutral-50: #F8FAFC;
+  --neutral-100: #F7F9FC;
+  --neutral-200: #E2E8F0;
+  --neutral-300: #CBD5E1;
+  --neutral-400: #94A3B8;
+  --neutral-500: #64748B;
+  --neutral-600: #475569;
+  --neutral-700: #334155;
+  --neutral-800: #1E293B;
+  --neutral-900: #111827;
+  
+  /* ==========================================
+     SURFACE SYSTEM
+     ========================================== */
+  --surface-primary: var(--neutral-100);
+  --surface-secondary: #FFFFFF;
+  --surface-tertiary: var(--neutral-50);
+  --surface-overlay: rgba(255, 255, 255, 0.95);
+  --surface-elevated: #FFFFFF;
+  
+  /* ==========================================
+     TEXT HIERARCHY
+     ========================================== */
+  --text-primary: var(--neutral-900);
+  --text-secondary: var(--neutral-600);
+  --text-tertiary: var(--neutral-500);
+  --text-disabled: var(--neutral-400);
+  --text-inverse: #FFFFFF;
+  --text-brand: var(--brand-primary);
+  
+  /* ==========================================
+     BORDERS & DIVIDERS
+     ========================================== */
+  --border-subtle: var(--neutral-200);
+  --border-moderate: var(--neutral-300);
+  --border-strong: var(--neutral-400);
+  --border-brand: var(--brand-primary);
+  --border-focus: var(--brand-primary);
+  
+  /* ==========================================
+     SHADOWS & ELEVATION
+     ========================================== */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.04);
+  
+  /* Card specific shadows */
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --shadow-fab: 0 4px 20px rgba(37, 99, 235, 0.3);
+  --shadow-fab-hover: 0 8px 32px rgba(37, 99, 235, 0.4);
+  
+  /* ==========================================
+     TYPOGRAPHY SCALE (INTER)
+     ========================================== */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  /* Font sizes - Desktop */
+  --text-display-sm: 28px;
+  --text-title-xs: 20px;
+  --text-body: 16px;
+  --text-label: 13px;
+  --text-caption: 12px;
+  
+  /* Line heights */
+  --leading-display-sm: 32px;
+  --leading-title-xs: 24px;
+  --leading-body: 24px;
+  --leading-label: 18px;
+  --leading-caption: 16px;
+  
+  /* Font weights */
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  
+  /* ==========================================
+     SPACING SCALE (4px base)
+     ========================================== */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  
+  /* ==========================================
+     BORDER RADIUS
+     ========================================== */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-full: 9999px;
+  
+  /* ==========================================
+     ANIMATIONS
+     ========================================== */
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --duration-slower: 800ms;
+  
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* ==========================================
+     COMPONENT SPECIFIC
+     ========================================== */
+  
+  /* Header - Altura fluida MÁS ESPACIOSA */
+  --h-header-desktop: 72px;
+  --h-header-tablet: 60px;
+  --h-header-mobile: 48px;
+  --header-height: clamp(var(--h-header-mobile), 5vw, var(--h-header-desktop));
+  
+  /* Navigation */
+  --nav-height-desktop: 48px;
+  --nav-height-mobile: 72px;
+  
+  /* FAB */
+  --fab-size-desktop: 64px;
+  --fab-size-mobile: 56px;
+  
+  /* Cards */
+  --card-radius: var(--radius-xl);
+  --card-padding: var(--space-5);
+  --card-min-width: 220px;
+  
+  /* Focus ring */
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --focus-ring-color: var(--brand-primary);
+  
+  /* ==========================================
+     Z-INDEX SCALE
+     ========================================== */
+  --z-base: 0;
+  --z-elevated: 10;
+  --z-sticky: 20;
+  --z-overlay: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+  --z-tooltip: 60;
+}
+
+/* ==========================================
+   DARK MODE TOKENS - PALETA MEJORADA
+   ========================================== */
+
+.dark {
+  /* Nueva paleta dark mejorada */
+  --surface-0: #0B111E;  /* Background principal */
+  --surface-1: #131B27;  /* Cards y elementos */
+  --surface-2: #1B2533;  /* Greeting y secciones */
+  --surface-3: #233040;  /* Elevated elements */
+  
+  /* Brand colors optimizados para dark */
+  --brand-primary: #2563EB;
+  --brand-primary-hover: #3B82F6;
+  --brand-primary-active: #1D4ED8;
+  --brand-gradient-start: #2B6EEA;
+  --brand-gradient-end: #74A9FF;
+  --brand-soft: rgba(43, 110, 234, 0.3);
+  
+  /* Text hierarchy mejorada */
+  --text-primary: #F9FAFB;    /* text-hi */
+  --text-secondary: #D1D5DB;  /* text-lo */
+  --text-tertiary: #9CA3AF;
+  --text-disabled: #6B7280;
+  --text-inverse: var(--surface-0);
+  
+  /* Surfaces actualizadas */
+  --surface-primary: var(--surface-0);
+  --surface-secondary: var(--surface-1);
+  --surface-tertiary: var(--surface-2);
+  --surface-overlay: rgba(11, 17, 30, 0.95);
+  --surface-elevated: var(--surface-1);
+  
+  /* Borders con mejor contraste */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-moderate: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  
+  /* Shadows ajustadas para dark */
+  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-fab: 0 4px 20px rgba(37, 99, 235, 0.4);
+  --shadow-fab-hover: 0 8px 32px rgba(37, 99, 235, 0.5);
+}
+
+/* ==========================================
+   MOBILE RESPONSIVE TOKENS
+   ========================================== */
+
+@media (max-width: 768px) {
+  :root {
+    /* Typography - Mobile adjustments */
+    --text-display-sm: 24px;
+    --text-title-xs: 18px;
+    --text-body: 15px;
+    --text-label: 12px;
+    
+    --leading-display-sm: 28px;
+    --leading-title-xs: 22px;
+    --leading-body: 22px;
+    --leading-label: 16px;
+  }
+}
+
+/* ==========================================
+   FONT FEATURES
+   ========================================== */
+
+.font-tabular {
+  font-feature-settings: "ss01" on, "tnum" on;
+}
+
+.font-proportional {
+  font-feature-settings: "ss01" on, "pnum" on;
+}
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.focus-ring {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.transition-colors {
+  transition: color var(--duration-fast) var(--ease-out),
+              background-color var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out);
+}
+
+.transition-transform {
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.transition-shadow {
+  transition: box-shadow var(--duration-normal) var(--ease-out);
+}

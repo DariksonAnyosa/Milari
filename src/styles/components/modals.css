@@ -1,0 +1,708 @@
+/* ==========================================
+   MILARI - SISTEMA DE MODALES CONSOLIDADO
+   Modales unificados con glassmorphism y efectos avanzados
+   ========================================== */
+
+/* ==========================================
+   MODAL OVERLAY BASE (UNIVERSAL)
+   ========================================== */
+
+.add-task-overlay,
+.milari-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-overlay, rgba(0, 0, 0, 0.5));
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal, 1000);
+  opacity: 0;
+  animation: overlayFadeIn var(--duration-slow, 0.4s) var(--ease-out, ease) forwards;
+}
+
+.milari-modal-overlay {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+.milari-modal-overlay.dark {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(25px);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ==========================================
+   MODAL CONTAINER (UNIVERSAL)
+   ========================================== */
+
+.add-task-modal {
+  background: var(--glass-bg, rgba(255, 255, 255, 0.95));
+  backdrop-filter: var(--glass-blur, blur(20px)) var(--glass-saturation, saturate(180%));
+  -webkit-backdrop-filter: var(--glass-blur, blur(20px)) var(--glass-saturation, saturate(180%));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.2));
+  border-radius: var(--radius-2xl, 20px);
+  width: 90%;
+  max-width: 480px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 
+    var(--shadow-xl, 0 25px 50px rgba(0, 0, 0, 0.25)),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transform: scale(0.8) translateY(40px);
+  animation: modalSlideIn 0.6s var(--ease-out, ease) forwards;
+}
+
+.milari-modal-container {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  width: 90vw;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow: hidden;
+  animation: slideUp 0.3s ease-out forwards;
+  position: relative;
+}
+
+.milari-modal-container.dark {
+  background: #1c1c1e;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: scale(0.8) translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================
+   MODAL HEADER (CONSOLIDADO)
+   ========================================== */
+
+.modal-header,
+.milari-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-2xl, 24px) var(--space-2xl, 24px) var(--space-xl, 16px);
+  border-bottom: 1px solid var(--border-light, rgba(0, 0, 0, 0.1));
+  position: relative;
+  z-index: 1;
+}
+
+.milari-modal-header {
+  padding: 24px 24px 16px 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.milari-modal-container.dark .milari-modal-header {
+  border-bottom-color: #2c2c2e;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.modal-header h3,
+.header-text h2 {
+  font-family: var(--font-display, 'Inter', sans-serif);
+  font-size: var(--font-xl, 1.25rem);
+  font-weight: var(--font-bold, 700);
+  color: var(--text-primary, #1d1d1f);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.header-text h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.milari-modal-container.dark .header-text h2 {
+  color: #ffffff;
+}
+
+.header-text p {
+  margin: 2px 0 0 0;
+  font-size: 14px;
+  color: #666666;
+  line-height: 1.3;
+}
+
+.milari-modal-container.dark .header-text p {
+  color: #999999;
+}
+
+/* ==========================================
+   CLOSE BUTTONS (CONSOLIDADO)
+   ========================================== */
+
+.close-btn,
+.close-button {
+  border: 1px solid var(--border-light, rgba(0, 0, 0, 0.1));
+  border-radius: var(--radius-lg, 12px);
+  width: 40px;
+  height: 40px;
+  background: var(--bg-secondary, #f5f5f7);
+  color: var(--text-secondary, #666);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.close-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #f0f0f0;
+  color: #666666;
+}
+
+.close-btn:hover,
+.close-button:hover {
+  background: #e0e0e0;
+  color: #333333;
+  transform: scale(1.05);
+}
+
+.milari-modal-container.dark .close-button {
+  background: #2c2c2e;
+  color: #999999;
+}
+
+.milari-modal-container.dark .close-button:hover {
+  background: #3c3c3e;
+  color: #ffffff;
+}
+
+/* ==========================================
+   MODAL CONTENT (CONSOLIDADO)
+   ========================================== */
+
+.form-content,
+.milari-modal-content {
+  padding: var(--space-2xl, 24px);
+  position: relative;
+  z-index: 1;
+}
+
+.milari-modal-content {
+  padding: 16px 24px 24px 24px;
+  overflow-y: auto;
+  max-height: calc(90vh - 120px);
+}
+
+.modal-actions {
+  display: flex;
+  gap: var(--space-lg, 16px);
+  padding: var(--space-xl, 16px) var(--space-2xl, 24px) var(--space-2xl, 24px);
+  border-top: 1px solid var(--border-light, rgba(0, 0, 0, 0.1));
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================
+   FORMS (CONSOLIDADO)
+   ========================================== */
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333333;
+}
+
+.milari-modal-container.dark .form-label {
+  color: #ffffff;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ==========================================
+   INPUTS (CONSOLIDADO)
+   ========================================== */
+
+.task-input-field,
+.date-time-input {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  background: #ffffff;
+  color: #000000;
+  transition: all 0.2s ease;
+  outline: none;
+  font-family: inherit;
+}
+
+.date-time-input {
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.task-input-field:focus,
+.date-time-input:focus {
+  border-color: #007AFF;
+  box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+}
+
+.date-time-input:focus {
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
+.task-input-field::placeholder {
+  color: #999999;
+}
+
+.milari-modal-container.dark .task-input-field,
+.milari-modal-container.dark .date-time-input {
+  background: #2c2c2e;
+  border-color: #404040;
+  color: #ffffff;
+}
+
+.milari-modal-container.dark .task-input-field:focus,
+.milari-modal-container.dark .date-time-input:focus {
+  border-color: #007AFF;
+  box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.2);
+}
+
+.milari-modal-container.dark .date-time-input:focus {
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+
+.milari-modal-container.dark .task-input-field::placeholder {
+  color: #666666;
+}
+
+/* ==========================================
+   PRIORITY SECTION (CONSOLIDADO)
+   ========================================== */
+
+.priority-section {
+  margin: var(--space-xl, 16px) 0;
+}
+
+.priority-section label {
+  display: block;
+  font-size: var(--font-sm, 14px);
+  font-weight: var(--font-semibold, 600);
+  color: var(--text-secondary, #666);
+  margin-bottom: var(--space-md, 12px);
+}
+
+.priority-chips,
+.priority-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-sm, 8px);
+}
+
+.priority-chips .priority-chip,
+.priority-option {
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.priority-chips .priority-chip:hover,
+.priority-option:hover {
+  border-color: #cccccc;
+  background: #f9f9f9;
+}
+
+.priority-chips .priority-chip.selected,
+.priority-option.selected {
+  border-color: #007AFF;
+  background: #f0f8ff;
+  color: #007AFF;
+}
+
+/* Priority Colors */
+.priority-option.success.selected {
+  border-color: #34C759;
+  background: rgba(52, 199, 89, 0.1);
+  color: #34C759;
+}
+
+.priority-option.warning.selected {
+  border-color: #FF9500;
+  background: rgba(255, 149, 0, 0.1);
+  color: #FF9500;
+}
+
+.priority-option.orange.selected {
+  border-color: #FF6B35;
+  background: rgba(255, 107, 53, 0.1);
+  color: #FF6B35;
+}
+
+.priority-option.danger.selected {
+  border-color: #FF3B30;
+  background: rgba(255, 59, 48, 0.1);
+  color: #FF3B30;
+}
+
+/* Dark mode */
+.milari-modal-container.dark .priority-option {
+  background: #2c2c2e;
+  border-color: #404040;
+  color: #ffffff;
+}
+
+.milari-modal-container.dark .priority-option:hover {
+  border-color: #555555;
+  background: #3c3c3e;
+}
+
+.milari-modal-container.dark .priority-option.selected {
+  border-color: #007AFF;
+  background: rgba(0, 122, 255, 0.2);
+  color: #007AFF;
+}
+
+/* ==========================================
+   BUTTONS (CONSOLIDADO)
+   ========================================== */
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.button-secondary,
+.button-primary {
+  flex: 1;
+  padding: 14px 24px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  outline: none;
+}
+
+.button-secondary {
+  background: #f0f0f0;
+  color: #333333;
+}
+
+.button-secondary:hover:not(:disabled) {
+  background: #e0e0e0;
+}
+
+.button-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button-primary {
+  background: linear-gradient(135deg, #007AFF, #5856D6);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 122, 255, 0.3);
+}
+
+.button-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
+}
+
+.button-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 4px 16px rgba(0, 122, 255, 0.2);
+}
+
+.milari-modal-container.dark .button-secondary {
+  background: #2c2c2e;
+  color: #ffffff;
+}
+
+.milari-modal-container.dark .button-secondary:hover:not(:disabled) {
+  background: #3c3c3e;
+}
+
+/* ==========================================
+   SPINNER & UTILITIES
+   ========================================== */
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.button-icon {
+  font-size: 14px;
+}
+
+/* ==========================================
+   NOTIFICATIONS
+   ========================================== */
+
+.response-notification {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-weight: 500;
+  text-align: center;
+  animation: slideUp 0.3s ease-out;
+}
+
+.response-notification.success {
+  background: rgba(52, 199, 89, 0.1);
+  color: #34C759;
+  border: 1px solid rgba(52, 199, 89, 0.3);
+}
+
+.response-notification.error {
+  background: rgba(255, 59, 48, 0.1);
+  color: #FF3B30;
+  border: 1px solid rgba(255, 59, 48, 0.3);
+}
+
+.milari-modal-container.dark .response-notification.success {
+  background: rgba(52, 199, 89, 0.2);
+  border-color: rgba(52, 199, 89, 0.4);
+}
+
+.milari-modal-container.dark .response-notification.error {
+  background: rgba(255, 59, 48, 0.2);
+  border-color: rgba(255, 59, 48, 0.4);
+}
+
+.notification-content {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* ==========================================
+   DARK MODE GLOBAL
+   ========================================== */
+
+.add-task-overlay.dark {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.add-task-modal.dark {
+  background: rgba(28, 28, 30, 0.95);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.add-task-modal.dark .modal-header {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.add-task-modal.dark .modal-header h3 {
+  color: #f5f5f7;
+}
+
+.add-task-modal.dark .close-btn {
+  background: rgba(44, 44, 46, 0.8);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #a1a1a6;
+}
+
+.add-task-modal.dark .form-content {
+  background: rgba(44, 44, 46, 0.3);
+}
+
+.add-task-modal.dark .modal-actions {
+  background: rgba(44, 44, 46, 0.5);
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 768px) {
+  .add-task-modal,
+  .milari-modal-container {
+    width: 95%;
+    margin: 0 var(--space-lg, 16px);
+    border-radius: var(--radius-xl, 16px);
+  }
+  
+  .modal-header,
+  .milari-modal-header {
+    padding: var(--space-xl, 16px) var(--space-xl, 16px) var(--space-lg, 12px);
+  }
+  
+  .form-content,
+  .milari-modal-content {
+    padding: var(--space-xl, 16px);
+  }
+  
+  .modal-actions {
+    padding: var(--space-lg, 12px) var(--space-xl, 16px) var(--space-xl, 16px);
+    flex-direction: column;
+  }
+  
+  .priority-chips,
+  .priority-options {
+    grid-template-columns: 1fr;
+    gap: var(--space-md, 12px);
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .add-task-modal,
+  .milari-modal-container {
+    width: 95vw;
+    margin: 20px;
+    border-radius: 16px;
+  }
+  
+  .milari-modal-header {
+    padding: 20px 20px 12px 20px;
+  }
+  
+  .milari-modal-content {
+    padding: 12px 20px 20px 20px;
+  }
+  
+  .header-text h2 {
+    font-size: 18px;
+  }
+  
+  .task-input-field {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .button-secondary,
+  .button-primary {
+    width: 100%;
+  }
+}
+
+/* ==========================================
+   ACCESSIBILITY
+   ========================================== */
+
+@media (prefers-contrast: high) {
+  .add-task-modal,
+  .milari-modal-container {
+    border: 2px solid;
+  }
+  
+  .task-input-field,
+  .date-time-input,
+  .priority-option {
+    border-width: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .add-task-overlay,
+  .milari-modal-overlay,
+  .add-task-modal,
+  .milari-modal-container,
+  .response-notification {
+    animation: none;
+  }
+  
+  .button-primary:hover:not(:disabled) {
+    transform: none;
+  }
+  
+  .spinner {
+    animation: none;
+  }
+}

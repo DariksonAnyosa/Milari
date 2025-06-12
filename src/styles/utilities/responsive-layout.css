@@ -1,0 +1,101 @@
+/* ==========================================
+   RESPONSIVE LAYOUT
+   Layouts principales y contenedores
+   ========================================== */
+
+/* ==========================================
+   TABLET (768px y abajo)
+   ========================================== */
+
+@media (max-width: 768px) {
+  /* Contenedores principales */
+  .dashboard-layout {
+    padding: 0;
+  }
+  
+  .dashboard-main {
+    padding: var(--spacing-responsive-md);
+  }
+  
+  /* Grids responsive */
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-responsive-md);
+  }
+  
+  .summary-stats {
+    justify-content: space-around;
+    gap: var(--spacing-responsive-md);
+  }
+  
+  /* Tasks grid más columnas */
+  .tasks-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-responsive-md);
+  }
+}
+
+/* ==========================================
+   MÓVIL (480px y abajo)
+   ========================================== */
+
+@media (max-width: 480px) {
+  /* Contenedores ultra compactos */
+  .dashboard-main {
+    padding: var(--spacing-responsive-sm);
+  }
+  
+  /* Header compacto */
+  .header-content {
+    padding: var(--spacing-responsive-sm) var(--spacing-responsive-md);
+  }
+  
+  .milari-nav {
+    padding: var(--spacing-responsive-sm) var(--spacing-responsive-md);
+    gap: 2px;
+  }
+}
+
+/* ==========================================
+   LANDSCAPE MÓVIL
+   ========================================== */
+
+@media (max-width: 768px) and (orientation: landscape) {
+  /* Header más compacto en landscape */
+  .milari-header {
+    position: relative;
+  }
+  
+  .header-content {
+    padding: var(--spacing-responsive-xs) var(--spacing-responsive-md);
+  }
+  
+  /* Timeline landscape */
+  .today-date-header {
+    padding: var(--spacing-responsive-md);
+  }
+}
+
+/* ==========================================
+   DESKTOP LARGE (1200px y arriba)
+   ========================================== */
+
+@media (min-width: 1200px) {
+  /* Contenedores más anchos */
+  .milari-today {
+    max-width: 900px;
+  }
+  
+  .calendar-container {
+    max-width: 1000px;
+  }
+  
+  .pomodoro-container {
+    max-width: 700px;
+  }
+  
+  /* Tasks grid más columnas */
+  .tasks-grid {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  }
+}

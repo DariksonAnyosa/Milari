@@ -1,0 +1,151 @@
+/* ==========================================
+   MILARI - TEMA OSCURO
+   Sistema de tema oscuro para toda la aplicación
+   ========================================== */
+
+/* ==========================================
+   VARIABLES TEMA OSCURO
+   ========================================== */
+
+:root.dark-mode,
+.dark-mode {
+  /* Colores base */
+  --bg-primary: #000000;
+  --bg-secondary: #1c1c1e;
+  --bg-tertiary: #2c2c2e;
+  
+  /* Texto */
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1a6;
+  --text-tertiary: #8e8e93;
+  --text-inverse: #000000;
+  
+  /* Bordes */
+  --border-light: rgba(255, 255, 255, 0.1);
+  --border-medium: rgba(255, 255, 255, 0.15);
+  --border-dark: rgba(255, 255, 255, 0.2);
+  
+  /* Colores semánticos */
+  --color-primary: #0a84ff;
+  --color-primary-dark: #0670dd;
+  --color-primary-light: rgba(10, 132, 255, 0.15);
+  
+  --color-success: #32d74b;
+  --color-success-light: rgba(50, 215, 75, 0.15);
+  --color-success-dark: #27ae38;
+  
+  --color-warning: #ff9f0a;
+  --color-warning-light: rgba(255, 159, 10, 0.15);
+  --color-warning-dark: #e08600;
+  
+  --color-danger: #ff453a;
+  --color-danger-light: rgba(255, 69, 58, 0.15);
+  --color-danger-dark: #d83931;
+  
+  /* Glassmorphism */
+  --glass-bg: rgba(28, 28, 30, 0.8);
+  --glass-bg-heavy: rgba(28, 28, 30, 0.9);
+  --glass-bg-light: rgba(28, 28, 30, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: blur(15px);
+  --glass-saturation: saturate(180%);
+  
+  /* Sombras */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.5);
+  
+  /* Sombras de acento */
+  --shadow-accent: 0 6px 16px rgba(10, 132, 255, 0.25);
+  --shadow-accent-lg: 0 8px 24px rgba(10, 132, 255, 0.35);
+  
+  /* Overlay y modal */
+  --bg-overlay: rgba(0, 0, 0, 0.7);
+}
+
+/* ==========================================
+   APLICACIÓN DE TEMA OSCURO
+   ========================================== */
+
+/* Base */
+.dark-mode,
+.app.dark-mode,
+body.dark-mode,
+html.dark-mode {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Modo oscuro para contenedores específicos */
+.dark-mode .container,
+.app.dark-mode .container,
+body.dark-mode .container {
+  background: var(--bg-secondary);
+  border-color: var(--border-light);
+}
+
+/* ==========================================
+   COMPATIBILIDAD CON NAVEGADORES
+   ========================================== */
+
+/* Navegador Brave */
+.brave-browser.dark-mode,
+html.brave-browser.dark-mode,
+body.brave-browser.dark-mode {
+  background: var(--bg-primary) !important;
+}
+
+.brave-browser.dark-mode .container,
+html.brave-browser.dark-mode .container,
+body.brave-browser.dark-mode .container {
+  background: var(--bg-secondary) !important;
+}
+
+/* Navegador Zen */
+.zen-browser.dark-mode,
+html.zen-browser.dark-mode,
+body.zen-browser.dark-mode {
+  background: var(--bg-primary) !important;
+}
+
+.zen-browser.dark-mode .container,
+html.zen-browser.dark-mode .container,
+body.zen-browser.dark-mode .container {
+  background: var(--bg-secondary) !important;
+}
+
+/* ==========================================
+   ADAPTACIÓN AUTOMÁTICA AL SISTEMA
+   ========================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.force-light) {
+    /* Colores base */
+    --bg-primary: #000000;
+    --bg-secondary: #1c1c1e;
+    --bg-tertiary: #2c2c2e;
+    
+    /* Texto */
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1a6;
+    --text-tertiary: #8e8e93;
+    --text-inverse: #000000;
+    
+    /* Bordes */
+    --border-light: rgba(255, 255, 255, 0.1);
+    --border-medium: rgba(255, 255, 255, 0.15);
+    --border-dark: rgba(255, 255, 255, 0.2);
+    
+    /* Glassmorphism */
+    --glass-bg: rgba(28, 28, 30, 0.8);
+    --glass-bg-heavy: rgba(28, 28, 30, 0.9);
+    --glass-bg-light: rgba(28, 28, 30, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.1);
+  }
+  
+  body:not(.force-light) {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+  }
+}

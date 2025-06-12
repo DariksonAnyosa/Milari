@@ -1,0 +1,72 @@
+/* ==========================================
+   UTILIDADES Y HELPERS
+   Clases de utilidad para casos específicos
+   ========================================== */
+
+/* ==========================================
+   SPACING UTILITIES
+   ========================================== */
+
+.u-spacing-xs { padding: var(--spacing-xs) !important; }
+.u-spacing-sm { padding: var(--spacing-sm) !important; }
+.u-spacing-md { padding: var(--spacing-md) !important; }
+.u-spacing-lg { padding: var(--spacing-lg) !important; }
+.u-spacing-xl { padding: var(--spacing-xl) !important; }
+
+.u-margin-xs { margin: var(--spacing-xs) !important; }
+.u-margin-sm { margin: var(--spacing-sm) !important; }
+.u-margin-md { margin: var(--spacing-md) !important; }
+.u-margin-lg { margin: var(--spacing-lg) !important; }
+.u-margin-xl { margin: var(--spacing-xl) !important; }
+
+/* ==========================================
+   DISPLAY UTILITIES
+   ========================================== */
+
+.u-hidden { display: none !important; }
+.u-block { display: block !important; }
+.u-flex { display: flex !important; }
+.u-grid { display: grid !important; }
+
+@media (max-width: 768px) {
+  .u-hidden-tablet { display: none !important; }
+  .u-block-tablet { display: block !important; }
+}
+
+@media (max-width: 480px) {
+  .u-hidden-mobile { display: none !important; }
+  .u-block-mobile { display: block !important; }
+}
+
+/* ==========================================
+   TEXT UTILITIES
+   ========================================== */
+
+.u-text-center { text-align: center !important; }
+.u-text-left { text-align: left !important; }
+.u-text-right { text-align: right !important; }
+
+.u-text-bold { font-weight: var(--font-bold) !important; }
+.u-text-semibold { font-weight: var(--font-semibold) !important; }
+.u-text-normal { font-weight: var(--font-normal) !important; }
+
+/* ==========================================
+   ACCESSIBILITY UTILITIES
+   ========================================== */
+
+.u-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.u-focus-visible:focus-visible {
+  outline: 2px solid var(--color-primary) !important;
+  outline-offset: 2px !important;
+}

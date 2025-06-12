@@ -1,0 +1,83 @@
+/* ==========================================
+   COMPONENTES ESPECÍFICOS RESPONSIVE
+   Calendar, Pomodoro, Voice Assistant
+   ========================================== */
+
+/* ==========================================
+   CALENDAR RESPONSIVE
+   ========================================== */
+
+@media (max-width: 480px) {
+  .calendar-day {
+    min-height: 50px;
+    padding: 2px;
+  }
+  
+  .day-number {
+    font-size: 0.75rem;
+  }
+  
+  .calendar-event {
+    font-size: 0.55rem;
+    padding: 1px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .calendar-day {
+    min-height: 120px;
+  }
+}
+
+/* ==========================================
+   POMODORO RESPONSIVE
+   ========================================== */
+
+@media (max-width: 480px) {
+  .timer-circle {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .timer-time {
+    font-size: 1.75rem;
+  }
+  
+  .timer-mode {
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .timer-circle {
+    width: 240px;
+    height: 240px;
+  }
+  
+  .timer-time {
+    font-size: 3rem;
+  }
+}
+
+/* ==========================================
+   VOICE ASSISTANT RESPONSIVE
+   ========================================== */
+
+@media (max-width: 480px) {
+  .voice-main-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+  
+  .voice-visualizer {
+    height: 60px;
+  }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .voice-assistant-container {
+    bottom: 60px;
+    right: 16px;
+  }
+}

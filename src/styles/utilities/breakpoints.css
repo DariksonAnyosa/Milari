@@ -1,0 +1,45 @@
+/* ==========================================
+   BREAKPOINTS Y VARIABLES RESPONSIVE
+   Sistema de breakpoints centralizado
+   ========================================== */
+
+:root {
+  /* Breakpoints estándar */
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1440px;
+  
+  /* Spacing responsive - se sobrescribe en media queries */
+  --spacing-responsive-xs: var(--spacing-xs);
+  --spacing-responsive-sm: var(--spacing-sm);
+  --spacing-responsive-md: var(--spacing-md);
+  --spacing-responsive-lg: var(--spacing-lg);
+  --spacing-responsive-xl: var(--spacing-xl);
+  --spacing-responsive-2xl: var(--spacing-2xl);
+}
+
+/* Variables para diferentes tamaños de pantalla */
+@media (max-width: 768px) {
+  :root {
+    --spacing-responsive-xs: 3px;
+    --spacing-responsive-sm: 6px;
+    --spacing-responsive-md: 10px;
+    --spacing-responsive-lg: 14px;
+    --spacing-responsive-xl: 18px;
+    --spacing-responsive-2xl: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --spacing-responsive-xs: 2px;
+    --spacing-responsive-sm: 4px;
+    --spacing-responsive-md: 8px;
+    --spacing-responsive-lg: 12px;
+    --spacing-responsive-xl: 16px;
+    --spacing-responsive-2xl: 20px;
+  }
+}

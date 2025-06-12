@@ -1,0 +1,90 @@
+/* ==========================================
+   ACCESSIBILITY & REDUCED MOTION
+   Soporte para preferencias de usuario
+   ========================================== */
+
+/* ==========================================
+   REDUCED MOTION
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  
+  /* Eliminar animaciones para usuarios sensibles */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Componentes específicos sin animación */
+  .voice-visualizer.active .voice-bar {
+    animation: none !important;
+  }
+  
+  .voice-main-btn.recording,
+  .voice-main-btn.processing {
+    animation: none !important;
+  }
+  
+  .timer-circle.running {
+    animation: none !important;
+  }
+  
+  .modal-overlay,
+  .modal-container {
+    animation: none !important;
+  }
+}
+
+/* ==========================================
+   HIGH CONTRAST MODE
+   ========================================== */
+
+@media (prefers-contrast: high) {
+  
+  /* Borders más visibles */
+  .task-card,
+  .calendar-event,
+  .timeline-task,
+  .add-task-modal {
+    border: 2px solid !important;
+  }
+  
+  /* Inputs más contrastados */
+  .task-input,
+  .date-time-input,
+  .priority-option {
+    border-width: 2px !important;
+  }
+  
+  /* Botones más visibles */
+  .btn-primary,
+  .btn-secondary {
+    border: 2px solid !important;
+  }
+}
+
+/* ==========================================
+   DARK MODE PREFERENCE
+   ========================================== */
+
+@media (prefers-color-scheme: dark) {
+  
+  /* Variables automáticas para dark mode */
+  :root {
+    --auto-bg-primary: #1c1c1e;
+    --auto-bg-secondary: #2c2c2e;
+    --auto-text-primary: #ffffff;
+    --auto-text-secondary: #8e8e93;
+    --auto-border-color: #3a3a3c;
+  }
+  
+  /* Solo aplicar si no hay clase manual de tema */
+  body:not(.light-theme):not(.dark-theme) {
+    background: var(--auto-bg-primary);
+    color: var(--auto-text-primary);
+  }
+}

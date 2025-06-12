@@ -23,7 +23,7 @@ const useStats = (tasks) => {
     };
 
     loadStats();
-  }, [tasks]);
+  }, [tasks, db]);
 
   return { todayStats };
 };

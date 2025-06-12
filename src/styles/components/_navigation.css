@@ -1,0 +1,327 @@
+/* ==========================================
+   MILARI - NAVEGACIÓN MÓVIL
+   Sistema de navegación responsive y accesible
+   ========================================== */
+
+/* ==========================================
+   HAMBURGER BUTTON
+   ========================================== */
+
+.hamburger-btn {
+  background: transparent;
+  border: none;
+  padding: var(--space-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: calc(var(--z-modal) + 10);
+  position: relative;
+  border-radius: var(--radius-md);
+  transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.hamburger-btn:hover {
+  background: var(--color-primary-light);
+}
+
+.hamburger-icon {
+  width: 24px;
+  height: 18px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger-icon span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--text-secondary);
+  border-radius: 2px;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+/* Animación hamburger a X */
+.hamburger-icon.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-icon.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-icon.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ==========================================
+   MOBILE MENU OVERLAY
+   ========================================== */
+
+.mobile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-overlay);
+  backdrop-filter: blur(4px);
+  z-index: calc(var(--z-modal) - 2);
+  animation: fadeIn var(--duration-normal) var(--ease-out);
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.mobile-menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ==========================================
+   MOBILE MENU
+   ========================================== */
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 280px;
+  background: var(--bg-secondary);
+  box-shadow: var(--shadow-xl);
+  z-index: calc(var(--z-modal) - 1);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(-100%);
+  transition: transform var(--duration-normal) var(--ease-out);
+  overflow-y: auto;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+/* ==========================================
+   MENU HEADER
+   ========================================== */
+
+.mobile-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-xl) var(--space-xl);
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  background: var(--bg-secondary);
+  z-index: 1650;
+}
+
+.mobile-menu-title {
+  font-size: var(--font-lg);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin: 0;
+  font-family: var(--font-display);
+}
+
+.mobile-menu-close {
+  background: transparent;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: var(--font-xl);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.mobile-menu-close:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+/* ==========================================
+   MENU NAVIGATION
+   ========================================== */
+
+.mobile-menu-nav {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-lg) 0;
+  flex: 1;
+}
+
+.mobile-menu-item {
+  padding: var(--space-md) var(--space-xl);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background var(--duration-fast) var(--ease-out);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-family: var(--font-primary);
+  border-radius: 0;
+}
+
+.mobile-menu-item:hover {
+  background: var(--bg-tertiary);
+}
+
+.mobile-menu-item.active {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: var(--font-semibold);
+}
+
+.mobile-menu-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-right: var(--space-lg);
+  font-size: var(--font-lg);
+  color: var(--text-secondary);
+}
+
+.mobile-menu-item.active .mobile-menu-icon {
+  color: var(--color-primary);
+}
+
+.mobile-menu-label {
+  font-size: var(--font-base);
+  color: var(--text-primary);
+  font-weight: var(--font-medium);
+}
+
+/* ==========================================
+   THEME TOGGLE SECTION
+   ========================================== */
+
+.mobile-theme-toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-xl);
+  border-top: 1px solid var(--border-light);
+  margin-top: auto;
+}
+
+.mobile-theme-label {
+  font-size: var(--font-base);
+  color: var(--text-primary);
+  font-weight: var(--font-medium);
+  font-family: var(--font-primary);
+}
+
+/* ==========================================
+   MOBILE CONTENT ADJUSTMENTS
+   ========================================== */
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 0 var(--space-lg);
+  }
+  
+  .greeting-card {
+    max-width: 92%;
+    margin: var(--space-xl) auto;
+    text-align: center;
+  }
+  
+  .ai-action-button {
+    max-width: 92%;
+    margin: var(--space-lg) auto;
+    border-radius: var(--radius-2xl);
+  }
+  
+  .new-task-button {
+    max-width: 200px;
+    margin: var(--space-xl) auto;
+    display: block;
+  }
+  
+  /* Ensure touch targets are at least 44px */
+  button, 
+  .btn,
+  .mobile-menu-item { 
+    min-height: 44px; 
+    min-width: 44px; 
+  }
+  
+  /* Prevent zoom on iOS */
+  input, 
+  textarea { 
+    font-size: 16px; 
+  }
+}
+
+/* ==========================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================== */
+
+@media (max-width: 480px) {
+  .greeting-card,
+  .ai-action-button {
+    max-width: 100%;
+    margin-left: var(--space-md);
+    margin-right: var(--space-md);
+  }
+}
+
+@media (max-width: 360px) {
+  .mobile-menu {
+    width: 250px;
+  }
+  
+  .mobile-menu-item {
+    padding: var(--space-md) var(--space-lg);
+  }
+  
+  .mobile-menu-label {
+    font-size: var(--font-sm);
+  }
+}
+
+/* ==========================================
+   ACCESSIBILITY
+   ========================================== */
+
+.hamburger-btn:focus-visible,
+.mobile-menu-close:focus-visible,
+.mobile-menu-item:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Screen reader support */
+.mobile-menu[aria-hidden="true"] {
+  visibility: hidden;
+}
+
+.mobile-menu[aria-hidden="false"] {
+  visibility: visible;
+}
+
+/* ==========================================
+   REDUCED MOTION
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu-overlay,
+  .mobile-menu,
+  .hamburger-icon span {
+    transition: none;
+  }
+  
+  .mobile-menu-overlay.open {
+    animation: none;
+  }
+}

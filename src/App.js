@@ -8,59 +8,24 @@ import MobileOptimizer from './components/MobileOptimizer';
 // View Components
 import Calendar from './components/views/Calendar';
 import TaskList from './components/views/TaskList';
-import TodayView from './components/views/TodayView';
 import PomodoroTimer from './components/views/PomodoroTimer';
 import FocusView from './components/views/FocusView';
 
 // Custom Hooks
 import useTasks from './hooks/useTasks';
 import useStats from './hooks/useStats';
+import useBrowserDetection from './hooks/useBrowserDetection';
+import useTheme from './hooks/useTheme';
 
 function App() {
   const [currentView, setCurrentView] = useState('today');
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [darkMode, setDarkMode] = useState(false);
   
-  // Inicialización del modo oscuro basado en preferencias del sistema
-  useEffect(() => {
-    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setDarkMode(prefersDarkMode);
-    
-    if (prefersDarkMode) {
-      document.body.classList.add('dark-mode');
-      document.documentElement.classList.add('dark-mode');
-    }
-    
-    // Escuchar cambios en la preferencia del sistema
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = (e) => {
-      setDarkMode(e.matches);
-      if (e.matches) {
-        document.body.classList.add('dark-mode');
-        document.documentElement.classList.add('dark-mode');
-      } else {
-        document.body.classList.remove('dark-mode');
-        document.documentElement.classList.remove('dark-mode');
-      }
-    };
-    
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
-  }, []);
+  // Custom hooks para funcionalidad específica
+  useBrowserDetection(); // Detectar navegador y aplicar fixes
+  const { darkMode, toggleTheme, isInitialized } = useTheme(); // Manejar temas
   
-  // Función para cambiar manualmente el tema
-  const toggleTheme = () => {
-    setDarkMode(!darkMode);
-    if (!darkMode) {
-      document.body.classList.add('dark-mode');
-      document.documentElement.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-      document.documentElement.classList.remove('dark-mode');
-    }
-  };
-  
-  // Custom hooks para manejar lógica
+  // Custom hooks para manejo de datos
   const { 
     tasks, 
     addTask, 
@@ -71,20 +36,23 @@ function App() {
   
   const { todayStats } = useStats(tasks);
 
+  // Debug del estado actual (solo en desarrollo)
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development' && isInitialized) {
+      console.log('🔍 Estado de MILARI:', {
+        darkMode,
+        currentView,
+        tasksCount: tasks.length,
+        todayStats
+      });
+    }
+  }, [darkMode, currentView, tasks.length, todayStats, isInitialized]);
+
   // Renderizar vista actual
   const renderCurrentView = () => {
     switch(currentView) {
       case 'today':
-        return (
-          <TodayView
-            selectedDate={selectedDate}
-            tasks={tasks}
-            stats={todayStats}
-            onAddTask={addTask}
-            onToggleTask={toggleTask}
-            onDeleteTask={deleteTask}
-          />
-        );
+        return null; // El contenido se maneja en Layout con HeroSection
       case 'calendar':
         return (
           <Calendar
@@ -121,9 +89,25 @@ function App() {
     }
   };
 
+  // Loading screen mientras se inicializa
+  if (!isInitialized) {
+    return (
+      <div className="app-loading">
+        <div className="loading-spinner">
+          <div className="logo-icon">M</div>
+          <p>Cargando MILARI...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <MobileOptimizer>
-      <div className={`app ${darkMode ? 'dark-mode' : ''}`}>
+      <div 
+        className={`app ${darkMode ? 'dark-mode' : ''}`}
+        data-theme={darkMode ? 'dark' : 'light'}
+        data-dark={darkMode.toString()}
+      >
         <Layout
           currentView={currentView}
           onViewChange={setCurrentView}

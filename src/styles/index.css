@@ -1,60 +1,170 @@
 /* ==========================================
-   MILARI - SISTEMA DE ESTILOS PRINCIPAL
+   MILARI - SISTEMA CSS LIMPIO Y ORGANIZADO
    ========================================== */
 
-/* ORDEN CRÍTICO - NO CAMBIAR */
+/* ==========================================
+   CONFIGURACIÓN BASE
+   ========================================== */
+@import './settings/variables.css';
+@import './settings/design-tokens.css';
+@import './settings/header-tokens.css';
 
-/* 1. Variables globales, reset y base */
-@import './globals.css';
+/* ==========================================
+   HERRAMIENTAS
+   ========================================== */
+@import './tools/mixins.css';
 
-/* 2. Estilos principales */
-@import './header.css';
-@import './hero.css';
-@import './today.css';
-@import './calendar.css';
+/* ==========================================
+   BASE - Reset y elementos fundamentales
+   ========================================== */
+@import './base/reset.css';
+@import './base/typography.css';
 
-/* 3. Layout principal y navegación */
+/* ==========================================
+   LAYOUT - Estructuras y objetos de layout
+   ========================================== */
+@import './layout/objects.css';
 @import './layout.css';
 
-/* 4. Componentes reutilizables */
-@import './components.css';
-@import './cards.css';
-@import './theme-toggle.css';
-@import './theme-provider.css';
-@import './ui.css';
+/* ==========================================
+   COMPONENTES - Todos los componentes de la UI
+   ========================================== */
+@import './components/buttons.css';
+@import './components/modals.css';
+@import './components/ai-components.css';
+@import './components/voice-modal.css';
+@import './components/fab.css';
+@import './components/unified-navigation.css';
+@import './components/calendar.css';
+@import './components/voice-button.css';
 
-/* 5. Vistas específicas */
-@import './tasks.css';
-@import './pomodoro.css';
-@import './focus-view.css';
-@import './voice.css';
+/* Componentes con guión bajo (por renombrar) */
+@import './components/_cards.css';
+@import './components/_compact-hero.css';
+@import './components/_dashboard-layout.css';
+@import './components/_focus-view.css';
+@import './components/_forms.css';
+@import './components/_header.css';
+@import './components/_kpi-dashboard.css';
+@import './components/_mobile-theme-toggle.css';
+@import './components/_navigation.css';
+@import './components/_pomodoro.css';
+@import './components/_tasks.css';
+@import './components/_timeline.css';
+@import './components/_unified-header.css';
+@import './components/_voice-interaction.css';
 
-/* 6. Modo adaptativo y modo oscuro */
-@import './adaptive-mode.css';
-@import './dark-mode.css';
+/* ==========================================
+   TEMAS - Sistema de temas completo
+   ========================================== */
+@import './themes/light-theme.css';
+@import './themes/dark-theme.css';
+@import './themes/theme-toggle.css';
 
-/* 7. PWA y Responsive (siempre al final) */
-@import './mobile-nav.css';
-@import './mobile-nav-extra.css';
-@import './responsive.css';
+/* ==========================================
+   UTILIDADES - Responsive y utilidades
+   ========================================== */
+@import './utilities/breakpoints.css';
+@import './utilities/responsive-layout.css';
+
+/* Utilidades con guión bajo (por renombrar) */
+@import './utilities/_responsive-components.css';
+@import './utilities/_responsive-specific.css';
+@import './utilities/_utilities.css';
+@import './utilities/_print.css';
+@import './utilities/_accessibility.css';
+
+/* ==========================================
+   PWA - Progressive Web App
+   ========================================== */
 @import './pwa.css';
 
 /* ==========================================
-   ARCHIVOS ACTIVOS:
-   
-   ✅ globals.css - Variables y reset global
-   ✅ header-personal.css - Header con "Hola, Darikson"
-   ✅ hero-clean.css - HeroSection centrado sin repeticiones
-   ✅ today-clean.css - Timeline moderna para vista Hoy
-   ✅ calendar.css - Calendario con sidebar
-   ✅ layout.css - Layout principal
-   ✅ components.css - Componentes reutilizables
-   ✅ ai-components.css - Componentes de IA
-   ✅ tasks.css - Lista de tareas
-   ✅ pomodoro.css - Timer Pomodoro
-   ✅ adaptive-mode.css - Modo adaptativo
-   ✅ focus-view.css - Vista de enfoque
-   ✅ milari-ai.css - MILARI IA minimalista
-   ✅ responsive.css - Media queries globales
+   CONFIGURACIÓN GLOBAL
+   ========================================== */
+body {
+  font-family: var(--font-primary);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: var(--leading-normal);
+  margin: 0;
+  padding: 0;
+}
 
+#root {
+  min-height: 100vh;
+  background: var(--bg-primary);
+}
+
+.app {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Transiciones suaves globales */
+* {
+  transition: background-color 0.3s ease,
+              color 0.3s ease,
+              border-color 0.3s ease;
+}
+
+/* ==========================================
+   LOADING SCREEN
+   ========================================== */
+.app-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.loading-spinner {
+  text-align: center;
+}
+
+.logo-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 auto 1rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ==========================================
+   ESTRUCTURA FINAL LIMPIA
+   
+   📂 Nueva Organización:
+   ✅ settings/     - Variables y configuración
+   ✅ tools/        - Mixins y herramientas
+   ✅ base/         - Reset y tipografía
+   ✅ layout/       - Objetos de layout
+   ✅ components/   - Todos los componentes UI
+   ✅ themes/       - Sistema de temas
+   ✅ utilities/    - Responsive y utilidades
+   
+   🧹 Eliminado:
+   ❌ Carpetas numeradas (01-settings, 02-tools, etc.)
+   ❌ Archivos .backup
+   ❌ Duplicados y archivos obsoletos
+   
+   📝 Nota: Algunos archivos aún tienen prefijo _
+   pero funcionan correctamente. Se pueden renombrar
+   gradualmente sin afectar la funcionalidad.
    ========================================== */

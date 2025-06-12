@@ -1,12 +1,10 @@
-import SmartGreeting from '../ai/SmartGreeting';
-
-const HeroSection = ({ selectedDate, stats, tasks, onAddTask, onShowAddTask }) => {
+const HeroSection = ({ selectedDate, stats, tasks, onAddTask, onShowAddTask, onShowVoice }) => {
   const getSimpleMessage = () => {
     const completed = stats.completed;
     const total = stats.tasksToday;
     
     if (total === 0) return "¿Qué harás hoy?";
-    if (completed === total && total > 0) return "¡Día completado!";
+    if (completed === total && total > 0) return "Día completado";
     if (completed > 0) return `${completed} de ${total} completadas`;
     return `${total} tareas pendientes`;
   };
@@ -15,22 +13,27 @@ const HeroSection = ({ selectedDate, stats, tasks, onAddTask, onShowAddTask }) =
     <div className="hero">
       <div className="hero-container">
         
-        {/* Saludo Apple Style */}
+        {/* Saludo limpio */}
         <div className="greeting">
           <h1 className="greeting-text">Hola, Darikson</h1>
           <p className="greeting-subtitle">{getSimpleMessage()}</p>
         </div>
 
-        {/* Botón MILARI IA Principal */}
-        <button className="milari-button" onClick={onShowAddTask}>
-          <div className="milari-orb"></div>
+        {/* Botón MILARI IA Principal - Solo texto */}
+        <button className="milari-button" onClick={onShowVoice}>
+          <div className="milari-orb">
+            <div className="orb-pulse"></div>
+          </div>
           <span className="milari-text">Hablar con MILARI</span>
         </button>
 
-        {/* Botón secundario para agregar tarea rápida */}
+        {/* Botón secundario limpio */}
         <button 
           className="add-button-minimal"
-          onClick={onShowAddTask}
+          onClick={() => {
+            console.log('📝 Click en Nueva tarea');
+            onShowAddTask();
+          }}
         >
           Nueva tarea
         </button>

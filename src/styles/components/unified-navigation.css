@@ -1,0 +1,275 @@
+/* ==========================================
+   UNIFIED NAVIGATION PROFESSIONAL
+   Desktop header + Mobile bottom nav
+   ========================================== */
+
+/* ==========================================
+   DESKTOP HEADER
+   ========================================== */
+
+.desktop-header {
+  position: sticky;
+  top: 0;
+  height: var(--nav-height-desktop);
+  background: var(--surface-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: var(--z-sticky);
+  display: none; /* Hidden on mobile */
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--space-8);
+}
+
+/* Brand Section */
+.brand-section {
+  display: flex;
+  align-items: center;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.logo-mark {
+  width: 32px;
+  height: 32px;
+  background: var(--brand-gradient);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: var(--font-bold);
+  color: var(--text-inverse);
+  letter-spacing: -0.02em;
+}
+
+.brand-name {
+  font-size: var(--text-title-xs);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+/* Desktop Navigation */
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  background: none;
+  border: none;
+  font-family: var(--font-family);
+  font-size: var(--text-body);
+  font-weight: var(--font-medium);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+  min-height: 48px; /* Touch target */
+}
+
+.nav-item:hover {
+  background: var(--surface-tertiary);
+  color: var(--text-primary);
+}
+
+.nav-item:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.nav-item--active {
+  color: var(--text-brand);
+  background: var(--surface-tertiary);
+}
+
+.nav-item--active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  background: var(--brand-primary);
+  border-radius: 1px;
+  transition: width var(--duration-fast) var(--ease-out);
+}
+
+.nav-icon {
+  flex-shrink: 0;
+}
+
+.nav-label {
+  white-space: nowrap;
+}
+
+/* Header Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* ==========================================
+   MOBILE BOTTOM NAVIGATION
+   ========================================== */
+
+.bottom-navigation {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--nav-height-mobile);
+  background: var(--surface-secondary);
+  border-top: 2px solid var(--border-moderate);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: var(--z-sticky);
+  display: none;
+  /* SEPARACIÓN MUCHO MÁS AGRESIVA */
+  padding-bottom: 40px; /* 40px de separación del borde inferior */
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-nav-content {
+  display: flex;
+  height: calc(var(--nav-height-mobile) - 16px); /* Altura ajustada */
+  align-items: center;
+  justify-content: space-around;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px var(--space-4) 12px; /* MÁS PADDING SUPERIOR E INFERIOR */
+}
+
+.bottom-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-2);
+  min-width: 48px;
+  min-height: 48px;
+  border-radius: var(--radius-lg);
+  background: none;
+  border: none;
+  font-family: var(--font-family);
+  font-size: var(--text-label);
+  font-weight: var(--font-medium);
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.bottom-nav-item:hover {
+  background: var(--surface-tertiary);
+  color: var(--text-secondary);
+}
+
+.bottom-nav-item:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.bottom-nav-item--active {
+  color: var(--text-brand);
+  background: var(--surface-tertiary);
+}
+
+.bottom-nav-item--active .nav-icon {
+  transform: scale(1.1);
+}
+
+/* ==========================================
+   RESPONSIVE BEHAVIOR
+   ========================================== */
+
+@media (max-width: 768px) {
+  .desktop-header {
+    display: none;
+  }
+  
+  .bottom-navigation {
+    display: flex;
+  }
+}
+
+@media (min-width: 769px) {
+  .desktop-header {
+    display: block;
+  }
+  
+  .bottom-navigation {
+    display: none;
+  }
+}
+
+/* ==========================================
+   DARK MODE ADJUSTMENTS - MEJORADO
+   ========================================== */
+
+.dark .desktop-header,
+.dark .bottom-navigation {
+  background: var(--surface-1); /* Usar surface-1 para mejor contraste */
+  border-color: var(--border-moderate);
+}
+
+.dark .bottom-navigation {
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.4); /* SOMBRA MÁS FUERTE EN DARK */
+  border-top: 2px solid var(--border-strong); /* BORDE MÁS VISIBLE */
+}
+
+.dark .logo-mark {
+  background: var(--brand-gradient);
+}
+
+/* ==========================================
+   REDUCED MOTION
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-item,
+  .bottom-nav-item,
+  .nav-item--active::after {
+    transition: none !important;
+  }
+  
+  .bottom-nav-item--active .nav-icon {
+    transform: none !important;
+  }
+}
+
+/* ==========================================
+   HIGH CONTRAST MODE
+   ========================================== */
+
+@media (prefers-contrast: high) {
+  .nav-item--active::after {
+    height: 3px;
+  }
+  
+  .desktop-header,
+  .bottom-navigation {
+    border-width: 2px;
+  }
+}

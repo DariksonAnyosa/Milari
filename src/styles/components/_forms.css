@@ -1,0 +1,391 @@
+/* ==========================================
+   MILARI - SISTEMA DE FORMULARIOS PREMIUM
+   Inputs, selects y checkboxes con glassmorphism
+   ========================================== */
+
+/* ==========================================
+   INPUTS BASE
+   ========================================== */
+
+.task-input {
+  width: 100%;
+  padding: var(--space-lg) var(--space-xl);
+  border: 2px solid rgba(var(--color-primary-rgb), 0.1);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-primary);
+  font-size: var(--font-lg);
+  font-weight: var(--font-medium);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  margin-bottom: var(--space-xl);
+  transition: all var(--duration-slow) var(--ease-out);
+  color: var(--text-primary);
+  box-shadow: 
+    var(--shadow-sm),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.task-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 25px rgba(var(--color-primary-rgb), 0.15),
+    var(--shadow-md),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.task-input::placeholder {
+  color: var(--text-tertiary);
+  font-weight: var(--font-normal);
+}
+
+/* ==========================================
+   FORM LAYOUT
+   ========================================== */
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.input-group label {
+  font-family: var(--font-primary);
+  font-size: var(--font-sm);
+  font-weight: var(--font-semibold);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.input-group label::before {
+  content: '';
+  width: 3px;
+  height: 16px;
+  background: var(--gradient-primary);
+  border-radius: 2px;
+}
+
+/* ==========================================
+   TIME & DATE INPUTS
+   ========================================== */
+
+.time-input, 
+.date-input {
+  padding: var(--space-md) var(--space-lg);
+  border: 2px solid rgba(var(--color-primary-rgb), 0.1);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-primary);
+  font-size: var(--font-base);
+  font-weight: var(--font-medium);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  transition: all var(--duration-slow) var(--ease-out);
+  color: var(--text-primary);
+  box-shadow: 
+    var(--shadow-sm),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.time-input:focus, 
+.date-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-1px);
+  box-shadow: 
+    0 6px 20px rgba(var(--color-primary-rgb), 0.15),
+    0 3px 10px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* ==========================================
+   SELECT PREMIUM
+   ========================================== */
+
+.priority-select {
+  appearance: none;
+  padding: var(--space-md) var(--space-lg);
+  border: 2px solid rgba(var(--color-primary-rgb), 0.1);
+  border-radius: var(--radius-lg);
+  font-family: var(--font-primary);
+  font-size: var(--font-base);
+  font-weight: var(--font-medium);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  transition: all var(--duration-slow) var(--ease-out);
+  color: var(--text-primary);
+  cursor: pointer;
+  
+  /* Custom arrow */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23007AFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right var(--space-md) center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  padding-right: 44px;
+  
+  box-shadow: 
+    var(--shadow-sm),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.priority-select:hover {
+  border-color: rgba(var(--color-primary-rgb), 0.3);
+}
+
+.priority-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-1px);
+  box-shadow: 
+    0 6px 20px rgba(var(--color-primary-rgb), 0.15),
+    0 3px 10px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.priority-select option {
+  padding: var(--space-md);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-weight: var(--font-medium);
+}
+
+/* ==========================================
+   CHECKBOXES PREMIUM
+   ========================================== */
+
+.task-checkbox {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.checkbox {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--border-medium);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-slow) var(--ease-out);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  position: relative;
+  box-shadow: var(--shadow-sm);
+}
+
+.checkbox:hover {
+  border-color: var(--color-primary);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(var(--color-primary-rgb), 0.2);
+}
+
+.checkbox.checked {
+  background: var(--gradient-success);
+  border-color: var(--color-success);
+  transform: scale(1.1);
+  box-shadow: 
+    0 4px 12px rgba(52, 199, 89, 0.3),
+    var(--shadow-sm);
+}
+
+.checkbox.checked::after {
+  content: '✓';
+  color: var(--text-inverse);
+  font-size: var(--font-sm);
+  font-weight: var(--font-bold);
+  animation: checkmarkBounce var(--duration-slow) var(--ease-out);
+}
+
+@keyframes checkmarkBounce {
+  0% { 
+    transform: scale(0) rotate(45deg);
+    opacity: 0;
+  }
+  50% { 
+    transform: scale(1.3) rotate(45deg);
+    opacity: 1;
+  }
+  100% { 
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* ==========================================
+   CHECKBOX VARIANTS
+   ========================================== */
+
+.checkbox.large {
+  width: 32px;
+  height: 32px;
+  font-size: var(--font-base);
+}
+
+.checkbox.small {
+  width: 20px;
+  height: 20px;
+  font-size: var(--font-xs);
+}
+
+/* ==========================================
+   FORM VALIDATION STATES
+   ========================================== */
+
+.input-group.error .task-input,
+.input-group.error .time-input,
+.input-group.error .date-input,
+.input-group.error .priority-select {
+  border-color: var(--color-danger);
+  background: var(--color-danger-light);
+}
+
+.input-group.error .task-input:focus,
+.input-group.error .time-input:focus,
+.input-group.error .date-input:focus,
+.input-group.error .priority-select:focus {
+  border-color: var(--color-danger);
+  box-shadow: 0 0 0 3px rgba(255, 59, 48, 0.1);
+}
+
+.input-group.success .task-input,
+.input-group.success .time-input,
+.input-group.success .date-input,
+.input-group.success .priority-select {
+  border-color: var(--color-success);
+  background: var(--color-success-light);
+}
+
+.input-group.success .task-input:focus,
+.input-group.success .time-input:focus,
+.input-group.success .date-input:focus,
+.input-group.success .priority-select:focus {
+  border-color: var(--color-success);
+  box-shadow: 0 0 0 3px rgba(52, 199, 89, 0.1);
+}
+
+/* ==========================================
+   ERROR MESSAGES
+   ========================================== */
+
+.error-message {
+  color: var(--color-danger);
+  font-size: var(--font-sm);
+  font-weight: var(--font-medium);
+  margin-top: var(--space-xs);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.error-message::before {
+  content: '⚠';
+  font-size: var(--font-base);
+}
+
+.success-message {
+  color: var(--color-success);
+  font-size: var(--font-sm);
+  font-weight: var(--font-medium);
+  margin-top: var(--space-xs);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.success-message::before {
+  content: '✓';
+  font-size: var(--font-base);
+}
+
+/* ==========================================
+   DARK MODE FORMS
+   ========================================== */
+
+.add-task-modal.dark .task-input,
+.add-task-modal.dark .date-input,
+.add-task-modal.dark .time-input,
+.add-task-modal.dark .priority-select {
+  background: rgba(44, 44, 46, 0.8);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #f5f5f7;
+}
+
+.add-task-modal.dark .task-input::placeholder {
+  color: #8e8e93;
+}
+
+.add-task-modal.dark .input-group label {
+  color: #a1a1a6;
+}
+
+.add-task-modal.dark .task-input:focus,
+.add-task-modal.dark .date-input:focus,
+.add-task-modal.dark .time-input:focus,
+.add-task-modal.dark .priority-select:focus {
+  border-color: #0a84ff;
+  background: rgba(44, 44, 46, 0.95);
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.1);
+}
+
+/* ==========================================
+   RESPONSIVE FORMS
+   ========================================== */
+
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+  
+  .task-input {
+    padding: var(--space-md) var(--space-lg);
+    font-size: var(--font-base);
+  }
+  
+  .time-input,
+  .date-input,
+  .priority-select {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .task-input {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-sm);
+    margin-bottom: var(--space-lg);
+  }
+  
+  .input-group {
+    gap: var(--space-sm);
+  }
+  
+  .input-group label {
+    font-size: var(--font-xs);
+  }
+  
+  .checkbox {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .checkbox.large {
+    width: 28px;
+    height: 28px;
+  }
+}

@@ -1,0 +1,428 @@
+/* ==========================================
+   FLOATING ACTION BUTTON PROFESSIONAL
+   64px desktop / 56px mobile con ripple
+   ========================================== */
+
+.fab-container {
+  position: fixed;
+  bottom: var(--space-8);
+  right: var(--space-8);
+  z-index: var(--z-modal);
+  pointer-events: none;
+}
+
+.fab-container * {
+  pointer-events: auto;
+}
+
+/* ==========================================
+   FAB PRINCIPAL
+   ========================================== */
+
+.fab-main {
+  position: relative;
+  width: var(--fab-size-desktop);
+  height: var(--fab-size-desktop);
+  border-radius: var(--radius-full);
+  background: var(--brand-primary);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-fab);
+  transition: all var(--duration-normal) var(--ease-out);
+  overflow: hidden;
+  color: var(--text-inverse);
+}
+
+.fab-main:hover {
+  background: var(--brand-primary-hover);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-fab-hover);
+}
+
+.fab-main:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.fab-main:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.fab-icon {
+  transition: transform var(--duration-normal) var(--ease-out);
+  z-index: 1;
+}
+
+.fab-main:hover .fab-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* ==========================================
+   RIPPLE EFFECT
+   ========================================== */
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(0);
+  animation: ripple-animation var(--duration-slow) ease-out;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* ==========================================
+   ESTADOS DEL FAB
+   ========================================== */
+
+/* Estado: Listening */
+.fab-main--listening {
+  background: var(--accent-success);
+  animation: fabPulse 1.5s ease-in-out infinite;
+}
+
+.fab-main--listening:hover {
+  background: var(--accent-success);
+}
+
+@keyframes fabPulse {
+  0%, 100% { 
+    transform: scale(1); 
+    box-shadow: var(--shadow-fab);
+  }
+  50% { 
+    transform: scale(1.05); 
+    box-shadow: var(--shadow-fab-hover);
+  }
+}
+
+/* Estado: Processing */
+.fab-main--processing {
+  background: var(--accent-warning);
+}
+
+.fab-main--processing:hover {
+  background: var(--accent-warning);
+}
+
+.processing-spinner {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 2;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================
+   ONDAS DE LISTENING
+   ========================================== */
+
+.listening-wave {
+  position: absolute;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  animation: wave 2s ease-out infinite;
+}
+
+.listening-wave--1 {
+  inset: -8px;
+  animation-delay: 0s;
+}
+
+.listening-wave--2 {
+  inset: -16px;
+  animation-delay: 0.4s;
+}
+
+.listening-wave--3 {
+  inset: -24px;
+  animation-delay: 0.8s;
+}
+
+@keyframes wave {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+/* ==========================================
+   MICRO-COPY TOOLTIP
+   ========================================== */
+
+.fab-micro-copy {
+  position: absolute;
+  bottom: calc(100% + var(--space-4));
+  right: 0;
+  background: var(--surface-overlay);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px) scale(0.95);
+  transition: all var(--duration-normal) var(--ease-out);
+  max-width: 280px;
+  white-space: normal;
+  z-index: var(--z-tooltip);
+}
+
+.fab-micro-copy--visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.micro-copy-content {
+  line-height: var(--leading-body);
+}
+
+.micro-copy-title {
+  font-size: var(--text-body);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.micro-copy-example {
+  font-size: var(--text-label);
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.micro-copy-arrow {
+  position: absolute;
+  top: 100%;
+  right: var(--space-6);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid var(--surface-overlay);
+}
+
+/* ==========================================
+   RESPONSIVE FAB
+   ========================================== */
+
+@media (max-width: 768px) {
+  .fab-container {
+    bottom: calc(var(--nav-height-mobile) + var(--space-4));
+    right: var(--space-4);
+    /* FAB en su posición original ya que toggle está a la izquierda */
+  }
+  
+  .fab-main {
+    width: var(--fab-size-mobile);
+    height: var(--fab-size-mobile);
+  }
+  
+  .fab-micro-copy {
+    right: -var(--space-2);
+    max-width: 240px;
+    padding: var(--space-3);
+  }
+  
+  .micro-copy-arrow {
+    right: var(--space-5);
+  }
+  
+  .processing-spinner {
+    width: 24px;
+    height: 24px;
+    border-width: 2px;
+  }
+}
+
+@media (max-width: 480px) {
+  .fab-container {
+    bottom: calc(var(--nav-height-mobile) + var(--space-3));
+    right: var(--space-3);
+    /* FAB en su posición original */
+  }
+  
+  .fab-micro-copy {
+    bottom: calc(100% + var(--space-3));
+    right: -var(--space-4);
+    max-width: 200px;
+    padding: var(--space-3);
+  }
+  
+  .micro-copy-title {
+    font-size: var(--text-label);
+  }
+  
+  .micro-copy-example {
+    font-size: var(--text-caption);
+  }
+}
+
+/* ==========================================
+   DARK MODE FAB
+   ========================================== */
+
+.dark .fab-micro-copy {
+  background: var(--surface-overlay);
+  border-color: var(--border-subtle);
+}
+
+.dark .micro-copy-arrow {
+  border-top-color: var(--surface-overlay);
+}
+
+.dark .fab-main {
+  box-shadow: var(--shadow-fab);
+}
+
+.dark .fab-main:hover {
+  box-shadow: var(--shadow-fab-hover);
+}
+
+/* ==========================================
+   ACCESSIBILITY ENHANCEMENTS
+   ========================================== */
+
+.fab-main:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.5);
+  outline-offset: 4px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .fab-main {
+    border: 2px solid var(--text-primary);
+  }
+  
+  .fab-micro-copy {
+    border: 2px solid var(--text-primary);
+    background: var(--surface-secondary);
+  }
+  
+  .ripple {
+    background: rgba(255, 255, 255, 0.6);
+  }
+}
+
+/* ==========================================
+   REDUCED MOTION
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .fab-main,
+  .fab-micro-copy,
+  .listening-wave,
+  .processing-spinner,
+  .ripple {
+    animation: none !important;
+    transition: opacity var(--duration-fast) ease !important;
+  }
+  
+  .fab-main:hover {
+    transform: none !important;
+  }
+  
+  .fab-main--listening {
+    animation: none !important;
+  }
+  
+  .fab-main:hover .fab-icon {
+    transform: scale(1.05) !important;
+  }
+}
+
+/* ==========================================
+   CONFETTI ANIMATION (POMODORO COMPLETION)
+   ========================================== */
+
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: var(--z-toast);
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--brand-primary);
+  opacity: 0.4;
+  animation: confetti-fall var(--duration-slower) ease-out forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ==========================================
+   LOADING STATES
+   ========================================== */
+
+.fab-main--loading {
+  cursor: wait;
+}
+
+.fab-main--loading .fab-icon {
+  opacity: 0.5;
+}
+
+/* ==========================================
+   BRAND GRADIENT ANIMATION
+   ========================================== */
+
+.fab-main {
+  background: var(--brand-primary);
+  background-image: var(--brand-gradient);
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fab-main {
+    animation: none !important;
+    background: var(--brand-primary);
+  }
+}

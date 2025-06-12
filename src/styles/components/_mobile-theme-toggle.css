@@ -1,0 +1,81 @@
+/* ==========================================
+   MOBILE THEME TOGGLE FLOTANTE - SIMPLIFICADO
+   ========================================== */
+
+.mobile-theme-toggle {
+  position: fixed;
+  z-index: 1000;
+  left: 16px; /* POSICIÓN IZQUIERDA MÁS ACCESIBLE */
+  bottom: 100px; /* MÁS CERCA DEL BOTTOM NAV */
+  
+  width: 48px; /* LIGERAMENTE MÁS GRANDE PARA MEJOR TOUCH */
+  height: 48px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  border-radius: 50%;
+  background: var(--surface-1, #131B27);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  color: var(--brand-primary, #2563EB);
+  cursor: pointer;
+  
+  transition: all 0.2s ease;
+}
+
+.mobile-theme-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.mobile-theme-toggle .theme-icon {
+  width: 20px;
+  height: 20px;
+  transition: all 0.2s ease;
+}
+
+.mobile-theme-toggle .theme-icon.sun {
+  color: #F59E0B;
+}
+
+.mobile-theme-toggle .theme-icon.moon {
+  color: #6366F1;
+}
+
+/* Light mode */
+.mobile-theme-toggle:not(.dark) {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode */
+.dark .mobile-theme-toggle {
+  background: var(--surface-1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Ocultar en desktop */
+@media (min-width: 768px) {
+  .mobile-theme-toggle {
+    display: none !important;
+  }
+}
+
+/* Responsive para móviles pequeños */
+@media (max-width: 375px) {
+  .mobile-theme-toggle {
+    left: 12px; /* AJUSTAR PARA PANTALLAS PEQUEÑAS */
+    bottom: 90px;
+    width: 44px;
+    height: 44px;
+  }
+  
+  .mobile-theme-toggle .theme-icon {
+    width: 18px;
+    height: 18px;
+  }
+}

@@ -1,0 +1,767 @@
+/* ==========================================
+   MILARI - COMPONENTE DE TAREAS
+   Sistema de administración de tareas
+   ========================================== */
+
+/* ==========================================
+   VISTA LISTA DE TAREAS
+   ========================================== */
+
+.tasklist-view {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-2xl);
+  background: var(--bg-primary);
+  min-height: 100vh;
+}
+
+/* ==========================================
+   HEADER Y CONTROLES PRINCIPALES
+   ========================================== */
+
+.tasklist-header {
+  margin-bottom: var(--space-2xl);
+}
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: var(--font-3xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* ==========================================
+   ESTADÍSTICAS RÁPIDAS
+   ========================================== */
+
+.quick-stats {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.stat-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+  text-align: center;
+  flex: 1;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-number {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--font-2xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.stat-label {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  font-weight: var(--font-medium);
+  font-family: var(--font-primary);
+}
+
+/* ==========================================
+   FORMULARIO AGREGAR TAREA
+   ========================================== */
+
+.add-task-section {
+  margin-bottom: var(--space-2xl);
+}
+
+.add-task-form.expanded {
+  background: var(--glass-bg-heavy);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+  animation: slideDown 0.3s var(--ease-out);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.task-input {
+  padding: var(--space-md) var(--space-lg);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  font-family: var(--font-primary);
+  font-size: var(--font-base);
+  background: var(--bg-tertiary);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.task-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: var(--bg-secondary);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.1);
+}
+
+.priority-select {
+  padding: var(--space-md) var(--space-lg);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  font-family: var(--font-primary);
+  background: var(--bg-tertiary);
+  min-width: 120px;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.priority-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: var(--bg-secondary);
+}
+
+.form-actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+/* ==========================================
+   CONTROLES DE FILTRO Y BÚSQUEDA
+   ========================================== */
+
+.controls-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+  padding: var(--space-md);
+  background: var(--glass-bg-heavy);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+}
+
+.search-box {
+  position: relative;
+  flex: 1;
+  max-width: 300px;
+}
+
+.search-input {
+  width: 100%;
+  padding: var(--space-md) var(--space-lg) var(--space-md) 40px;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  font-family: var(--font-primary);
+  font-size: var(--font-sm);
+  background: var(--bg-tertiary);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: var(--bg-secondary);
+}
+
+.search-icon {
+  position: absolute;
+  left: var(--space-md);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: var(--font-sm);
+  color: var(--text-tertiary);
+}
+
+.filter-controls {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.filter-group label {
+  font-size: var(--font-sm);
+  font-weight: var(--font-medium);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  font-family: var(--font-primary);
+}
+
+.filter-select {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-primary);
+  font-size: var(--font-sm);
+  background: var(--bg-tertiary);
+  min-width: 100px;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: var(--bg-secondary);
+}
+
+/* ==========================================
+   GRID DE TAREAS
+   ========================================== */
+
+.tasks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--space-lg);
+}
+
+.task-card {
+  background: var(--glass-bg-heavy);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  transition: all var(--duration-normal) var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+
+.task-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary);
+}
+
+.task-card.completed {
+  background: rgba(var(--color-success-rgb), 0.05);
+  border-color: var(--color-success);
+  opacity: 0.9;
+}
+
+.task-card.completed .task-text {
+  text-decoration: line-through;
+  color: var(--text-tertiary);
+}
+
+/* ==========================================
+   HEADER DE TARJETA DE TAREA
+   ========================================== */
+
+.task-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.task-checkbox.large {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid var(--border-medium);
+  border-radius: 50%;
+  background: var(--bg-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.task-checkbox.large:hover {
+  border-color: var(--color-primary);
+  background: var(--bg-secondary);
+  transform: scale(1.05);
+}
+
+.task-checkbox.large .checkbox-icon {
+  font-size: var(--font-lg);
+  font-weight: var(--font-bold);
+  color: var(--text-tertiary);
+}
+
+.task-card.completed .task-checkbox.large {
+  background: var(--color-success);
+  border-color: var(--color-success);
+}
+
+.task-card.completed .checkbox-icon {
+  color: var(--text-inverse);
+}
+
+.task-type-icon {
+  font-size: var(--font-lg);
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-medium);
+  color: var(--text-primary);
+}
+
+.task-delete {
+  margin-left: auto;
+  width: 2rem;
+  height: 2rem;
+  background: rgba(var(--color-danger-rgb), 0.1);
+  border: 1px solid rgba(var(--color-danger-rgb), 0.2);
+  border-radius: 50%;
+  color: var(--color-danger);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-sm);
+  opacity: 0;
+}
+
+.task-card:hover .task-delete {
+  opacity: 1;
+}
+
+.task-delete:hover {
+  background: var(--color-danger);
+  color: var(--text-inverse);
+  transform: scale(1.1);
+}
+
+/* ==========================================
+   CONTENIDO DE TARJETA DE TAREA
+   ========================================== */
+
+.task-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.task-text {
+  font-size: var(--font-lg);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  line-height: var(--leading-normal);
+  margin: 0;
+  font-family: var(--font-primary);
+}
+
+.task-notes {
+  font-size: var(--font-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-normal);
+  background: var(--bg-tertiary);
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--color-primary);
+  font-family: var(--font-primary);
+}
+
+.task-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+}
+
+.meta-left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.task-date {
+  font-size: var(--font-sm);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+}
+
+.task-time {
+  font-size: var(--font-xs);
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+  font-family: var(--font-mono);
+}
+
+.meta-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.priority-badge {
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-xs);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: var(--font-primary);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.priority-badge.high {
+  background: var(--color-danger-light);
+  color: var(--color-danger);
+}
+
+.priority-badge.medium {
+  background: var(--color-warning-light);
+  color: var(--color-warning);
+}
+
+.priority-badge.low {
+  background: var(--color-success-light);
+  color: var(--color-success);
+}
+
+/* ==========================================
+   INFORMACIÓN DE COMPLETADO
+   ========================================== */
+
+.completion-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  background: rgba(var(--color-success-rgb), 0.1);
+  border: 1px solid rgba(var(--color-success-rgb), 0.2);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-sm);
+}
+
+.completion-emotion {
+  font-size: var(--font-lg);
+}
+
+.completion-time {
+  font-size: var(--font-xs);
+  color: var(--color-success);
+  font-weight: var(--font-medium);
+  font-family: var(--font-primary);
+}
+
+/* ==========================================
+   ESTADO VACÍO
+   ========================================== */
+
+.empty-state {
+  text-align: center;
+  padding: var(--space-4xl) var(--space-2xl);
+  background: var(--glass-bg-heavy);
+  border: 2px dashed var(--border-medium);
+  border-radius: var(--radius-xl);
+  margin-top: var(--space-2xl);
+}
+
+.empty-icon {
+  font-size: var(--font-4xl);
+  margin-bottom: var(--space-lg);
+  opacity: 0.7;
+  color: var(--text-tertiary);
+}
+
+.empty-title {
+  font-family: var(--font-display);
+  font-size: var(--font-xl);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.empty-subtitle {
+  font-size: var(--font-base);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2xl);
+  line-height: var(--leading-normal);
+  font-family: var(--font-primary);
+}
+
+/* ==========================================
+   RESPONSIVE PARA LISTA DE TAREAS
+   ========================================== */
+
+@media (max-width: 1024px) {
+  .tasks-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--space-md);
+  }
+}
+
+@media (max-width: 768px) {
+  .tasklist-view {
+    padding: var(--space-md);
+  }
+
+  .header-section {
+    flex-direction: column;
+    gap: var(--space-md);
+    align-items: stretch;
+  }
+
+  .section-title {
+    font-size: var(--font-2xl);
+    text-align: center;
+  }
+
+  .quick-stats {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .stat-card {
+    padding: var(--space-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+  }
+
+  .stat-number {
+    font-size: var(--font-xl);
+    margin-bottom: 0;
+  }
+
+  .controls-section {
+    flex-direction: column;
+    gap: var(--space-md);
+    align-items: stretch;
+  }
+
+  .search-box {
+    max-width: none;
+  }
+
+  .filter-controls {
+    justify-content: space-between;
+    gap: var(--space-md);
+  }
+
+  .filter-group {
+    flex-direction: column;
+    gap: var(--space-xs);
+    align-items: flex-start;
+  }
+
+  .tasks-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .task-card {
+    padding: var(--space-md);
+  }
+
+  .task-card-header {
+    gap: var(--space-sm);
+  }
+
+  .task-checkbox.large, 
+  .task-type-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .task-checkbox.large .checkbox-icon {
+    font-size: var(--font-base);
+  }
+
+  .task-type-icon {
+    font-size: var(--font-lg);
+  }
+
+  .task-card-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .empty-state {
+    padding: var(--space-2xl) var(--space-md);
+  }
+
+  .empty-title {
+    font-size: var(--font-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .tasklist-view {
+    padding: var(--space-sm);
+  }
+
+  .controls-section {
+    padding: var(--space-sm);
+  }
+
+  .task-card {
+    padding: var(--space-md);
+  }
+
+  .task-text {
+    font-size: var(--font-base);
+  }
+
+  .empty-icon {
+    font-size: var(--font-3xl);
+  }
+}
+
+/* ==========================================
+   ANIMACIONES Y MICROINTERACCIONES
+   ========================================== */
+
+.task-card {
+  animation: slideInUp 0.4s var(--ease-out);
+}
+
+.task-card:nth-child(even) {
+  animation-delay: 0.1s;
+}
+
+.task-card:nth-child(3n) {
+  animation-delay: 0.2s;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estados de carga */
+.task-card.loading {
+  background: linear-gradient(90deg, 
+    var(--bg-tertiary) 25%, 
+    var(--bg-secondary) 50%, 
+    var(--bg-tertiary) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Efectos de hover mejorados */
+.task-checkbox.large:active {
+  transform: scale(0.95);
+}
+
+.priority-badge:hover {
+  transform: scale(1.05);
+}
+
+/* Transiciones suaves para filtros */
+.tasks-grid {
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+/* ==========================================
+   ACCESIBILIDAD
+   ========================================== */
+
+.task-input:focus-visible,
+.priority-select:focus-visible,
+.search-input:focus-visible,
+.filter-select:focus-visible,
+.task-checkbox.large:focus-visible,
+.task-delete:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================
+   REDUCCIÓN DE MOVIMIENTO
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .task-card,
+  .task-checkbox.large,
+  .priority-badge,
+  .task-delete,
+  .stat-card,
+  .add-task-form.expanded {
+    transition: none;
+    animation: none !important;
+  }
+  
+  .task-card:hover,
+  .task-checkbox.large:hover,
+  .priority-badge:hover {
+    transform: none;
+  }
+  
+  .task-card.loading {
+    animation: none;
+    background: var(--bg-tertiary);
+  }
+}

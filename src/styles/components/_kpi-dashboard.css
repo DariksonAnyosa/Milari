@@ -1,0 +1,341 @@
+/* ==========================================
+   KPI DASHBOARD PROFESSIONAL
+   Grid auto-fit con tarjetas métricas
+   ========================================== */
+
+.kpi-dashboard {
+  margin: var(--space-8) 0;
+  padding: 0 var(--space-6);
+}
+
+/* ==========================================
+   GRID LAYOUT
+   ========================================== */
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--card-min-width), 1fr));
+  gap: var(--space-6);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ==========================================
+   KPI CARDS
+   ========================================== */
+
+.kpi-card {
+  background: var(--surface-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  box-shadow: var(--shadow-card);
+  transition: all var(--duration-normal) var(--ease-out);
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--border-moderate);
+}
+
+/* ==========================================
+   CARD HEADER
+   ========================================== */
+
+.kpi-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.kpi-icon {
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.kpi-title {
+  font-size: var(--text-label);
+  font-weight: var(--font-medium);
+  color: var(--text-secondary);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================
+   CARD CONTENT
+   ========================================== */
+
+.kpi-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.kpi-value {
+  font-size: var(--text-display-sm);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  line-height: var(--leading-display-sm);
+  margin-bottom: var(--space-1);
+}
+
+.kpi-label {
+  font-size: var(--text-label);
+  font-weight: var(--font-medium);
+  color: var(--text-tertiary);
+  line-height: var(--leading-label);
+}
+
+/* ==========================================
+   VALUE WITH CHART LAYOUT
+   ========================================== */
+
+.kpi-value-with-chart {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+}
+
+.kpi-value-with-chart .kpi-value {
+  margin-bottom: 0;
+}
+
+/* ==========================================
+   PROGRESS RING (TAREAS)
+   ========================================== */
+
+.progress-ring {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.progress-svg {
+  transform: rotate(-90deg);
+}
+
+.progress-circle {
+  transition: stroke-dashoffset var(--duration-slow) var(--ease-out);
+}
+
+.progress-percentage {
+  position: absolute;
+  font-size: var(--text-caption);
+  font-weight: var(--font-semibold);
+  color: var(--text-brand);
+  line-height: 1;
+}
+
+/* ==========================================
+   DONUT CHART (POMODORO)
+   ========================================== */
+
+.donut-chart {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.donut-svg {
+  transform: rotate(-90deg);
+}
+
+.donut-segment {
+  transition: stroke var(--duration-normal) var(--ease-out);
+}
+
+.donut-segment.completed {
+  stroke: var(--brand-primary);
+}
+
+.donut-segment.pending {
+  stroke: var(--neutral-200);
+}
+
+/* ==========================================
+   RESPONSIVE BEHAVIOR
+   ========================================== */
+
+@media (max-width: 768px) {
+  .kpi-dashboard {
+    margin: var(--space-6) 0;
+    padding: 0 var(--space-4);
+  }
+  
+  .kpi-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  
+  .kpi-card {
+    padding: var(--space-4);
+    min-height: 100px;
+  }
+  
+  .kpi-value {
+    font-size: var(--text-title-xs);
+    line-height: var(--leading-title-xs);
+  }
+  
+  .kpi-value-with-chart {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+  
+  .progress-ring,
+  .donut-chart {
+    align-self: flex-end;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .kpi-card:last-child {
+    grid-column: 1 / -1;
+    max-width: 320px;
+    justify-self: center;
+  }
+}
+
+/* ==========================================
+   DARK MODE
+   ========================================== */
+
+.dark .kpi-card {
+  background: var(--surface-secondary);
+  border-color: var(--border-subtle);
+}
+
+.dark .kpi-card:hover {
+  border-color: var(--border-moderate);
+}
+
+.dark .donut-segment.pending,
+.dark .progress-ring circle:first-child {
+  stroke: var(--neutral-700);
+}
+
+/* ==========================================
+   ACCESSIBILITY
+   ========================================== */
+
+.kpi-card:focus-within {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* ==========================================
+   ANIMATIONS & MICRO-INTERACTIONS
+   ========================================== */
+
+.kpi-card {
+  animation: kpiSlideIn 0.4s var(--ease-out);
+}
+
+.kpi-card:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+.kpi-card:nth-child(2) {
+  animation-delay: 100ms;
+}
+
+.kpi-card:nth-child(3) {
+  animation-delay: 200ms;
+}
+
+@keyframes kpiSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover micro-interaction */
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--brand-gradient);
+  border-radius: var(--card-radius) var(--card-radius) 0 0;
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.kpi-card:hover::before {
+  opacity: 1;
+}
+
+/* ==========================================
+   REDUCED MOTION
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .kpi-card,
+  .progress-circle,
+  .donut-segment,
+  .kpi-card::before {
+    animation: none !important;
+    transition: opacity var(--duration-fast) ease !important;
+  }
+  
+  .kpi-card:hover {
+    transform: none !important;
+  }
+}
+
+/* ==========================================
+   HIGH CONTRAST MODE
+   ========================================== */
+
+@media (prefers-contrast: high) {
+  .kpi-card {
+    border-width: 2px;
+  }
+  
+  .kpi-card::before {
+    height: 4px;
+  }
+  
+  .progress-circle,
+  .donut-segment {
+    stroke-width: 4px;
+  }
+}
