@@ -71,7 +71,6 @@ Me encantaría escuchar tus sugerencias:
 - **¿Algo no funciona bien?**
 - **¿Qué harías diferente?**
 
-📧 **Contacto**: [tu-email] | 🐦 **Twitter**: [@tu-usuario] | 💬 **Issues**: [Crear sugerencia](https://github.com/tu-usuario/milari-app/issues)
 
 ## 🛠️ Para desarrolladores
 
